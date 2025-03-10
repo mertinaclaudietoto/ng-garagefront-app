@@ -1,0 +1,60 @@
+<p-fluid class="mt-10 mb-10">
+    <div class="flex flex-col md:flex-row gap-8 mt-10 mb-10">
+        <div class="md:w-1/2">
+            <div class="card flex flex-col gap-4">
+                <div class="font-semibold text-xl">{{namecrud}}</div>
+                <p-table 
+                    [paginator]="true"
+                    [rows]="5"
+                    [value]="carTypes" [tableStyle]="{ 'min-width': '50rem' }">
+                    <ng-template #header>
+                        <tr>
+                            <th id="id">Id</th>
+                            <th id="name">Name</th>
+                            <th id="up">Update</th>  
+                            <th id="del">Delete</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template #body let-product>
+                        <tr>
+                            <td>{{ product.id }}</td>
+                            <td>{{ product.name }}</td>                   
+                            <td><p-button icon="pi pi-pencil" severity="success" outlined (onClick)="setUpdateValue(product)"/></td>          
+                            <td><p-button icon="pi pi-trash" severity="danger" outlined (onClick)="open(product)"/></td>                   
+                        </tr>
+                    </ng-template>
+                </p-table>
+                <p-dialog header="Alert" [(visible)]="display" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '30vw' }" [modal]="true">
+                    <p class="leading-normal m-0 justify-center items-center">
+                        Do you really want to delete these types of cars? This action is irreversible.
+                      </p>
+                      
+                    <ng-template #footer>
+                        <p-button label="Yes"severity="danger" (onClick)="close()" />
+                    </ng-template>
+                </p-dialog>  
+            </div>
+
+           
+        </div>
+        <div class="md:w-1/2">
+            <div class="card flex flex-col gap-4">
+                <div class="font-semibold text-xl">Add Or Update car type</div>
+                <div class="flex flex-wrap items-start gap-6">
+                    <label for="firstname1" class="sr-only">Name</label>
+                    <input pInputText id="firstname1" type="text" placeholder="name"
+                        required
+                       
+                        [(ngModel)]="addOrUpdateValue.name" name="name"
+                        #name="ngModel"
+                     />
+                    <div [hidden]="name.valid || name.pristine"
+                            class="card-panel text-red-700 accent-1 w-full">
+                            Name required.
+                    </div>
+                    <p-button label="validate" [fluid]="false"(onClick)="modifOrAdd(addOrUpdateValue)"></p-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-fluid>

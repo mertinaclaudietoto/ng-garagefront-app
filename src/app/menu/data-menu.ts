@@ -8,8 +8,8 @@ export const DATAMENU: MenuItem[] =[
     {
         label: 'UI Components',
         items: [
-            { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout'] },
-            { label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/input'] },
+            { label: 'Car form', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/car-form'] },
+            { label: 'Car-type', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/car-type'] },
             { label: 'Button', icon: 'pi pi-fw pi-mobile', class: 'rotated-icon', routerLink: ['/uikit/button'] },
             { label: 'Table', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table'] },
             { label: 'List', icon: 'pi pi-fw pi-list', routerLink: ['/uikit/list'] },

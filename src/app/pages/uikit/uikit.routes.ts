@@ -15,12 +15,14 @@ import { OverlayDemo } from './overlaydemo';
 import { TreeDemo } from './treedemo';
 import { MenuDemo } from './menudemo';
 
+import { CarFormComponent } from '../../car/car-form/car-form.component';
+import { CarTypeComponent } from '../../car/car-type/car-type.component';
 export default [
     { path: 'button', data: { breadcrumb: 'Button' }, component: ButtonDemo },
     { path: 'charts', data: { breadcrumb: 'Charts' }, component: ChartDemo },
     { path: 'file', data: { breadcrumb: 'File' }, component: FileDemo },
     { path: 'formlayout', data: { breadcrumb: 'Form Layout' }, component: FormLayoutDemo },
-    { path: 'input', data: { breadcrumb: 'Input' }, component: InputDemo },
+    // { path: 'input', data: { breadcrumb: 'Input' }, component: InputDemo },
     { path: 'list', data: { breadcrumb: 'List' }, component: ListDemo },
     { path: 'media', data: { breadcrumb: 'Media' }, component: MediaDemo },
     { path: 'message', data: { breadcrumb: 'Message' }, component: MessagesDemo },
@@ -31,5 +33,7 @@ export default [
     { path: 'overlay', data: { breadcrumb: 'Overlay' }, component: OverlayDemo },
     { path: 'tree', data: { breadcrumb: 'Tree' }, component: TreeDemo },
     { path: 'menu', data: { breadcrumb: 'Menu' }, component: MenuDemo },
+    { path: 'car-form', data: { breadcrumb: 'Menu' }, component: CarFormComponent },
+    { path: 'car-type', data: { breadcrumb: 'Menu' }, component: CarTypeComponent},
     { path: '**', redirectTo: '/notfound' }
 ] as Routes;
