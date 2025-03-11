@@ -6,10 +6,11 @@ import { products } from '../../data/task';
 import { Product } from '../../models/task.model';
 import { ButtonModule } from 'primeng/button';
 import { Dialog } from 'primeng/dialog';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 @Component({
   selector: 'app-list-task',
-  imports: [DragDropModule, TableModule, CommonModule, ButtonModule, Dialog],
+  imports: [DragDropModule, TableModule, CommonModule, ButtonModule, Dialog, ScrollPanelModule],
   templateUrl: './list-task.component.html',
   styleUrl: './list-task.component.scss'
 })

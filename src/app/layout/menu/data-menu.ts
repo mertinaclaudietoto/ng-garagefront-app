@@ -29,6 +29,7 @@ export const DATAMENU: MenuItem[] = [
         label: 'Mecanicien',
         items: [
             { label: 'Tâches', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/task-mechanic'] },
+            { label: 'Calendrier', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/agenda-mechanic'] },
         ]
     },
     {
