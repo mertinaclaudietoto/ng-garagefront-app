@@ -1,23 +1,28 @@
 :host ::ng-deep {
   .drag-column {
     padding-right: 0.5em;
+    border: 1px solid gray;
+    border-radius: 10px;
   }
 
   .drop-column {
-    border: 1px solid transparent;
+    border: 1px solid gray;
+    border-radius: 10px;
     transition: border-color 0.2s;
 
     &.p-draggable-enter {
       border-color: var(--primary-color);
+      border-radius: 10px;
     }
   }
 
+  p-scrollpanel-bar-y {
+    width: var(--p-scrollpanel-bar-size);
+    background-color: gray;
+  }
+
   .product-item {
-    //     display: flex;
-    //     align-items: center;
-    //     padding: 1rem;
-    //     width: 100%;
-    //     border-bottom: 10px solid var(--surface-d);
+    background-color: aliceblue;
     display: flex;
     align-items: center;
     padding: 1rem;

@@ -7,7 +7,7 @@
           <h5 class="text-center">A faire</h5>
           <div class="mt-14"></div>
           <p-scrollpanel
-            [style]="{ width: '100%', height: 'calc(100vh - 400px) ' }"
+            [style]="{ width: '100%', height: 'calc(100vh - 300px)' }"
           >
             <div *ngFor="let product of availableProducts">
               <div
@@ -54,7 +54,12 @@
           (onDrop)="drop()"
         >
           <h5 class="text-center">Términé</h5>
-          <p-table [value]="selectedProducts">
+          <p-table
+            [value]="selectedProducts"
+            [scrollable]="true"
+            [scrollHeight]="'calc(100vh - 300px)'"
+            scrollDirection="vertical"
+          >
             <ng-template pTemplate="header">
               <tr>
                 <th>ID</th>
