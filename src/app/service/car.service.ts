@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IdName } from './car-type/car-type';
-
-
-import { CARLIST } from './data-car';
-import { Car } from './car';
-import { environement } from '../../../environement/environement';
-
+import { IdName } from '../class/car-type';
+import { Car } from '../class/car';
+import { environement } from '../../environement/environement';
 const headers = new HttpHeaders().set("Content-Type", "application/json");
 
 @Injectable({
@@ -18,26 +14,22 @@ export class CarService {
   private apiUrl = environement.apiUrl;
  
   constructor(private http: HttpClient) {}
-  getCar():Car[]{
-    return CARLIST;
+  getCar():Observable<Car[]> {
+    return this.http.get<Car[]>(this.apiUrl+'cars');
   }
-  modifOrAddCar(value:Car){
-    const index = CARLIST.findIndex(car => car._id=== value._id);
-    if (index !== -1) {
-      CARLIST[index] = value;
-    } else {
-      value._id= Math.max(...CARLIST.map(car => car._id)) + 1;
-      CARLIST.push(value);
+  modifOrAddCar(value:Car) :Observable<Car>{
+    if(value._id!=undefined){
+      return this.http.put<Car>(`${this.apiUrl}${'cars'}/${encodeURIComponent(value._id)}`, value,{headers})
+    }else{
+      return this.http.post<Car>(this.apiUrl+'cars',value) ;
     }
   }
-  // getPokemonList(): Observable<PokemonList> {
-  //   return this.http.get<PokemonList>(this.POKEMON_API_URL);
-  // }
-  deleteCar(value:Car){
-    const index = CARLIST.findIndex(car => car._id=== value._id);
-    if (index !== -1) {
-      CARLIST.splice(index, 1);
+
+  deleteCar(value:Car|undefined):Observable<void>{
+    if(value!=undefined){
+      return this.http.delete<void>(this.apiUrl+"cars/"+value._id) ;
     }
+    return new Observable<void>;
   }
 
   getCarType(index:string): Observable<IdName[]> {
@@ -47,10 +39,8 @@ export class CarService {
 
   modifOrAddCarType(indexd:string,value:IdName): Observable<IdName>{
     if(value._id!=undefined){
-      console.log("dedede123");
       return this.http.put<IdName>(`${this.apiUrl}${indexd}/${encodeURIComponent(value._id)}`, value,{headers})
     }else{
-      console.log("dedede");
       return this.http.post<IdName>(this.apiUrl+indexd,value) ;
     }
   }

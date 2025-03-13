@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FluidModule } from 'primeng/fluid';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
@@ -15,31 +15,38 @@ import { TagModule } from 'primeng/tag';
 import { InputIconModule } from 'primeng/inputicon';
 import { ToolbarModule } from 'primeng/toolbar';
 import { SplitButtonModule } from 'primeng/splitbutton';
-import { IdName } from '../../layout/car/car-type/car-type';
+
 import { CarTypeComponent } from '../../layout/car/car-type/car-type.component';
 
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
-import { Car } from '../../layout/car/car';
-import { CARLIST } from '../../layout/car/data-car';
-import { CarService } from '../../layout/car/car.service';
+import { Car } from '../../class/car';
 
+
+import { CarService } from '../../service/car.service';
+// Assurez-vous que `CarType` est exporté dans ce fichier
+import { IdName } from '../../class/car-type';
 @Component({
   selector: 'app-car-form',
   imports: [InputTextModule, FluidModule, ButtonModule, SelectModule, FormsModule, TextareaModule, CarouselModule, ButtonModule, GalleriaModule, ImageModule, TagModule, IconFieldModule, InputIconModule, ToolbarModule, SplitButtonModule, CarTypeComponent,TableModule,DialogModule],
   templateUrl: './car-form.component.html',
   styleUrl: './car-form.component.scss'
 })
-export class CarFormComponent {
-    carList:Car[]=CARLIST;
+export class CarFormComponent implements OnInit{
+    carList:Car[]|undefined=undefined;
     addOrListValue:boolean=false;
     addOrList(value:boolean){
       this.addOrListValue=value;
     }
+    
     display: boolean = false;
-    addOrUpdateValue:Car = new Car(1,  'image.jpg', 'Toyota', 'Corolla', 'Berline', 2023, '2023-04-05', 'Essence', 'Moyenne', '1300kg', 2700);
-    deleteValue :Car = new Car(1,  'image.jpg', 'Toyota', 'Corolla', 'Berline', 2023, '2023-04-05', 'Essence', 'Moyenne', '1300kg', 2700);
+    addOrUpdateValue:Car|undefined =undefined;
+    deleteValue :Car|undefined =undefined;
     constructor(private carService: CarService) {
+    }
+
+    ngOnInit() {
+      this.carService.getCar().subscribe(table=> this.carList=table);
     }
 
     crudSelect=["cartypes","engines","sizes","weigths"];
@@ -73,15 +80,31 @@ export class CarFormComponent {
     this.addOrUpdateValue=carType;
   }
   modifOrAdd(carType:Car){
-    this.carService.modifOrAddCar(carType);
+    this.carService.modifOrAddCar(carType).subscribe( response => {
+      this.relaod();
+    },
+    error => {
+      console.error("❌ Erreur lors de l'envoi de la requête DELETE :", error);
+    }
+  );
   }
   close() {
     this.display = false;
-    this.carService.deleteCar(this.deleteValue);
+    this.carService.deleteCar(this.deleteValue).subscribe( response => {
+      this.relaod();
+    },
+    error => {
+      console.error("❌ Erreur lors de l'envoi de la requête DELETE :", error);
+    }
+  );
   }
   open(carType:Car) {
-    console.log(carType);
     this.deleteValue=carType;
     this.display = true;
+  }
+  relaod(){
+    this.carService.getCar().subscribe(table=> this.carList=table);
+    this.deleteValue  =undefined;
+    this.addOrUpdateValue=undefined;
   }
 }

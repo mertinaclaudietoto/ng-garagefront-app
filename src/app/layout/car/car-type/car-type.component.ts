@@ -3,8 +3,8 @@ import { FluidModule } from 'primeng/fluid';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
-import { CarService } from '../car.service';
-import { IdName } from './car-type';
+import { CarService } from '../../../service/car.service';
+import { IdName } from '../../../class/car-type';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
 import { response } from 'express';
@@ -52,7 +52,6 @@ export class CarTypeComponent implements OnInit {
     );
   }
   open(carType:IdName) {
-    console.log(carType);
     this.deleteValue=carType;
     this.display = true;
   }
@@ -63,3 +62,4 @@ export class CarTypeComponent implements OnInit {
   }
 
 }
+
