@@ -12,64 +12,52 @@
             (onSelect)="selectDate($event)"
           />
         </div>
-        <div class="col-span-12 md:col-span-6 div-task" >
+        <div class="col-span-12 md:col-span-6 div-task">
           <h5 class="text-center">Tâches</h5>
           <div class="task">
             <p-scrollpanel
-            [style]="{ width: '100%', height: 'calc(100vh - 20em)' }"
-          >
-            <div *ngFor="let product of availableProducts">
-              <div
-                class="product-item"
-              >
-                <div class="image-container">
-                  <img
-                    src="https://primefaces.org/cdn/primeng/images/demo/product/{{
-                      product.image
-                    }}"
-                    [alt]="product.name"
-                    class="product-image"
-                  />
-                </div>
-                <div class="product-list-detail">
-                  <h5 class="mb-2">
-                    {{ product.name }}
-                  </h5>
-                  <i class="pi pi-tag product-category-icon"></i>
-                  <span class="product-category">
-                    {{ product.category }}
-                  </span>
-                </div>
-                <div class="product-list-action">
-                  <h6 class="mb-2">
-                    {{ product.price }}
-                  </h6>
-                  <button
-                    (click)="display = true"
-                    pButton
-                    label="Détails"
-                  ></button>
+              [style]="{ width: '100%', height: 'calc(100vh - 20em)' }"
+            >
+              <div *ngFor="let product of availableProducts">
+                <div class="product-item">
+                  <div class="image-container">
+                    <img
+                      src="https://primefaces.org/cdn/primeng/images/demo/product/{{
+                        product.image
+                      }}"
+                      [alt]="product.name"
+                      class="product-image"
+                    />
+                  </div>
+                  <div class="product-list-detail">
+                    <h5 class="mb-2">
+                      {{ product.name }}
+                    </h5>
+                    <i class="pi pi-tag product-category-icon"></i>
+                    <span class="product-category">
+                      {{ product.category }}
+                    </span>
+                  </div>
+                  <div class="product-list-action">
+                    <h6 class="mb-2">
+                      {{ product.price }}
+                    </h6>
+                    <button
+                      (click)="showModal(product)"
+                      pButton
+                      label="Détails"
+                    ></button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </p-scrollpanel>
+            </p-scrollpanel>
           </div>
-          
         </div>
       </div>
     </div>
   </div>
 </div>
-<p-dialog
-  header="Détails tâche"
-  [(visible)]="display"
-  [modal]="true"
-  showEffect="fade"
-  [style]="{ width: '30vw' }"
-  [breakpoints]="{ '960px': '75vw' }"
->
-  <p>Client :</p>
-  <p>Véhicule :</p>
-  <p>A réparer :</p>
-  <p>Durée :</p>
-</p-dialog>
+<app-modal-detail-task
+  [task]="selectedTask"
+  [(display)]="modalVisible"
+></app-modal-detail-task>

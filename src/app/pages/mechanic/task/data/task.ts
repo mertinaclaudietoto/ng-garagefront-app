@@ -1,6 +1,6 @@
-import { Product } from "../models/task.model";
+import { Task } from "../models/task.model";
 
-export const products: Product[] = [
+export const tasks: Task[] = [
      {
          id: "1000",
          code: "f230fh0g3",

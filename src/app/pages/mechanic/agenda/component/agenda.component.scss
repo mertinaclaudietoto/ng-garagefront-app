@@ -80,11 +80,6 @@
     .card.grid {
       grid-template-columns: 1fr;
       height: calc(100vh - 150px);
-
-      .drag-column,
-      .drop-column {
-        height: 50vh;
-      }
     }
   }
 }
