@@ -5,9 +5,9 @@
       <div class="card grid grid-cols-12 gap-4 grid-nogutter">
         <div class="col-span-12 md:col-span-6 drag-column">
           <h5 class="text-center">A faire</h5>
-          <div class="mt-14"></div>
+          <!-- <div class="mt-14"></div> -->
           <p-scrollpanel
-            [style]="{ width: '100%', height: 'calc(100vh - 300px)' }"
+            [style]="{ width: '100%', height: 'calc(100vh - 23em)' }"
           >
             <div *ngFor="let product of availableProducts">
               <div
@@ -57,7 +57,7 @@
           <p-table
             [value]="selectedProducts"
             [scrollable]="true"
-            [scrollHeight]="'calc(100vh - 300px)'"
+            [scrollHeight]="'calc(100vh - 25em)'"
             scrollDirection="vertical"
           >
             <ng-template pTemplate="header">
@@ -98,10 +98,8 @@
   [style]="{ width: '30vw' }"
   [breakpoints]="{ '960px': '75vw' }"
 >
-  <!-- <p class="line-height-3 m-0"> -->
   <p>Client :</p>
   <p>Véhicule :</p>
   <p>A réparer :</p>
   <p>Durée :</p>
-  <!-- </p> -->
 </p-dialog>
