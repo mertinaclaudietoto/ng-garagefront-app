@@ -42,7 +42,8 @@ export class CarFormComponent {
     constructor(private carService: CarService) {
     }
 
-    crudSelect=["cartypes","enginetypes","sizetypes","weighttypes"];
+    crudSelect=["cartypes","engines","sizes","weigths"];
+
     dropdownItems = [
       { name: 'Option 1', code: 'Option 1' },
       { name: 'Option 2', code: 'Option 2' },

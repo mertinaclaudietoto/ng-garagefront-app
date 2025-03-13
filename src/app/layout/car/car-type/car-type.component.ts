@@ -7,6 +7,7 @@ import { CarService } from '../car.service';
 import { IdName } from './car-type';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
+import { response } from 'express';
 
 
 @Component({
@@ -21,27 +22,44 @@ export class CarTypeComponent implements OnInit {
   constructor(private carService: CarService) {
   }
   display: boolean = false;
-  addOrUpdateValue : IdName =new IdName(0,'');
-  deleteValue : IdName =new IdName(0,'');
+  addOrUpdateValue : IdName =new IdName(undefined,'');
+  deleteValue : IdName =new IdName(undefined,'');
 
  
   ngOnInit() {
-    this.carTypes=this.carService.getCarType(this.namecrud);
+    this.carService.getCarType(this.namecrud).subscribe(table=> this.carTypes=table);
   }
   setUpdateValue(carType:IdName){
     this.addOrUpdateValue=carType;
   }
   modifOrAdd(carType:IdName){
-    this.carService.modifOrAddCarType(this.namecrud,carType);
+    this.carService.modifOrAddCarType(this.namecrud,carType).subscribe( response => {
+      this.relaod();
+      },
+      error => {
+        console.error("❌ Erreur lors de l'envoi de la requête PUT :", error);
+      }
+    );
   }
   close() {
     this.display = false;
-    this.carService.deleteCarType(this.namecrud,this.deleteValue);
+    this.carService.deleteCarType(this.namecrud,this.deleteValue).subscribe( response => {
+        this.relaod();
+      },
+      error => {
+        console.error("❌ Erreur lors de l'envoi de la requête DELETE :", error);
+      }
+    );
   }
   open(carType:IdName) {
     console.log(carType);
     this.deleteValue=carType;
     this.display = true;
+  }
+  relaod(){
+    this.carService.getCarType(this.namecrud).subscribe(table=> this.carTypes=table);
+    this.deleteValue  =new IdName(undefined,'');
+    this.addOrUpdateValue=new IdName(undefined,'');
   }
 
 }

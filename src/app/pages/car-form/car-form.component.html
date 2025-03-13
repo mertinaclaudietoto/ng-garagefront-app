@@ -10,7 +10,7 @@
                     [value]="carList" [tableStyle]="{ 'min-width': '50rem' }">
                     <ng-template #header>
                         <tr>
-                            <th id="id">Id</th>
+                           
                             <th id="name">Name</th>
                             <th id="up">Update</th>  
                             <th id="del">Delete</th>
@@ -18,7 +18,7 @@
                     </ng-template>
                     <ng-template #body let-product>
                         <tr>
-                            <td>{{ product.id }}</td>
+                          
                             <td>{{ product.marque }}</td>                   
                             <td><p-button icon="pi pi-pencil" severity="success" outlined (onClick)="setUpdateValue(product)"/></td>          
                             <td><p-button icon="pi pi-trash" severity="danger" outlined (onClick)="open(product)"/></td>                   
