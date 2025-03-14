@@ -34,11 +34,7 @@ import { IdName } from '../../class/car-type';
 })
 export class CarFormComponent implements OnInit{
     carList:Car[]|undefined=undefined;
-    addOrListValue:boolean=false;
-    addOrList(value:boolean){
-      this.addOrListValue=value;
-    }
-    
+   
     display: boolean = false;
     addOrUpdateValue:Car|undefined =undefined;
     deleteValue :Car|undefined =undefined;
@@ -58,24 +54,7 @@ export class CarFormComponent implements OnInit{
     ];
 
     dropdownItem = null;
-    items: MenuItem[] = [
-      {
-          label: 'Save',
-          icon: 'pi pi-check'
-      },
-      {
-          label: 'Update',
-          icon: 'pi pi-upload'
-      },
-      {
-          label: 'Delete',
-          icon: 'pi pi-trash'
-      },
-      {
-          label: 'Home Page',
-          icon: 'pi pi-home'
-      }
-  ];
+   
   setUpdateValue(carType:Car){
     this.addOrUpdateValue=carType;
   }

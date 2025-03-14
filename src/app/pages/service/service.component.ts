@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 // css 
 import { FluidModule } from 'primeng/fluid';
 import { InputTextModule } from 'primeng/inputtext';
@@ -20,11 +19,14 @@ import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 //other component
 import { CarTypeComponent } from '../../layout/car/car-type/car-type.component';
-
+//classe
+import { Car } from '../../class/car';
 // service component
 
 import { ServicePrice } from '../../class/servicePirce';
 import { ServicepriceService } from '../../service/serviceprice.service';
+import { CarService } from '../../service/car.service';
+import { IdName } from '../../class/car-type';
 @Component({
   selector: 'app-service',
   imports: [InputTextModule, FluidModule, ButtonModule, SelectModule, FormsModule, TextareaModule, CarouselModule, ButtonModule, GalleriaModule, ImageModule, TagModule, IconFieldModule, InputIconModule, ToolbarModule, SplitButtonModule, CarTypeComponent,TableModule,DialogModule],
@@ -32,18 +34,65 @@ import { ServicepriceService } from '../../service/serviceprice.service';
   styleUrl: './service.component.scss'
 })
 export class ServiceComponent implements OnInit {
+
   servicePriceList:ServicePrice[]|undefined=undefined;
+  carList:Car[]|undefined=undefined;
+  serviceList:IdName[]|undefined=undefined;
   service:string ="services";
-  constructor(private servicePriceService: ServicepriceService) {
+  display: boolean = false;
+  addOrUpdateValue:ServicePrice|undefined =undefined;
+  deleteValue :ServicePrice|undefined =undefined;
+
+  constructor(private servicePriceService: ServicepriceService,
+    private carService :CarService
+  ) {
   }
   ngOnInit() {
     this.servicePriceService.getServicePrice().subscribe(table=> this.servicePriceList=table);
+    this.carService.getCar().subscribe(value=>this.carList=value);
+    this.carService.getCarType(this.service).subscribe(value=>this.serviceList=value);
   }
-  dropdownItems = [
-    { name: 'Option 1', code: 'Option 1' },
-    { name: 'Option 2', code: 'Option 2' },
-    { name: 'Option 3', code: 'Option 3' }
-  ];
+  
+  dropdownItemsCar = this.carList?.map(value=>({name:value.brand+" "+value.model+" "+value.version,
+    code:value._id
+  }));
+  
+  
+  dropdownItemsService = this.serviceList?.map(value=>({name:value.name,
+    code:value._id
+  }));
+  dropdownItem = null;
+  setUpdateValue(value:ServicePrice){
+      this.addOrUpdateValue=value;
+  }
+  modifOrAdd(value:ServicePrice){
+    this.servicePriceService.modifOrAddCar(value).subscribe( response => {
+      this.relaod();
+    },
+    error => {
+      console.error("❌ Erreur lors de l'envoi de la requête DELETE :", error);
+    }
+  );
+  }
+  close() {
+    this.display = false;
+    this.servicePriceService.deleteCar(this.deleteValue).subscribe( response => {
+      this.relaod();
+    },
+    error => {
+      console.error("❌ Erreur lors de l'envoi de la requête DELETE :", error);
+    }
+  );
+  }
+  open(carType:ServicePrice) {
+      this.deleteValue=carType;
+      this.display = true;
+  }
+  relaod(){
+    this.servicePriceService.getServicePrice().subscribe(table=> this.servicePriceList=table);
+    this.deleteValue  =undefined;
+    this.addOrUpdateValue=undefined;
+  }
   
 }
 

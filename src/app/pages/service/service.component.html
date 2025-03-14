@@ -1,4 +1,5 @@
-<!-- <p-fluid>
+<p-fluid>
+
     <div   class="flex flex-col md:flex-row gap-8  ">
         <div class="md:w-1/2">
             
@@ -10,16 +11,20 @@
                     [value]="servicePriceList" [tableStyle]="{ 'min-width': '50rem' }">
                     <ng-template #header>
                         <tr>
-                           
-                            <th id="name">Name</th>
+                            <th id="name">Price</th>
+                            <th id="name">Serice</th>
+                            <th id="name">Brand</th>
+                            <th id="name">Model</th>
                             <th id="up">Update</th>  
                             <th id="del">Delete</th>
                         </tr>
                     </ng-template>
                     <ng-template #body let-product>
                         <tr>
-                          
-                            <td>{{ product.marque }}</td>                   
+                            <td>{{ product.price }}</td>                   
+                            <td>{{ product.service.name }}</td>                   
+                            <td>{{ product.car.brand }}</td>                   
+                            <td>{{ product.car.model }}</td>                   
                             <td><p-button icon="pi pi-pencil" severity="success" outlined (onClick)="setUpdateValue(product)"/></td>          
                             <td><p-button icon="pi pi-trash" severity="danger" outlined (onClick)="open(product)"/></td>                   
                         </tr>
@@ -41,65 +46,27 @@
         <div class="md:w-1/2">
             <div class="card flex flex-col gap-4">
                 <div class="font-semibold text-xl">Vertical</div>
-                    <div class="card ">
-                        <div class="flex flex-wrap gap-6">
-                            <div class="flex flex-col grow basis-0 gap-2">
-                                <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria10.jpg" alt="Image" width="250" />
-                            </div>
-                            <div class="flex flex-col grow basis-0 gap-2">
-                                <label for="email2">Image</label>
-                                <input pInputText id="email2" type="file" />
-                                <label for="email2">Marque</label>
-                                <input pInputText id="email2" type="text" />
-                                <label for="email2">Model</label>
-                                <input pInputText id="email2" type="text" />
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-4 mt-10">
-                        
-                            <div class="flex flex-wrap gap-6">
-                                <div class="flex flex-col grow basis-0 gap-2">
-                                    <label for="name2">Type care</label>
-                                    <p-select id="state" [(ngModel)]="dropdownItem" [options]="dropdownItems" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
-                                </div>
-                                <div class="flex flex-col grow basis-0 gap-2">
-                                    <label for="email2">version</label>
-                                    <input pInputText id="email2" type="text" />
-                                </div>
-                                <div class="flex flex-col grow basis-0 gap-2">
-                                    <label for="email2">date sortie</label>
-                                    <input pInputText id="email2" type="date" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-4 mt-10">
-                            <div class="flex flex-wrap gap-2">
-                                <label for="username">Type moteur</label>
-                                <p-select id="state" [(ngModel)]="dropdownItem" [options]="dropdownItems" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-4 mt-10">
-                            
-                            <div class="flex flex-wrap gap-6">
-                                <div class="flex flex-col grow basis-0 gap-2">
-                                    <label for="name2">Taille</label>
-                                    <p-select id="state" [(ngModel)]="dropdownItem" [options]="dropdownItems" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
-                                </div>
-                                <div class="flex flex-col grow basis-0 gap-2">
-                                    <label for="email2">Poids</label>
-                                    <p-select id="state" [(ngModel)]="dropdownItem" [options]="dropdownItems" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
-                                </div>
-                                <div class="flex flex-col grow basis-0 gap-2">
-                                    <label for="email2">Empathement</label>
-                                    <input pInputText id="email2" type="text" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap items-start gap-6">
-                            <p-button class="mt-5" label="validate" [fluid]="false"></p-button>
-                        </div>
-                        
+                <div class="flex flex-col gap-4 mt-10">
+                    <div class="flex flex-wrap gap-2">
+                        <label for="username">Car</label>
+                        <p-select id="state" [(ngModel)]="dropdownItem" [options]="dropdownItemsCar" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
                     </div>
+                </div>
+                <div class="flex flex-col gap-4 mt-10">
+                    <div class="flex flex-wrap gap-2">
+                        <label for="username">Service</label>
+                        <p-select id="state" [(ngModel)]="dropdownItem" [options]="dropdownItemsService" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-4 mt-10">
+                    <div class="flex flex-col grow basis-0 gap-2">
+                        <label for="email2">Price</label>
+                        <input pInputText id="email2" type="text" />
+                    </div>
+                </div>
+                <div class="flex flex-wrap items-start gap-6">
+                    <p-button class="mt-5" label="validate" [fluid]="false"></p-button>
+                </div>
                 </div>
         </div>
        
@@ -116,4 +83,4 @@
 </p-fluid>
 
 
- -->
+
