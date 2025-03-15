@@ -2,12 +2,12 @@
     <div   class="flex flex-col md:flex-row gap-8  ">
         <div class="md:w-1/2">
             
-            <div *ngIf="carList" class="card flex flex-col gap-4">
+            <div *ngIf="empList" class="card flex flex-col gap-4">
                 <div class="font-semibold text-xl">List Vehicule</div>
                 <p-table 
                     [paginator]="true"
                     [rows]="9"
-                    [value]="carList" [tableStyle]="{ 'min-width': '50rem' }">
+                    [value]="empList" [tableStyle]="{ 'min-width': '50rem' }">
                     <ng-template #header>
                         <tr>
                            
@@ -105,14 +105,7 @@
        
        
     </div>
-    <div *ngFor="let item of crudSelect; let i = index">
-        <app-car-type  [namecrud]="item"></app-car-type>
-    </div>
-      
-   
-
-
-  
 </p-fluid>
+
 
 
