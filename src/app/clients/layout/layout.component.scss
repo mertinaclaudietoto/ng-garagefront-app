@@ -1,0 +1,34 @@
+:host ::ng-deep {
+  .fixed-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  body {
+    padding-top: 60px;
+  }
+
+  .p-carousel-content {
+    display: flex;
+    flex-direction: row;
+    gap: var(--p-carousel-content-gap);
+    background-color: white;
+  }
+
+  .p-carousel-indicator-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: var(--p-carousel-indicator-list-padding);
+    gap: var(--p-carousel-indicator-list-gap);
+    margin: 0;
+    list-style: none;
+    background-color: white;
+  }
+}

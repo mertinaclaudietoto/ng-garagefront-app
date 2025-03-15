@@ -1,0 +1,23 @@
+:host ::ng-deep {
+  .grid {
+    height: calc(100vh - 12em);
+  }
+
+  .p-rating-option-active .p-rating-icon {
+    color: darkorange;
+  }
+  .total-customer {
+    margin-left: 5em;
+  }
+
+  @media screen and (max-width: 576px) {
+    .card.grid {
+      grid-template-columns: 1fr;
+      height: calc(100vh - 150px);
+    }
+
+    .total-customer {
+      margin-left: 0px;
+    }
+  }
+}

@@ -1,21 +1,19 @@
 import {
   BaseComponent
-} from "./chunk-3ZVH6PUC.js";
+} from "./chunk-YVAOGOJW.js";
 import {
   BaseStyle
-} from "./chunk-BOWGLMZV.js";
+} from "./chunk-D3DZ6OWL.js";
 import {
   PrimeTemplate,
   SharedModule
-} from "./chunk-K7EQ3NNJ.js";
+} from "./chunk-WG773RAT.js";
 import {
   addClass,
   getHeight,
   removeClass,
   uuid
-} from "./chunk-L44G2WQG.js";
-import "./chunk-TZIJKBMI.js";
-import "./chunk-YAPJLE7E.js";
+} from "./chunk-KAO4CBML.js";
 import {
   CommonModule,
   NgClass,
@@ -68,6 +66,8 @@ import {
 import "./chunk-4N4GOYJH.js";
 import "./chunk-5OPE3T2R.js";
 import "./chunk-FHTVLBLO.js";
+import "./chunk-TZIJKBMI.js";
+import "./chunk-YAPJLE7E.js";
 import "./chunk-WDMUDEB6.js";
 
 // node_modules/primeng/fesm2022/primeng-scrollpanel.mjs
