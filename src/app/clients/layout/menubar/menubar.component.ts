@@ -71,7 +71,7 @@ export class MenubarComponent {
   initilizeDataOption() {
     this.items = [
       {
-        label: 'Home',
+        label: 'Accueil',
         icon: 'pi pi-home',
         url: '/client'
       },
