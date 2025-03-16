@@ -5,6 +5,9 @@ import { LayoutappComponent } from './app/layout/layoutapp/layoutapp.component';
 import { Notfound } from './app/pages/notfound/notfound';
 
 import { CarFormComponent } from './app/pages/car-form/car-form.component';
+import { LayoutComponent } from './app/clients/layout/layout.component';
+import { ServiceComponent } from './app/clients/service/service.component';
+import { AboutComponent } from './app/clients/about/about.component';
 export const appRoutes: Routes = [
     {
         path: '',
@@ -13,6 +16,14 @@ export const appRoutes: Routes = [
             { path: '', component: CarFormComponent },
             { path: 'uikit', loadChildren: () => import('./app/pages/uikit/uikit.routes') },
             { path: 'pages', loadChildren: () => import('./app/pages/pages.routes') }
+        ]
+    },
+    {
+        path: 'client',
+        component: LayoutComponent,
+        children: [
+            { path: '', component: ServiceComponent },
+            { path: 'about', component: AboutComponent },
         ]
     },
     { path: 'notfound', component: Notfound },
