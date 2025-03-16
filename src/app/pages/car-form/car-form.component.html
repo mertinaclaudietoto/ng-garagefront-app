@@ -1,25 +1,24 @@
 <p-fluid>
     <div   class="flex flex-col md:flex-row gap-8  ">
-        <div class="md:w-1/2">
-            
+        <div class="md:w-1/2"> 
             <div *ngIf="carList" class="card flex flex-col gap-4">
-                <div class="font-semibold text-xl">List Vehicule</div>
+                <div class="font-semibold text-xl">List Car</div>
                 <p-table 
                     [paginator]="true"
                     [rows]="10"
                     [value]="carList" [tableStyle]="{ 'min-width': '50rem' }">
                     <ng-template #header>
                         <tr>
-                           
-                            <th id="name">Name</th>
+                            <th id="name">Brand</th>
+                            <th id="name">Model</th>
                             <th id="up">Update</th>  
                             <th id="del">Delete</th>
                         </tr>
                     </ng-template>
                     <ng-template #body let-product>
                         <tr>
-                          
-                            <td>{{ product.marque }}</td>                   
+                            <td>{{ product.brand }}</td>                   
+                            <td>{{ product.model }}</td>                   
                             <td><p-button icon="pi pi-pencil" severity="success" outlined (onClick)="setUpdateValue(product)"/></td>          
                             <td><p-button icon="pi pi-trash" severity="danger" outlined (onClick)="open(product)"/></td>                   
                         </tr>
@@ -44,15 +43,16 @@
                     <div class="card ">
                         <div class="flex flex-wrap gap-6">
                             <div class="flex flex-col grow basis-0 gap-2">
-                                <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria10.jpg" alt="Image" width="250" />
+                              
+                                <p-image [src]="addOrUpdateValue.picture" alt="Image" width="250" />
                             </div>
                             <div class="flex flex-col grow basis-0 gap-2">
                                 <label for="email2">Image</label>
-                                <input pInputText id="email2" type="file" />
+                                <input pInputText id="email2" type="file"  (change)="onFileSelected($event)"/>
                                 <label for="email2">Marque</label>
-                                <input pInputText id="email2" type="text" />
+                                <input *ngIf="addOrUpdateValue"  pInputText id="email2" type="text" [(ngModel)]="addOrUpdateValue.brand"/>
                                 <label for="email2">Model</label>
-                                <input pInputText id="email2" type="text" />
+                                <input *ngIf="addOrUpdateValue" pInputText id="email2" type="text" [(ngModel)]="addOrUpdateValue.model" />
                             </div>
                         </div>
                         <div class="flex flex-col gap-4 mt-10">
@@ -60,22 +60,22 @@
                             <div class="flex flex-wrap gap-6">
                                 <div class="flex flex-col grow basis-0 gap-2">
                                     <label for="name2">Type care</label>
-                                    <p-select id="state" [(ngModel)]="dropdownItem" [options]="dropdownItems" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
+                                    <p-select id="state" [(ngModel)]="addOrUpdateValue.carType" [options]="dropdownItemsCarTypes" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
                                 </div>
                                 <div class="flex flex-col grow basis-0 gap-2">
                                     <label for="email2">version</label>
-                                    <input pInputText id="email2" type="text" />
+                                    <input pInputText [(ngModel)]="addOrUpdateValue.version" id="email2" type="text" />
                                 </div>
                                 <div class="flex flex-col grow basis-0 gap-2">
                                     <label for="email2">date sortie</label>
-                                    <input pInputText id="email2" type="date" />
+                                    <input pInputText [(ngModel)]="addOrUpdateValue.datesortie" id="email2" type="date" />
                                 </div>
                             </div>
                         </div>
                         <div class="flex flex-col gap-4 mt-10">
                             <div class="flex flex-wrap gap-2">
                                 <label for="username">Type moteur</label>
-                                <p-select id="state" [(ngModel)]="dropdownItem" [options]="dropdownItems" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
+                                <p-select id="state" [(ngModel)]="addOrUpdateValue.engineType" [options]="dropdownItemsEngine" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
                             </div>
                         </div>
                         <div class="flex flex-col gap-4 mt-10">
@@ -83,11 +83,11 @@
                             <div class="flex flex-wrap gap-6">
                                 <div class="flex flex-col grow basis-0 gap-2">
                                     <label for="name2">Taille</label>
-                                    <p-select id="state" [(ngModel)]="dropdownItem" [options]="dropdownItems" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
+                                    <p-select id="state" [(ngModel)]="addOrUpdateValue.sizeType" [options]="dropdownItemsSize" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
                                 </div>
                                 <div class="flex flex-col grow basis-0 gap-2">
                                     <label for="email2">Poids</label>
-                                    <p-select id="state" [(ngModel)]="dropdownItem" [options]="dropdownItems" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
+                                    <p-select id="state" [(ngModel)]="addOrUpdateValue.weigthType" [options]="dropdownItemsWeigth" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
                                 </div>
                                 <div class="flex flex-col grow basis-0 gap-2">
                                     <label for="email2">Empathement</label>
@@ -96,7 +96,7 @@
                             </div>
                         </div>
                         <div class="flex flex-wrap items-start gap-6">
-                            <p-button class="mt-5" label="validate" [fluid]="false"></p-button>
+                            <p-button class="mt-5" label="validate" [fluid]="false" (onClick)="modifOrAdd(addOrUpdateValue)"></p-button>
                         </div>
                         
                     </div>

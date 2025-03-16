@@ -1,18 +1,18 @@
 import {
   TimesCircleIcon
-} from "./chunk-DBKDH22Y.js";
+} from "./chunk-EIYSZLGQ.js";
 import {
   BaseComponent
-} from "./chunk-NPOBQWJL.js";
+} from "./chunk-YGR7AJKN.js";
 import {
-  BaseStyle,
+  BaseStyle
+} from "./chunk-V2CD6TSX.js";
+import {
   PrimeTemplate,
   SharedModule,
   TranslationKeys
-} from "./chunk-6BGDWXKH.js";
-import "./chunk-TZIJKBMI.js";
+} from "./chunk-E2JFPHBB.js";
 import "./chunk-KAO4CBML.js";
-import "./chunk-YAPJLE7E.js";
 import {
   CommonModule,
   NgClass,
@@ -73,6 +73,8 @@ import {
 import "./chunk-4N4GOYJH.js";
 import "./chunk-5OPE3T2R.js";
 import "./chunk-FHTVLBLO.js";
+import "./chunk-CWYBPNCF.js";
+import "./chunk-NJ25EVEJ.js";
 import "./chunk-WDMUDEB6.js";
 
 // node_modules/primeng/fesm2022/primeng-chip.mjs

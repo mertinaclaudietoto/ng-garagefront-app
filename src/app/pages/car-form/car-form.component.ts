@@ -26,6 +26,8 @@ import { Car } from '../../class/car';
 import { CarService } from '../../service/car.service';
 // Assurez-vous que `CarType` est exporté dans ce fichier
 import { IdName } from '../../class/car-type';
+import { convertFileToBase64 } from '../../expo/base64';
+import { UndoIcon } from 'primeng/icons';
 @Component({
   selector: 'app-car-form',
   imports: [InputTextModule, FluidModule, ButtonModule, SelectModule, FormsModule, TextareaModule, CarouselModule, ButtonModule, GalleriaModule, ImageModule, TagModule, IconFieldModule, InputIconModule, ToolbarModule, SplitButtonModule, CarTypeComponent,TableModule,DialogModule],
@@ -34,38 +36,72 @@ import { IdName } from '../../class/car-type';
 })
 export class CarFormComponent implements OnInit{
     carList:Car[]|undefined=undefined;
-   
+    // carTypeList:IdName[] |undefined=undefined;
+    // sizeList:IdName[] |undefined=undefined;
+    // engineList:IdName[]|undefined=undefined;
+    // engineList:IdName[]|undefined=undefined;
+    dropdownItemsCarTypes :any=[];
+    dropdownItemsEngine :any=[];
+    dropdownItemsSize :any=[];
+    dropdownItemsWeigth :any=[];
+
+
+
+
+
     display: boolean = false;
-    addOrUpdateValue:Car|undefined =undefined;
-    deleteValue :Car|undefined =undefined;
+    addOrUpdateValue:Car =new Car();
+    deleteValue :Car =new Car();
     constructor(private carService: CarService) {
     }
 
     ngOnInit() {
       this.carService.getCar().subscribe(table=> this.carList=table);
+      this.carService.getCarType("cartypes").subscribe(table=>{
+        this.dropdownItemsCarTypes = table?.map(value=>({name:value.name,_id:value._id}))
+      } );
+      this.carService.getCarType("sizes").subscribe(table=> {
+        this.dropdownItemsSize = table?.map(value=>({name:value.name,_id:value._id}))
+      });
+      this.carService.getCarType("engines").subscribe(table=> {
+        this.dropdownItemsEngine = table?.map(value=>({name:value.name,_id:value._id}))
+      });
+      this.carService.getCarType("weigths").subscribe(table=> {
+        this.dropdownItemsWeigth = table?.map(value=>({name:value.name,_id:value._id}))
+      });
     }
 
     crudSelect=["cartypes","engines","sizes","weigths"];
-
-    dropdownItems = [
-      { name: 'Option 1', code: 'Option 1' },
-      { name: 'Option 2', code: 'Option 2' },
-      { name: 'Option 3', code: 'Option 3' }
-    ];
 
     dropdownItem = null;
    
   setUpdateValue(carType:Car){
     this.addOrUpdateValue=carType;
   }
-  modifOrAdd(carType:Car){
-    this.carService.modifOrAddCar(carType).subscribe( response => {
-      this.relaod();
-    },
-    error => {
-      console.error("❌ Erreur lors de l'envoi de la requête DELETE :", error);
+
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      // Appeler la méthode convertFileToBase64 et récupérer la chaîne Base64
+      convertFileToBase64(file)
+        .then(value => {
+          this.addOrUpdateValue.picture=value;
+        })
+        .catch(error => {
+          console.error('Erreur de conversion en Base64:', error); // Gérer les erreurs
+        });
     }
-  );
+  }
+
+  modifOrAdd(carType:Car){
+    console.log(carType);
+    // this.carService.modifOrAddCar(carType).subscribe( response => {
+    //   this.relaod();
+    // },
+    // error => {
+    //   console.error("❌ Erreur lors de l'envoi de la requête DELETE :", error);
+    // }
+    // );
   }
   close() {
     this.display = false;
@@ -83,7 +119,7 @@ export class CarFormComponent implements OnInit{
   }
   relaod(){
     this.carService.getCar().subscribe(table=> this.carList=table);
-    this.deleteValue  =undefined;
-    this.addOrUpdateValue=undefined;
+    this.deleteValue   =new Car();
+    this.addOrUpdateValue  =new Car();
   }
 }

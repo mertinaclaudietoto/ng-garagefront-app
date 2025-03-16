@@ -2,7 +2,7 @@ import { IdName } from './car-type'; // Assurez-vous que `CarType` est exporté 
 
 export class Car {
     _id: number;
-    image: string;
+    picture: string;
     brand: string;
     model: string;
     version: number;
@@ -11,23 +11,23 @@ export class Car {
     carType: IdName;  
     engineType: IdName; 
     sizeType: IdName; 
-    weightType: IdName; 
+    weigthType: IdName; 
 
     constructor(
-        _id: number,
-        image: string,
-        brand: string,
-        model: string,
-        version: number,
-        datesortie: string,
-        empathement: string,
-        carType: IdName,
-        engineType: IdName,
-        sizeType: IdName,
-        weightType: IdName
+        _id: any = undefined,
+        image: string = '',
+        brand: string = '',
+        model: string = '',
+        version: number = 1,
+        datesortie: string = '',
+        empathement: string = '',
+        carType: IdName = { _id: 0, name: '' },  // Valeurs par défaut pour IdName
+        engineType: IdName = { _id: 0, name: '' },
+        sizeType: IdName = { _id: 0, name: '' },
+        weigthType: IdName = { _id: 0, name: '' }
     ) {
         this._id = _id;
-        this.image = image;
+        this.picture = image;
         this.brand = brand;
         this.model = model;
         this.version = version;
@@ -36,6 +36,6 @@ export class Car {
         this.carType = carType;
         this.engineType = engineType;
         this.sizeType = sizeType;
-        this.weightType = weightType;
+        this.weigthType = weigthType;
     }
 }
