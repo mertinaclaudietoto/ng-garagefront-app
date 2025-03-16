@@ -1,9 +1,10 @@
 <p-fluid>
+
     <div   class="flex flex-col md:flex-row gap-8  ">
         <div class="md:w-1/2">
             
             <div *ngIf="empList" class="card flex flex-col gap-4">
-                <div class="font-semibold text-xl">List Vehicule</div>
+                <div class="font-semibold text-xl">Add or update</div>
                 <p-table 
                     [paginator]="true"
                     [rows]="9"
@@ -12,6 +13,8 @@
                         <tr>
                            
                             <th id="name">Name</th>
+                            <th id="name">Firts Name</th>
+
                             <th id="up">Update</th>  
                             <th id="del">Delete</th>
                         </tr>
@@ -19,7 +22,8 @@
                     <ng-template #body let-product>
                         <tr>
                           
-                            <td>{{ product.marque }}</td>                   
+                            <td>{{ product.name }}</td>                   
+                            <td>{{ product.firstName }}</td>                   
                             <td><p-button icon="pi pi-pencil" severity="success" outlined (onClick)="setUpdateValue(product)"/></td>          
                             <td><p-button icon="pi pi-trash" severity="danger" outlined (onClick)="open(product)"/></td>                   
                         </tr>
@@ -41,7 +45,7 @@
         <div class="md:w-1/2">
             <div class="card flex flex-col gap-4">
                 <div class="font-semibold text-xl">Vertical</div>
-                    <div class="card ">
+               
                         <div class="flex flex-wrap gap-6">
                             <div class="flex flex-col grow basis-0 gap-2">
                                 <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria10.jpg" alt="Image" width="250" />
@@ -49,57 +53,75 @@
                             <div class="flex flex-col grow basis-0 gap-2">
                                 <label for="email2">Image</label>
                                 <input pInputText id="email2" type="file" />
-                                <label for="email2">Marque</label>
+                                <label for="email2">Name</label>
                                 <input pInputText id="email2" type="text" />
-                                <label for="email2">Model</label>
+                                <label for="email2">First name</label>
                                 <input pInputText id="email2" type="text" />
                             </div>
                         </div>
                         <div class="flex flex-col gap-4 mt-10">
-                        
                             <div class="flex flex-wrap gap-6">
                                 <div class="flex flex-col grow basis-0 gap-2">
-                                    <label for="name2">Type care</label>
-                                    <p-select id="state" [(ngModel)]="dropdownItem" [options]="dropdownItems" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
+                                    <label for="name2">date of birth</label>
+                                    <input pInputText id="date" type="date" />
                                 </div>
                                 <div class="flex flex-col grow basis-0 gap-2">
-                                    <label for="email2">version</label>
-                                    <input pInputText id="email2" type="text" />
-                                </div>
-                                <div class="flex flex-col grow basis-0 gap-2">
-                                    <label for="email2">date sortie</label>
+                                    <label for="email2">employment start date</label>
                                     <input pInputText id="email2" type="date" />
                                 </div>
+                                <div class="flex flex-col grow basis-0 gap-2">
+                                    <label for="name2">rule</label>
+                                    <p-select id="state" [(ngModel)]="dropdownItem" [options]="dropdownItems" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
+                                   
+                                </div>
                             </div>
                         </div>
                         <div class="flex flex-col gap-4 mt-10">
-                            <div class="flex flex-wrap gap-2">
-                                <label for="username">Type moteur</label>
-                                <p-select id="state" [(ngModel)]="dropdownItem" [options]="dropdownItems" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-4 mt-10">
-                            
                             <div class="flex flex-wrap gap-6">
                                 <div class="flex flex-col grow basis-0 gap-2">
-                                    <label for="name2">Taille</label>
-                                    <p-select id="state" [(ngModel)]="dropdownItem" [options]="dropdownItems" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
+                                    <label for="name2">email</label>
+                                    <input pInputText id="date" type="text" />
                                 </div>
                                 <div class="flex flex-col grow basis-0 gap-2">
-                                    <label for="email2">Poids</label>
-                                    <p-select id="state" [(ngModel)]="dropdownItem" [options]="dropdownItems" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
-                                </div>
-                                <div class="flex flex-col grow basis-0 gap-2">
-                                    <label for="email2">Empathement</label>
+                                    <label for="email2">passe word</label>
                                     <input pInputText id="email2" type="text" />
                                 </div>
                             </div>
                         </div>
+
+                        <form class="form-group">
+                            <p-table *ngIf="serviceList" 
+                                [paginator]="true"
+                                [rows]="9"
+                                [value]="serviceList" [tableStyle]="{ 'min-width': '50rem' }">
+                            <ng-template #header>
+                                <tr>
+                                    <th id="name">Checked</th>
+                                    <th id="up">Service</th>  
+                                </tr>
+                            </ng-template>
+                            <ng-template #body let-product>
+                                <tr>
+                                    <td>
+                                    <input type="checkbox"
+                                        class="filled-in"
+                                        id="{{ product._id }}"
+                                        [value]="product"
+                                        [checked]="hasSerivce(product)"
+                                        (change)="selectType($event, product)"/>
+                                    </td>                   
+                                    <td>{{ product.name }}</td>                   
+                                </tr>
+                            </ng-template>
+                        </p-table>
+
+            
+                        </form>
+                     
                         <div class="flex flex-wrap items-start gap-6">
                             <p-button class="mt-5" label="validate" [fluid]="false"></p-button>
                         </div>
-                        
-                    </div>
+                  
                 </div>
         </div>
        
