@@ -8,6 +8,7 @@ import { CarFormComponent } from './app/pages/car-form/car-form.component';
 import { LayoutComponent } from './app/clients/layout/layout.component';
 import { ServiceComponent } from './app/clients/service/service.component';
 import { AboutComponent } from './app/clients/about/about.component';
+import { SignInComponent } from './app/clients/sign-in/sign-in.component';
 export const appRoutes: Routes = [
     {
         path: '',
@@ -24,6 +25,7 @@ export const appRoutes: Routes = [
         children: [
             { path: '', component: ServiceComponent },
             { path: 'about', component: AboutComponent },
+            { path: 'sign-in', component: SignInComponent }
         ]
     },
     { path: 'notfound', component: Notfound },
