@@ -1,6 +1,6 @@
 import { MenuItem } from 'primeng/api';
 
-export const DATAMENU: MenuItem[] =[
+export const DATAMENU: MenuItem[] = [
     {
         label: 'Home',
         items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }]
@@ -23,6 +23,14 @@ export const DATAMENU: MenuItem[] =[
             { label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts'] },
             { label: 'Timeline', icon: 'pi pi-fw pi-calendar', routerLink: ['/uikit/timeline'] },
             { label: 'Misc', icon: 'pi pi-fw pi-circle', routerLink: ['/uikit/misc'] }
+        ]
+    },
+    {
+        label: 'Mecanicien',
+        items: [
+            { label: 'Tâches', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/task-mechanic'] },
+            { label: 'Calendrier', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/agenda-mechanic'] },
+            { label: 'Avis Clients', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/satisfaction-customer-mechanic'] },
         ]
     },
     {

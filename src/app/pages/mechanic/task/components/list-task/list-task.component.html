@@ -1,0 +1,94 @@
+<div class="grid">
+  <div class="col-12">
+    <div class="card">
+      <h4>Liste de votre tâche</h4>
+      <div class="card grid grid-cols-12 gap-4 grid-nogutter">
+        <div class="col-span-12 md:col-span-6 drag-column">
+          <h5 class="text-center">A faire</h5>
+          <!-- <div class="mt-14"></div> -->
+          <p-scrollpanel
+            [style]="{ width: '100%', height: 'calc(100vh - 23em)' }"
+          >
+            <div *ngFor="let product of availableProducts">
+              <div
+                class="product-item"
+                pDraggable="products"
+                (onDragStart)="dragStart(product)"
+                (onDragEnd)="dragEnd()"
+              >
+                <div class="image-container">
+                  <img
+                    [src]="product.image"
+                    [alt]="product.name"
+                    class="product-image"
+                  />
+                </div>
+                <div class="product-list-detail">
+                  <h5 class="mb-2">
+                    {{ product.name }}
+                  </h5>
+                  <i class="pi pi-tag product-category-icon"></i>
+                  <span class="product-category">
+                    {{ product.category }}
+                  </span>
+                </div>
+                <div class="product-list-action">
+                  <h6 class="mb-2">
+                    {{ product.price }}
+                  </h6>
+                  <button
+                    (click)="showModal(product)"
+                    pButton
+                    label="Détails"
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </p-scrollpanel>
+        </div>
+        <div
+          class="col-span-12 md:col-span-6 drop-column"
+          pDroppable="products"
+          (onDrop)="drop()"
+        >
+          <h5 class="text-center">Términé</h5>
+          <p-table
+            [value]="selectedProducts"
+            [scrollable]="true"
+            [scrollHeight]="'calc(100vh - 25em)'"
+            scrollDirection="vertical"
+          >
+            <ng-template pTemplate="header">
+              <tr>
+                <th>ID</th>
+                <th>Category</th>
+                <th>Name</th>
+                <th>Price</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+              <tr>
+                <td>
+                  {{ product.id }}
+                </td>
+                <td>
+                  {{ product.category }}
+                </td>
+                <td>
+                  {{ product.name }}
+                </td>
+                <td>
+                  {{ product.price }}
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-modal-detail-task
+  [task]="selectedTask"
+  [(display)]="modalVisible"
+></app-modal-detail-task>
