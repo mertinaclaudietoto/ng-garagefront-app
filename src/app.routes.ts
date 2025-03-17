@@ -9,6 +9,7 @@ import { LayoutComponent } from './app/clients/layout/layout.component';
 import { ServiceComponent } from './app/clients/service/service.component';
 import { AboutComponent } from './app/clients/about/about.component';
 import { SignInComponent } from './app/clients/sign-in/sign-in.component';
+import { ListWorksComponent } from './app/clients/works/components/list-works/list-works.component';
 export const appRoutes: Routes = [
     {
         path: '',
@@ -25,7 +26,8 @@ export const appRoutes: Routes = [
         children: [
             { path: '', component: ServiceComponent },
             { path: 'about', component: AboutComponent },
-            { path: 'sign-in', component: SignInComponent }
+            { path: 'sign-in', component: SignInComponent },
+            { path: 'works', component: ListWorksComponent }
         ]
     },
     { path: 'notfound', component: Notfound },
