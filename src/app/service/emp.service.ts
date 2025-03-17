@@ -20,7 +20,8 @@ export class EmpService {
           return this.http.post<Emp>(this.apiUrl+'emps',value) ;
         }
   }
-   deleteCar(value:Emp|undefined):Observable<void>{
+  
+  deleteCar(value:Emp|undefined):Observable<void>{
         if(value!=undefined){
           return this.http.delete<void>(this.apiUrl+"emps/"+value._id) ;
         }

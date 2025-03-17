@@ -11,7 +11,7 @@ export const DATAMENU: MenuItem[] = [
             { label: 'Car form', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/car-form'] },
             { label: 'Car-type', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/car-type'] },
             { label: 'Service price', icon: 'pi pi-fw pi-mobile', class: 'rotated-icon', routerLink: ['/uikit/service-price'] },
-            { label: 'Empplyeers', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/emp'] },
+            { label: 'Empployee', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/emp'] },
         ]
     },
     {

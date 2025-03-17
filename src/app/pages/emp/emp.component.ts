@@ -20,6 +20,8 @@ import { Emp } from '../../class/emp';
 import { EmpService } from '../../service/emp.service';
 import { IdName } from '../../class/car-type';
 import { CarService } from '../../service/car.service';
+import { convertFileToBase64 } from '../../expo/base64';
+import { IMAGESDEFAULTS } from '../../expo/dataimage';
 @Component({
   selector: 'app-emp',
    imports: [InputTextModule, FluidModule, ButtonModule, SelectModule, FormsModule, TextareaModule, CarouselModule, ButtonModule, GalleriaModule, ImageModule, TagModule, IconFieldModule, InputIconModule, ToolbarModule, SplitButtonModule,TableModule,DialogModule],
@@ -31,12 +33,12 @@ export class EmpComponent {
     serviceList :IdName[]|undefined = undefined;
     ruleList :IdName[]|undefined =undefined;
     display: boolean = false;
-    addOrUpdateValue:Emp|undefined =undefined;
-    deleteValue :Emp|undefined =undefined;
+
+    addOrUpdateValue:Emp =new Emp();
+    deleteValue :Emp =new Emp();
     dropdownItems:any=[];
-    constructor(private empService: EmpService,
-      private carService:CarService
-    ) {
+    constructor(private empService: EmpService,private carService:CarService) {
+      this.addOrUpdateValue.picture=IMAGESDEFAULTS["photo"];
     }
 
     ngOnInit() {
@@ -44,14 +46,10 @@ export class EmpComponent {
       this.carService.getCarType("services").subscribe(table=>this.serviceList=table);
       this.carService.getCarType("rules").subscribe(table=>
         {this.ruleList=table;
-          this.dropdownItems = table?.map(value=>({name:value.name,code:value._id}));
+          this.dropdownItems = table?.map(value=>({name:value.name,_id:value._id}));
           console.log(this.dropdownItems);
         })
-      
     }
-
-    
-    
     dropdownItem = null;
     
     setUpdateValue(carType:Emp){
@@ -59,12 +57,12 @@ export class EmpComponent {
     }
     modifOrAdd(carType:Emp){
       this.empService.modifOrAddCar(carType).subscribe( response => {
+        console.log(response);
         this.relaod();
       },
       error => {
-        console.error("❌ Erreur lors de l'envoi de la requête DELETE :", error);
-      }
-    );
+        console.error("❌ Erreur lors de l'envoi de la requête POST OR UPDATE Emp :", error);
+      });
     }
     close() {
       this.display = false;
@@ -82,22 +80,36 @@ export class EmpComponent {
     }
     relaod(){
       this.empService.getEmp().subscribe(table=> this.empList=table);
-      this.deleteValue  =undefined;
-      this.addOrUpdateValue=undefined;
+      this.deleteValue  =new Emp();
+      this.addOrUpdateValue=new Emp();
     }
     // 
-    hasSerivce(service :IdName) :boolean|undefined{
-      return this.serviceList?.some(s => s._id === service._id);
+    hasService(service :IdName) :boolean|undefined{
+      return this.addOrUpdateValue.skills?.some(s => s._id === service._id);
     }
     selectType($event:Event,type:IdName){
       const isChecked=($event.target as HTMLInputElement).checked;
       if(isChecked){
-        // this.pokemon.types.push(type)
+        this.addOrUpdateValue.skills.push(type);
       }else{
-        // this.pokemon.types.filter(type1=> type1!=type)
+        this.addOrUpdateValue.skills=this.addOrUpdateValue.skills.filter(type1=> type1._id!=type._id)
       }
     }
     checkboxValue: any[] = [];
+
+    onFileSelected(event: any): void {
+      const file: File = event.target.files[0];
+      if (file) {
+        convertFileToBase64(file)
+          .then(value => {
+            this.addOrUpdateValue.picture=value;
+            console.log(value)
+          })
+          .catch(error => {
+            console.error('Erreur de conversion en Base64:', error); // Gérer les erreurs
+          });
+      }
+    }
  
 
 }

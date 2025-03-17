@@ -27,7 +27,7 @@ import { CarService } from '../../service/car.service';
 // Assurez-vous que `CarType` est exporté dans ce fichier
 import { IdName } from '../../class/car-type';
 import { convertFileToBase64 } from '../../expo/base64';
-import { UndoIcon } from 'primeng/icons';
+
 @Component({
   selector: 'app-car-form',
   imports: [InputTextModule, FluidModule, ButtonModule, SelectModule, FormsModule, TextareaModule, CarouselModule, ButtonModule, GalleriaModule, ImageModule, TagModule, IconFieldModule, InputIconModule, ToolbarModule, SplitButtonModule, CarTypeComponent,TableModule,DialogModule],
@@ -36,19 +36,10 @@ import { UndoIcon } from 'primeng/icons';
 })
 export class CarFormComponent implements OnInit{
     carList:Car[]|undefined=undefined;
-    // carTypeList:IdName[] |undefined=undefined;
-    // sizeList:IdName[] |undefined=undefined;
-    // engineList:IdName[]|undefined=undefined;
-    // engineList:IdName[]|undefined=undefined;
     dropdownItemsCarTypes :any=[];
     dropdownItemsEngine :any=[];
     dropdownItemsSize :any=[];
     dropdownItemsWeigth :any=[];
-
-
-
-
-
     display: boolean = false;
     addOrUpdateValue:Car =new Car();
     deleteValue :Car =new Car();
