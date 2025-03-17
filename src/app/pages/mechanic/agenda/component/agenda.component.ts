@@ -7,7 +7,7 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { Task } from '../../task/models/task.model';
 import { tasks } from '../../task/data/task';
 import { ButtonModule } from 'primeng/button';
-import { ModalDetailTaskComponent } from '../../../../components/modal-detail-task/modal-detail-task.component';
+import { ModalDetailTaskComponent } from '../../../../shared/components/modal-detail-task/modal-detail-task.component';
 
 @Component({
   selector: 'app-agenda',

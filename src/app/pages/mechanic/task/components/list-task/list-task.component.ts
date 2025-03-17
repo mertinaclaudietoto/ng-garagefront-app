@@ -6,7 +6,7 @@ import { tasks } from '../../data/task';
 import { Task } from '../../models/task.model';
 import { ButtonModule } from 'primeng/button';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
-import { ModalDetailTaskComponent } from '../../../../../components/modal-detail-task/modal-detail-task.component';
+import { ModalDetailTaskComponent } from '../../../../../shared/components/modal-detail-task/modal-detail-task.component';
 
 @Component({
   selector: 'app-list-task',

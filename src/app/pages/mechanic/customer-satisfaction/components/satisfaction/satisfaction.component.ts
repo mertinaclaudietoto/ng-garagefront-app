@@ -4,13 +4,13 @@ import { TableModule } from 'primeng/table';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { CustomerSatisfaction } from '../../models/customerSatisfaction.model';
-import { ModalDetailTaskComponent } from '../../../../../components/modal-detail-task/modal-detail-task.component';
 import { Task } from '../../../task/models/task.model';
 import { Knob } from 'primeng/knob';
+import { ModalDetailTaskComponent } from '../../../../../shared/components/modal-detail-task/modal-detail-task.component';
 
 @Component({
   selector: 'app-satisfaction',
-  imports: [TableModule, ButtonModule, RatingModule, FormsModule, ModalDetailTaskComponent,Knob],
+  imports: [TableModule, ButtonModule, RatingModule, FormsModule, ModalDetailTaskComponent, Knob],
   templateUrl: './satisfaction.component.html',
   styleUrl: './satisfaction.component.scss'
 })
