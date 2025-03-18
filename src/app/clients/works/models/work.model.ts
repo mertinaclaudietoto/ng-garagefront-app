@@ -1,4 +1,4 @@
-import { Car } from "../../../layout/car/car";
+import { Car } from "../../../class/car";
 import { Client } from "../../sign-in/models/client.model";
 
 export interface FixCar {
