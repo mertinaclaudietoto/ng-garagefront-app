@@ -1,0 +1,129 @@
+<p-fluid>
+    <div   class="flex flex-col md:flex-row gap-8  ">
+        <div class="md:w-1/2">
+            
+            <div *ngIf="empList" class="card flex flex-col gap-4">
+                <div class="font-semibold text-xl">Add or update</div>
+                <p-table 
+                    [paginator]="true"
+                    [rows]="9"
+                    [value]="empList" [tableStyle]="{ 'min-width': '50rem' }">
+                    <ng-template #header>
+                        <tr>
+                            <th id="name">Picture</th>
+                            <th id="name">Name</th>
+                            <th id="name">Firts Name</th>
+                            <th id="up">Update</th>  
+                            <th id="del">Delete</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template #body let-product>
+                        <tr>
+                            <td>
+                                <img [src]="product.picture" alt={{product.name}}  class="flag flag-" width="30" />
+                            </td>
+                            <td>{{ product.name }}</td>                   
+                            <td>{{ product.firstName }}</td>                   
+                            <td><p-button icon="pi pi-pencil" severity="success" outlined (onClick)="setUpdateValue(product)"/></td>          
+                            <td><p-button icon="pi pi-trash" severity="danger" outlined (onClick)="open(product)"/></td>                   
+                        </tr>
+                    </ng-template>
+                </p-table>
+                <p-dialog header="Alert" [(visible)]="display" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '30vw' }" [modal]="true">
+                    <p class="leading-normal m-0 justify-center items-center">
+                        Do you really want to delete these types of cars? This action is irreversible.
+                      </p>
+                      
+                    <ng-template #footer>
+                        <p-button label="Yes"severity="danger" (onClick)="close()" />
+                    </ng-template>
+                </p-dialog>  
+            </div>
+           
+           
+        </div>
+        <div class="md:w-1/2">
+            <div class="card flex flex-col gap-4">
+                    <div class="flex flex-wrap gap-6">
+                        <div class="flex flex-col grow basis-0 gap-2">
+                            <p-image *ngIf="addOrUpdateValue.picture"  [src]="addOrUpdateValue.picture" alt="Image" width="250" />
+                        </div>
+                        <div class="flex flex-col grow basis-0 gap-2">
+                            <label for="email2">Image</label>
+                            <input pInputText id="email2" type="file" (change)="onFileSelected($event)"/>
+                            <label for="email2">Name</label>
+                            <input pInputText id="email2" type="text" [(ngModel)]="addOrUpdateValue.name"/>
+                            <label for="email2">First name</label>
+                            <input pInputText id="email2" type="text" [(ngModel)]="addOrUpdateValue.firstName"/>
+                        </div>
+                    </div>
+                        <div class="flex flex-col gap-4 mt-10">
+                            <div class="flex flex-wrap gap-6">
+                                <div class="flex flex-col grow basis-0 gap-2">
+                                    <label for="name2">date of birth</label>
+                                    <input pInputText id="date" type="date" [(ngModel)]="addOrUpdateValue.dateofbirth" />
+                                </div>
+                                <div class="flex flex-col grow basis-0 gap-2">
+                                    <label for="email2">employment start date</label>
+                                    <input pInputText id="email2" type="date" [(ngModel)]="addOrUpdateValue.dateofemp" />
+                                </div>
+                                <div class="flex flex-col grow basis-0 gap-2">
+                                    <label for="name2">rule</label>
+                                    <p-select id="state" [(ngModel)]="addOrUpdateValue.rule" [options]="dropdownItems" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-4 mt-10">
+                            <div class="flex flex-wrap gap-6">
+                                <div  *ngIf="!addOrUpdateValue.login"  class="flex flex-col grow basis-0 gap-2">
+                                    <label for="name2">email</label>
+                                    <input pInputText id="date" type="text" [(ngModel)]="addOrUpdateValue.login" />
+                                </div>
+                                <div  *ngIf="!addOrUpdateValue.password" class="flex flex-col grow basis-0 gap-2">
+                                    <label for="email2">passe word</label>
+                                    <input pInputText id="email2" type="text" [(ngModel)]="addOrUpdateValue.password" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <form class="form-group">
+                            <p-table *ngIf="serviceList" 
+                                    [paginator]="true"
+                                    [rows]="9"
+                                    [value]="serviceList" [tableStyle]="{ 'min-width': '50rem' }">
+                                <ng-template #header>
+                                    <tr>
+                                        <th id="name">Checked</th>
+                                        <th id="up">Service</th>  
+                                    </tr>
+                                </ng-template>
+                                <ng-template #body let-product>
+                                    <tr>
+                                        <td>
+                                        <input type="checkbox"
+                                            class="filled-in"
+                                            id="{{ product._id }}"
+                                            [value]="product"
+                                            [checked]="hasService(product)"
+                                            (change)="selectType($event, product)"/>
+                                        </td>                   
+                                        <td>{{ product.name }}</td>                   
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </form>
+                     
+                        <div class="flex flex-wrap items-start gap-6">
+                            <p-button class="mt-5" label="validate" [fluid]="false" (onClick)="modifOrAdd(addOrUpdateValue)"></p-button>
+                        </div>
+                  
+                </div>
+        </div>
+       
+       
+    </div>
+</p-fluid>
+
+
+

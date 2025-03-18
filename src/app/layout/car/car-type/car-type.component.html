@@ -9,7 +9,7 @@
                     [value]="carTypes" [tableStyle]="{ 'min-width': '50rem' }">
                     <ng-template #header>
                         <tr>
-                            <th id="id">Id</th>
+                            
                             <th id="name">Name</th>
                             <th id="up">Update</th>  
                             <th id="del">Delete</th>
@@ -17,7 +17,6 @@
                     </ng-template>
                     <ng-template #body let-product>
                         <tr>
-                            <td>{{ product.id }}</td>
                             <td>{{ product.name }}</td>                   
                             <td><p-button icon="pi pi-pencil" severity="success" outlined (onClick)="setUpdateValue(product)"/></td>          
                             <td><p-button icon="pi pi-trash" severity="danger" outlined (onClick)="open(product)"/></td>                   
@@ -32,6 +31,7 @@
                     <ng-template #footer>
                         <p-button label="Yes"severity="danger" (onClick)="close()" />
                     </ng-template>
+                    
                 </p-dialog>  
             </div>
 
@@ -53,6 +53,8 @@
                             Name required.
                     </div>
                     <p-button label="validate" [fluid]="false"(onClick)="modifOrAdd(addOrUpdateValue)"></p-button>
+                    <p-button label="reload" [fluid]="false"(onClick)="modifOrAdd(addOrUpdateValue)"></p-button>
+
                 </div>
             </div>
         </div>

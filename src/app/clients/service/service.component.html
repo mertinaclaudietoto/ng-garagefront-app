@@ -1,0 +1,235 @@
+<p-carousel
+  [value]="products"
+  [numVisible]="3"
+  [numScroll]="3"
+  [circular]="true"
+  [responsiveOptions]="responsiveOptions"
+  autoplayInterval="3000"
+>
+  <ng-template let-product #item>
+    <div
+      class="border border-surface-100 dark:border-surface-700 rounded m-2 p-4"
+    >
+      <div class="mb-4">
+        <div class="relative mx-auto">
+          <img
+            [src]="product.image"
+            [alt]="product.name"
+            class="w-full rounded-border"
+          />
+          <p-tag
+            [value]="product.inventoryStatus"
+            [severity]="getSeverity(product.inventoryStatus)"
+            class="absolute"
+            styleClass="dark:!bg-surface-900"
+            [ngStyle]="{ 'left.px': 5, 'top.px': 5 }"
+          />
+        </div>
+      </div>
+      <div class="mb-4 font-medium">{{ product.name }}</div>
+      <div class="flex justify-between items-center">
+        <div class="mt-0 font-semibold text-xl">
+          {{ "$" + product.price }}
+        </div>
+        <span>
+          <p-button icon="pi pi-heart" severity="secondary" [outlined]="true" />
+          <p-button icon="pi pi-shopping-cart" styleClass="ml-2" />
+        </span>
+      </div>
+    </div>
+  </ng-template>
+</p-carousel>
+<div class="card flex flex-col items-center overflow-hidden">
+  <h1 class="text-center">Services</h1>
+  <div class="h-[3rem]"></div>
+  <div class="flex flex-wrap justify-center gap-10">
+    <div
+      pAnimateOnScroll
+      enterClass="animate-enter fade-in-10 slide-in-from-l-8 animate-duration-2000"
+      leaveClass="animate-leave fade-out-0"
+      class="flex flex-col border border-surface shadow-lg justify-center items-center rounded-2xl p-8 gap-4 h-[25rem] w-[40rem]"
+    >
+      <div
+        class="rounded-full bg-primary text-primary-contrast w-12 h-12 flex items-center justify-center"
+      >
+        <i class="pi pi-user !text-2xl"></i>
+      </div>
+      <span class="text-2xl font-bold">Individual</span>
+      <span class="text-muted-color text-center"
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit.</span
+      >
+    </div>
+    <div
+      pAnimateOnScroll
+      enterClass="animate-enter fade-in-10 animate-duration-2000"
+      leaveClass="animate-leave fade-out-0"
+      class="flex flex-col border border-surface shadow-lg justify-center items-center rounded-2xl p-8 gap-4 h-[25rem] w-[40rem]"
+    >
+      <div
+        class="rounded-full bg-primary text-primary-contrast w-12 h-12 flex items-center justify-center"
+      >
+        <i class="pi pi-users !text-2xl"></i>
+      </div>
+      <span class="text-2xl font-bold">Team</span>
+      <span class="text-muted-color text-center"
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit.</span
+      >
+    </div>
+    <div
+      pAnimateOnScroll
+      enterClass="animate-enter fade-in-10 slide-in-from-r-8 animate-duration-2000"
+      leaveClass="animate-leave fade-out-0"
+      class="flex flex-col border border-surface shadow-lg justify-center items-center rounded-2xl p-8 gap-4 h-[25rem] w-[40rem]"
+    >
+      <div
+        class="rounded-full bg-primary text-primary-contrast w-12 h-12 flex items-center justify-center"
+      >
+        <i class="pi pi-building !text-2xl"></i>
+      </div>
+      <span class="text-2xl font-bold">Enterprise</span>
+      <span class="text-muted-color text-center"
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit.</span
+      >
+    </div>
+  </div>
+  <div class="h-[12rem]"></div>
+  <div class="flex flex-wrap justify-center gap-8">
+    <div
+      pAnimateOnScroll
+      enterClass="animate-enter fade-in-10 slide-in-from-t-20 animate-duration-2000"
+      leaveClass="animate-leave fade-out-0"
+      class="flex flex-col border border-primary-200 shadow-lg justify-center items-center rounded-2xl p-8 gap-4 h-[25rem] w-[40rem]"
+    >
+      <p-avatar
+        image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+        shape="circle"
+        size="xlarge"
+      />
+      <span class="text-2xl font-medium">Jenna Thompson</span>
+      <span class="text-muted-color text-center"
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit.</span
+      >
+    </div>
+
+    <div
+      pAnimateOnScroll
+      enterClass="animate-enter fade-in-10 slide-in-from-b-20 animate-duration-2000"
+      class="flex flex-col border border-primary-200 shadow-lg justify-center items-center rounded-2xl p-8 gap-4 h-[25rem] w-[40rem]"
+    >
+      <p-avatar
+        image="https://primefaces.org/cdn/primeng/images/demo/avatar/asiyajavayant.png"
+        shape="circle"
+        size="xlarge"
+      />
+      <span class="text-2xl font-medium">Isabel Garcia</span>
+      <span class="text-muted-color text-center"
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit.</span
+      >
+    </div>
+    <div
+      pAnimateOnScroll
+      enterClass="animate-enter fade-in-10 slide-in-from-t-20 animate-duration-2000"
+      class="flex flex-col border border-primary-200 shadow-lg justify-center items-center rounded-2xl p-8 gap-4 h-[25rem] w-[40rem]"
+    >
+      <p-avatar
+        image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png"
+
+        shape="circle"
+        size="xlarge"
+      />
+      <span class="text-2xl font-medium">Xavier Mason</span>
+      <span class="text-muted-color text-center"
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit.</span
+      >
+    </div>
+  </div>
+  <div class="h-[12rem]"></div>
+  <div class="flex flex-wrap justify-center gap-8">
+    <div
+      pAnimateOnScroll
+      enterClass="animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-2000"
+      class="flex flex-col bg-primary text-primary-contrast border-primary shadow-lg justify-center items-center rounded-2xl p-8 gap-4 h-[25rem] w-[40rem]"
+    >
+      <span class="bg-white/20 text-xl font-medium rounded-xl px-4 py-2"
+        >850K</span
+      >
+      <span class="text-2xl font-bold">Customers</span>
+      <span class="text-center"
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit.</span
+      >
+    </div>
+    <div
+      pAnimateOnScroll="{ enterClass: 'animate-enter fade-in-10 zoom-in-50 slide-in-from-t-20 animate-duration-2000' }"
+      class="flex flex-col bg-primary text-primary-contrast border-primary shadow-lg justify-center items-center rounded-2xl p-8 gap-4 h-[25rem] w-[40rem]"
+    >
+      <span class="bg-white/20 text-xl font-medium rounded-xl px-4 py-2"
+        >$1.5M</span
+      >
+      <span class="text-2xl font-bold">Revenue</span>
+      <span class="text-center"
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit.</span
+      >
+    </div>
+    <div
+      pAnimateOnScroll
+      enterClass="animate-enter fade-in-10 spin-in-[-45deg] slide-in-from-t-16 animate-duration-2000"
+      class="flex flex-col bg-primary text-primary-contrast border-primary shadow-lg justify-center items-center rounded-2xl p-8 gap-4 h-[25rem] w-[40rem]"
+    >
+      <span class="bg-white/20 text-xl font-medium rounded-xl px-4 py-2"
+        >140K</span
+      >
+      <span class="text-2xl font-bold">Sales</span>
+      <span class="text-center"
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit.</span
+      >
+    </div>
+  </div>
+  <div class="h-[12rem]"></div>
+  <div class="flex flex-wrap justify-center gap-8">
+    <div
+      pAnimateOnScroll
+      enterClass="animate-enter fade-in-10 zoom-in-50 animate-duration-1000"
+      class="flex flex-col bg-purple-500 text-white border-purple-500 shadow-lg justify-center items-center rounded-2xl p-8 gap-4 h-[25rem] w-[40rem]"
+    >
+      <div
+        class="rounded-full border-2 border-white w-12 h-12 flex items-center justify-center"
+      >
+        <i class="pi pi-wifi !text-2xl"></i>
+      </div>
+      <span class="text-2xl font-bold">Bandwidth</span>
+      <span class="text-center"
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit.</span
+      >
+    </div>
+    <div
+      pAnimateOnScroll
+      enterClass="animate-enter fade-in-10 zoom-in-75 animate-duration-1000"
+      class="flex flex-col bg-teal-500 text-white border-teal-500 shadow-lg justify-center items-center rounded-2xl p-8 gap-4 h-[25rem] w-[40rem]"
+    >
+      <div
+        class="rounded-full border-2 border-white w-12 h-12 flex items-center justify-center"
+      >
+        <i class="pi pi-database !text-2xl"></i>
+      </div>
+      <span class="text-2xl font-bold">Storage</span>
+      <span class="text-center"
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit.</span
+      >
+    </div>
+    <div
+      pAnimateOnScroll
+      enterClass="animate-enter fade-in-10 zoom-in-50 animate-duration-1000"
+      class="flex flex-col bg-indigo-500 text-white border-indigo-500 shadow-lg justify-center items-center rounded-2xl p-8 gap-4 h-[25rem] w-[40rem]"
+    >
+      <div
+        class="rounded-full border-2 border-white w-12 h-12 flex items-center justify-center"
+      >
+        <i class="pi pi-arrows-v !text-2xl"></i>
+      </div>
+      <span class="text-2xl font-bold">Requests</span>
+      <span class="text-center"
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit.</span
+      >
+    </div>
+  </div>
+</div>

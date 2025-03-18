@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FluidModule } from 'primeng/fluid';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
@@ -15,72 +15,103 @@ import { TagModule } from 'primeng/tag';
 import { InputIconModule } from 'primeng/inputicon';
 import { ToolbarModule } from 'primeng/toolbar';
 import { SplitButtonModule } from 'primeng/splitbutton';
-import { IdName } from '../../layout/car/car-type/car-type';
+
 import { CarTypeComponent } from '../../layout/car/car-type/car-type.component';
 
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
-import { Car } from '../../layout/car/car';
-import { CARLIST } from '../../layout/car/data-car';
-import { CarService } from '../../layout/car/car.service';
+import { Car } from '../../class/car';
 
+
+import { CarService } from '../../service/car.service';
+// Assurez-vous que `CarType` est exporté dans ce fichier
+import { IdName } from '../../class/car-type';
+import { convertFileToBase64 } from '../../expo/base64';
+import { IMAGESDEFAULTS } from '../../expo/dataimage';
 @Component({
   selector: 'app-car-form',
   imports: [InputTextModule, FluidModule, ButtonModule, SelectModule, FormsModule, TextareaModule, CarouselModule, ButtonModule, GalleriaModule, ImageModule, TagModule, IconFieldModule, InputIconModule, ToolbarModule, SplitButtonModule, CarTypeComponent,TableModule,DialogModule],
   templateUrl: './car-form.component.html',
   styleUrl: './car-form.component.scss'
 })
-export class CarFormComponent {
-    carList:Car[]=CARLIST;
-    addOrListValue:boolean=false;
-    addOrList(value:boolean){
-      this.addOrListValue=value;
-    }
+export class CarFormComponent implements OnInit{
+    carList:Car[]|undefined=undefined;
+    dropdownItemsCarTypes :any=[];
+    dropdownItemsEngine :any=[];
+    dropdownItemsSize :any=[];
+    dropdownItemsWeigth :any=[];
     display: boolean = false;
-    addOrUpdateValue:Car = new Car(1,  'image.jpg', 'Toyota', 'Corolla', 'Berline', 2023, '2023-04-05', 'Essence', 'Moyenne', '1300kg', 2700);
-    deleteValue :Car = new Car(1,  'image.jpg', 'Toyota', 'Corolla', 'Berline', 2023, '2023-04-05', 'Essence', 'Moyenne', '1300kg', 2700);
+    addOrUpdateValue:Car =new Car();
+    deleteValue :Car =new Car();
     constructor(private carService: CarService) {
     }
 
-    crudSelect=["cartypes","enginetypes","sizetypes","weighttypes"];
-    dropdownItems = [
-      { name: 'Option 1', code: 'Option 1' },
-      { name: 'Option 2', code: 'Option 2' },
-      { name: 'Option 3', code: 'Option 3' }
-    ];
+    ngOnInit() {
+      this.carService.getCar().subscribe(table=> this.carList=table);
+      this.carService.getCarType("cartypes").subscribe(table=>{
+        this.dropdownItemsCarTypes = table?.map(value=>({name:value.name,_id:value._id}))
+      } );
+      this.carService.getCarType("sizes").subscribe(table=> {
+        this.dropdownItemsSize = table?.map(value=>({name:value.name,_id:value._id}))
+      });
+      this.carService.getCarType("engines").subscribe(table=> {
+        this.dropdownItemsEngine = table?.map(value=>({name:value.name,_id:value._id}))
+      });
+      this.carService.getCarType("weigths").subscribe(table=> {
+        this.dropdownItemsWeigth = table?.map(value=>({name:value.name,_id:value._id}))
+      });
+      this.addOrUpdateValue.picture=IMAGESDEFAULTS["car"];
+    }
+
+    crudSelect=["cartypes","engines","sizes","weigths"];
 
     dropdownItem = null;
-    items: MenuItem[] = [
-      {
-          label: 'Save',
-          icon: 'pi pi-check'
-      },
-      {
-          label: 'Update',
-          icon: 'pi pi-upload'
-      },
-      {
-          label: 'Delete',
-          icon: 'pi pi-trash'
-      },
-      {
-          label: 'Home Page',
-          icon: 'pi pi-home'
-      }
-  ];
+   
   setUpdateValue(carType:Car){
     this.addOrUpdateValue=carType;
   }
+
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      // Appeler la méthode convertFileToBase64 et récupérer la chaîne Base64
+      convertFileToBase64(file)
+        .then(value => {
+          this.addOrUpdateValue.picture=value;
+        })
+        .catch(error => {
+          console.error('Erreur de conversion en Base64:', error); // Gérer les erreurs
+        });
+    }
+  }
+
   modifOrAdd(carType:Car){
-    this.carService.modifOrAddCar(carType);
+    console.log(carType);
+    this.carService.modifOrAddCar(carType).subscribe( response => {
+      this.relaod();
+    },
+    error => {
+      console.error("❌ Erreur lors de l'envoi de la requête POST OR PUT :", error);
+    }
+    );
   }
   close() {
     this.display = false;
-    this.carService.deleteCar(this.deleteValue);
+    this.carService.deleteCar(this.deleteValue).subscribe( response => {
+      this.relaod();
+    },
+    error => {
+      console.error("❌ Erreur lors de l'envoi de la requête DELETE :", error);
+    }
+  );
   }
   open(carType:Car) {
-    console.log(carType);
     this.deleteValue=carType;
     this.display = true;
+  }
+  relaod(){
+    this.carService.getCar().subscribe(table=> this.carList=table);
+    this.deleteValue   =new Car();
+    this.addOrUpdateValue  =new Car();
   }
 }
