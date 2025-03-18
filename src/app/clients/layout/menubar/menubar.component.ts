@@ -89,6 +89,7 @@ export class MenubarComponent {
             label: 'Travaux',
             icon: 'pi pi-bolt',
             shortcut: '⌘+S',
+            url: '/client/works'
           },
           {
             separator: true,

@@ -1,0 +1,70 @@
+<div
+  class="wrapper"
+  style="background-image: url(&quot;images/fond-reparation.jpg&quot;)"
+>
+  <div class="inner">
+    <div class="image-holder">
+      <img src="images/reparation-automobile.jpg" alt="" />
+    </div>
+    <form>
+      <h3>Informations personnelles</h3>
+      <!-- <div class="form-wrapper flex justify-center">
+        <p-image
+          src="https://primefaces.org/cdn/primeng/images/galleria/galleria10.jpg"
+          alt="Image"
+          width="250"
+        />
+      </div> -->
+      <div class="form-wrapper flex pb-2">
+        <p-fileupload
+          #fu
+          mode="basic"
+          chooseLabel="Choisir"
+          chooseIcon="pi pi-upload"
+          name="demo[]"
+          url="https://www.primefaces.org/cdn/api/upload.php"
+          accept="image/*"
+          maxFileSize="1000000"
+          (onUpload)="onUpload($event)"
+        />
+      </div>
+      <div class="form-wrapper">
+        <input type="text" placeholder="Nom" class="form-control" />
+        <i class="pi pi-user"></i>
+      </div>
+      <div class="form-wrapper">
+        <input type="text" placeholder="Adresse mail" class="form-control" />
+        <i class="pi pi-envelope"></i>
+      </div>
+      <div class="form-wrapper">
+        <select name="" id="" class="form-control">
+          <option value="" disabled selected>Genre</option>
+          <option value="male">Male</option>
+          <option value="femal">Female</option>
+          <option value="other">Other</option>
+        </select>
+        <i class="pi pi-angle-down" style="font-size: 17px"></i>
+      </div>
+      <div class="form-wrapper">
+        <input
+          type="password"
+          placeholder="Mot de passe"
+          class="form-control"
+        />
+        <i class="pi pi-lock"></i>
+      </div>
+      <div class="form-wrapper">
+        <input
+          type="password"
+          placeholder="Confirmer mot de passe"
+          class="form-control"
+        />
+        <i class="pi pi-lock"></i>
+      </div>
+      <button>
+        Register
+        <i class="pi pi-arrow-right"></i>
+      </button>
+    </form>
+  </div>
+</div>
