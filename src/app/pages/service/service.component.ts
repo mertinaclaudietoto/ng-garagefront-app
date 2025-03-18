@@ -27,14 +27,14 @@ import { ServicePrice } from '../../class/servicePirce';
 import { ServicepriceService } from '../../service/serviceprice.service';
 import { CarService } from '../../service/car.service';
 import { IdName } from '../../class/car-type';
+import { FormatnumberpipePipe } from '../../pipe/formatnumberpipe.pipe';
 @Component({
   selector: 'app-service',
-  imports: [InputTextModule, FluidModule, ButtonModule, SelectModule, FormsModule, TextareaModule, CarouselModule, ButtonModule, GalleriaModule, ImageModule, TagModule, IconFieldModule, InputIconModule, ToolbarModule, SplitButtonModule, CarTypeComponent,TableModule,DialogModule],
+  imports: [FormatnumberpipePipe,InputTextModule, FluidModule, ButtonModule, SelectModule, FormsModule, TextareaModule, CarouselModule, ButtonModule, GalleriaModule, ImageModule, TagModule, IconFieldModule, InputIconModule, ToolbarModule, SplitButtonModule, CarTypeComponent,TableModule,DialogModule],
   templateUrl: './service.component.html',
   styleUrl: './service.component.scss'
 })
 export class ServiceComponent implements OnInit {
-
   servicePriceList:ServicePrice[]|undefined=undefined;
   carList:Car[]|undefined=undefined;
   serviceList:IdName[]|undefined=undefined;

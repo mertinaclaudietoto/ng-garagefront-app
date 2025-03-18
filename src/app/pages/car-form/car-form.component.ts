@@ -27,7 +27,7 @@ import { CarService } from '../../service/car.service';
 // Assurez-vous que `CarType` est exporté dans ce fichier
 import { IdName } from '../../class/car-type';
 import { convertFileToBase64 } from '../../expo/base64';
-
+import { IMAGESDEFAULTS } from '../../expo/dataimage';
 @Component({
   selector: 'app-car-form',
   imports: [InputTextModule, FluidModule, ButtonModule, SelectModule, FormsModule, TextareaModule, CarouselModule, ButtonModule, GalleriaModule, ImageModule, TagModule, IconFieldModule, InputIconModule, ToolbarModule, SplitButtonModule, CarTypeComponent,TableModule,DialogModule],
@@ -60,6 +60,7 @@ export class CarFormComponent implements OnInit{
       this.carService.getCarType("weigths").subscribe(table=> {
         this.dropdownItemsWeigth = table?.map(value=>({name:value.name,_id:value._id}))
       });
+      this.addOrUpdateValue.picture=IMAGESDEFAULTS["car"];
     }
 
     crudSelect=["cartypes","engines","sizes","weigths"];
@@ -86,13 +87,13 @@ export class CarFormComponent implements OnInit{
 
   modifOrAdd(carType:Car){
     console.log(carType);
-    // this.carService.modifOrAddCar(carType).subscribe( response => {
-    //   this.relaod();
-    // },
-    // error => {
-    //   console.error("❌ Erreur lors de l'envoi de la requête DELETE :", error);
-    // }
-    // );
+    this.carService.modifOrAddCar(carType).subscribe( response => {
+      this.relaod();
+    },
+    error => {
+      console.error("❌ Erreur lors de l'envoi de la requête POST OR PUT :", error);
+    }
+    );
   }
   close() {
     this.display = false;

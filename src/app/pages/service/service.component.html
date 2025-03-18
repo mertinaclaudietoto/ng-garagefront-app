@@ -11,20 +11,25 @@
                     [value]="servicePriceList" [tableStyle]="{ 'min-width': '50rem' }">
                     <ng-template #header>
                         <tr>
-                            <th id="name">Price</th>
+                            <th id="name">Picture</th>
                             <th id="name">Serice</th>
                             <th id="name">Brand</th>
                             <th id="name">Model</th>
+                            <th id="name">Price</th>
                             <th id="up">Update</th>  
                             <th id="del">Delete</th>
                         </tr>
                     </ng-template>
                     <ng-template #body let-product>
                         <tr>
-                            <td>{{ product.price }}</td>                   
-                            <td>{{ product.service.name }}</td>                   
+                            <td>
+                                <img [src]="product.car.picture" alt={{product.brand}}  class="flag flag-" width="30" />
+                            </td>
+                            <td>{{ product.service.name }}</td>   
                             <td>{{ product.car.brand }}</td>                   
-                            <td>{{ product.car.model }}</td>                   
+                            <td>{{ product.car.model }}</td>  
+                            <td>{{ product.price | formatnumberpipe }} Ar </td>                                 
+                 
                             <td><p-button icon="pi pi-pencil" severity="success" outlined (onClick)="setUpdateValue(product)"/></td>          
                             <td><p-button icon="pi pi-trash" severity="danger" outlined (onClick)="open(product)"/></td>                   
                         </tr>
