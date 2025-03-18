@@ -11,7 +11,7 @@
                     [value]="servicePriceList" [tableStyle]="{ 'min-width': '50rem' }">
                     <ng-template #header>
                         <tr>
-                            <th id="name">Picture</th>
+                            <!-- <th id="name">Picture</th> -->
                             <th id="name">Serice</th>
                             <th id="name">Brand</th>
                             <th id="name">Model</th>
@@ -22,12 +22,11 @@
                     </ng-template>
                     <ng-template #body let-product>
                         <tr>
-                            <td>
-                                <img [src]="product.car.picture" alt={{product.brand}}  class="flag flag-" width="30" />
-                            </td>
+                            
                             <td>{{ product.service.name }}</td>   
                             <td>{{ product.car.brand }}</td>                   
                             <td>{{ product.car.model }}</td>  
+                            <td>{{ product.car.version }}</td>  
                             <td>{{ product.price | formatnumberpipe }} Ar </td>                                 
                  
                             <td><p-button icon="pi pi-pencil" severity="success" outlined (onClick)="setUpdateValue(product)"/></td>          
@@ -54,13 +53,13 @@
                 <div class="flex flex-col gap-4 mt-10">
                     <div class="flex flex-wrap gap-2">
                         <label for="username">Car</label>
-                        <p-select id="state" [(ngModel)]="dropdownItem" [options]="dropdownItemsCar" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
+                        <p-select id="state" [(ngModel)]="addOrUpdateValue.car" [options]="dropdownItemsCar" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
                     </div>
                 </div>
                 <div class="flex flex-col gap-4 mt-10">
                     <div class="flex flex-wrap gap-2">
                         <label for="username">Service</label>
-                        <p-select id="state" [(ngModel)]="dropdownItem" [options]="dropdownItemsService" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
+                        <p-select id="state" [(ngModel)]="addOrUpdateValue.service" [options]="dropdownItemsService" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
                     </div>
                 </div>
                 <div class="flex flex-col gap-4 mt-10">
@@ -70,7 +69,8 @@
                     </div>
                 </div>
                 <div class="flex flex-wrap items-start gap-6">
-                    <p-button class="mt-5" label="validate" [fluid]="false"></p-button>
+                    <p-button class="mt-5" label="validate" [fluid]="false" (onClick)="modifOrAdd(addOrUpdateValue)"></p-button>
+                    <p-button class="mt-5" label="reload" [fluid]="false"(onClick)="relaod()"></p-button>
                 </div>
                 </div>
         </div>

@@ -40,39 +40,32 @@ export class ServiceComponent implements OnInit {
   serviceList:IdName[]|undefined=undefined;
   service:string ="services";
   display: boolean = false;
-  addOrUpdateValue:ServicePrice|undefined =undefined;
-  deleteValue :ServicePrice|undefined =undefined;
-
+  addOrUpdateValue:ServicePrice =new ServicePrice();
+  deleteValue :ServicePrice =new ServicePrice();
+  dropdownItemsCar:any=[];
+  dropdownItemsService:any =[];
   constructor(private servicePriceService: ServicepriceService,
     private carService :CarService
   ) {
   }
   ngOnInit() {
     this.servicePriceService.getServicePrice().subscribe(table=> this.servicePriceList=table);
-    this.carService.getCar().subscribe(value=>this.carList=value);
-    this.carService.getCarType(this.service).subscribe(value=>this.serviceList=value);
+    this.carService.getCar().subscribe(value=> {this.dropdownItemsCar = value.map(v=>({...v,name:v.brand+" "+v.model+" "+v.version}))} );
+    this.carService.getCarType("services").subscribe(value=> {this.dropdownItemsService = value.map(v=>({...v}))});
   }
-  
-  dropdownItemsCar = this.carList?.map(value=>({name:value.brand+" "+value.model+" "+value.version,
-    code:value._id
-  }));
-  
-  
-  dropdownItemsService = this.serviceList?.map(value=>({name:value.name,
-    code:value._id
-  }));
+
   dropdownItem = null;
   setUpdateValue(value:ServicePrice){
       this.addOrUpdateValue=value;
   }
   modifOrAdd(value:ServicePrice){
+    // console.log(value)
     this.servicePriceService.modifOrAddCar(value).subscribe( response => {
       this.relaod();
     },
     error => {
-      console.error("❌ Erreur lors de l'envoi de la requête DELETE :", error);
-    }
-  );
+      console.error("❌ Erreur lors de l'envoi de la requête POST OR UPDATE :", error);
+    });
   }
   close() {
     this.display = false;
@@ -90,8 +83,8 @@ export class ServiceComponent implements OnInit {
   }
   relaod(){
     this.servicePriceService.getServicePrice().subscribe(table=> this.servicePriceList=table);
-    this.deleteValue  =undefined;
-    this.addOrUpdateValue=undefined;
+    this.deleteValue  =new ServicePrice();
+    this.addOrUpdateValue=new ServicePrice();
   }
   
 }
