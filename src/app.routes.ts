@@ -12,6 +12,11 @@ import { SignInComponent } from './app/clients/sign-in/sign-in.component';
 import { ListWorksComponent } from './app/clients/works/components/list-works/list-works.component';
 import { LandingComponent } from './app/clients/landing/landing/landing.component';
 
+import { RegisterComponent } from './app/auth/register/register.component';
+import { LoginComponent } from './app/auth/login/login.component';
+import { ProgressSrComponent } from './app/clients/progress-sr/progress-sr.component';
+import { CarClientsComponent } from './app/clients/car-clients/car-clients.component';
+
 export const appRoutes: Routes = [
     {
         path: '',
@@ -30,12 +35,28 @@ export const appRoutes: Routes = [
             { path: 'about', component: AboutComponent },
             { path: 'sign-in', component: SignInComponent },
             { path: 'works', component: ListWorksComponent },
-
         ]
     },
     {
-        path:'landing',component: LandingComponent
+        path:'nclient',
+        // component: LandingComponent,
+        children: [
+            { path: 'progress-service', component: ProgressSrComponent },
+            { path: 'cars-client', component: CarClientsComponent },
+        ]
 
+    },
+    {
+        path:'auth',
+        // component: LandingComponent,
+        children: [
+            { path: 'login', component: LoginComponent },
+            { path: 'register', component: RegisterComponent },
+        ]
+
+    },
+    {
+        path:'landing',component: LandingComponent
     },
     { path: 'notfound', component: Notfound },
     { path: 'auth', loadChildren: () => import('./app/pages/auth/auth.routes') },

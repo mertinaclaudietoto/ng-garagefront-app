@@ -6,6 +6,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { RippleModule } from 'primeng/ripple';
+import { Emp } from '../../class/emp';
+import { EmpService } from '../../service/emp.service';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +16,17 @@ import { RippleModule } from 'primeng/ripple';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+  login:Emp = new Emp();
   email: string = '';
   password: string = '';
   checked: boolean = false;
+  constructor(private empService: EmpService) {
+    this.login.login='';
+    this.login.password='';
+
+  }
+  onlogin(){
+   this.empService.login(this.login).subscribe(response=>console.log(response))                       
+  }
   
 }

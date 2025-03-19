@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Emp } from '../class/emp';
 import { environement } from '../../environement/environement';
@@ -26,6 +26,10 @@ export class EmpService {
           return this.http.delete<void>(this.apiUrl+"emps/"+value._id) ;
         }
         return new Observable<void>;
+  }
+  login(value:Emp):Observable<Emp>{
+   
+    return this.http.post<Emp>(this.apiUrl+'emps/login', value);
   }
 
 }
