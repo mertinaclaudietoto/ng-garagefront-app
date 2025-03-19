@@ -45,7 +45,6 @@ export class CarFormComponent implements OnInit{
     deleteValue :Car =new Car();
     constructor(private carService: CarService) {
     }
-
     ngOnInit() {
       this.carService.getCar().subscribe(table=> this.carList=table);
       this.carService.getCarType("cartypes").subscribe(table=>{

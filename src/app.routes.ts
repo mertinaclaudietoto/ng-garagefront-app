@@ -10,6 +10,8 @@ import { ServiceComponent } from './app/clients/service/service.component';
 import { AboutComponent } from './app/clients/about/about.component';
 import { SignInComponent } from './app/clients/sign-in/sign-in.component';
 import { ListWorksComponent } from './app/clients/works/components/list-works/list-works.component';
+import { LandingComponent } from './app/clients/landing/landing/landing.component';
+
 export const appRoutes: Routes = [
     {
         path: '',
@@ -27,8 +29,13 @@ export const appRoutes: Routes = [
             { path: '', component: ServiceComponent },
             { path: 'about', component: AboutComponent },
             { path: 'sign-in', component: SignInComponent },
-            { path: 'works', component: ListWorksComponent }
+            { path: 'works', component: ListWorksComponent },
+
         ]
+    },
+    {
+        path:'nclient',component: LandingComponent
+
     },
     { path: 'notfound', component: Notfound },
     { path: 'auth', loadChildren: () => import('./app/pages/auth/auth.routes') },
