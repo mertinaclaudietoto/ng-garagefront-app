@@ -34,7 +34,7 @@ export const appRoutes: Routes = [
         ]
     },
     {
-        path:'nclient',component: LandingComponent
+        path:'landing',component: LandingComponent
 
     },
     { path: 'notfound', component: Notfound },

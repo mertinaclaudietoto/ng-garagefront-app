@@ -1,12 +1,11 @@
-<div class="w-full card flex flex-col md:flex-row gap-4">
-    <!-- Partie image -->
+<div class=" w-[400px] h-[200px] card flex flex-col md:flex-row gap-4 m-0 border border-gray-300 rounded-lg m-2">
     <div class="md:w-1/2 flex flex-col gap-2">
-      <p-image [src]="value.car.picture" alt="Image" width="250" />
+      <p-image [src]="value.car.picture" alt="Image" width="250" height="250" />
     </div>
-  
-    <!-- Partie formulaire -->
     <div class="md:w-1/2 flex flex-col gap-4">
-        <label for="name1">{{value.service.name}}</label>
+      <div class="flex flex-col gap-2">
+        <label for="name1"> <strong>{{value.service.name}}</strong> </label>
+      </div> 
       <div class="flex flex-col gap-2">
         <label for="name1">{{value.car.brand+" "+value.car.model}}</label>
       </div>
@@ -14,10 +13,12 @@
         <label for="email1">{{value.car.carType.name}}</label>
       </div>
       <div class="flex flex-col gap-2">
-        <label for="age1">{{value.car.sizeType.name+" "+value.car.weigthType.name}}</label>
+        <label for="age1">  {{value.car.sizeType.name+"  "+value.car.weigthType.name}}</label>
       </div>
-      <label for="name1">{{value.price}}</label>
-
+      <div class="flex flex-col gap-2">
+        <label for="age1">{{value.price | formatnumberpipe}} Ar</label>
+      </div>
+      <!-- <p-button  severity="info" ></p-button> -->
     </div>
-  </div>
-  
+   
+</div>
