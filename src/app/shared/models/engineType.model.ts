@@ -1,5 +1,5 @@
 export interface EngineType {
-     id: number,
+     _id: number,
      name: string,
      percentage: number
 }

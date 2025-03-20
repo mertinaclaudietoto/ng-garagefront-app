@@ -1,5 +1,5 @@
 export interface SizeType {
-     id: number,
+     _id: number,
      name: string,
      percentage: number
 }

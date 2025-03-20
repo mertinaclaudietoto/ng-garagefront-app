@@ -10,6 +10,7 @@ import { ServiceComponent } from './app/clients/service/service.component';
 import { AboutComponent } from './app/clients/about/about.component';
 import { SignInComponent } from './app/clients/sign-in/sign-in.component';
 import { ListWorksComponent } from './app/clients/works/components/list-works/list-works.component';
+import { CarTypeComponent } from './app/features/carType/components/car-type/car-type.component';
 export const appRoutes: Routes = [
     {
         path: '',
@@ -17,7 +18,8 @@ export const appRoutes: Routes = [
         children: [
             { path: '', component: CarFormComponent },
             { path: 'uikit', loadChildren: () => import('./app/pages/uikit/uikit.routes') },
-            { path: 'pages', loadChildren: () => import('./app/pages/pages.routes') }
+            { path: 'pages', loadChildren: () => import('./app/pages/pages.routes') },
+            { path: 'car-type', component: CarTypeComponent }
         ]
     },
     {
