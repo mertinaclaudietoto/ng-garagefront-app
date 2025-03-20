@@ -77,6 +77,9 @@
                     
                 </div>
             </div>
+            <p-dialog header="Set serivec for this car ?" [(visible)]="display" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '40vw' }" [modal]="true">
+               <app-set-service></app-set-service>
+            </p-dialog> 
         </p-fluid>    
     </div>
 </div>

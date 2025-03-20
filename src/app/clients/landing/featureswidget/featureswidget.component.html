@@ -6,9 +6,14 @@
         <h1 class="text-6xl font-bold text-gray-900 leading-tight"><span class="font-light block">At</span>Garage ntsika</h1>
         <p class="w-1/2 font-normal text-2xl leading-normal md:mt-4 text-gray-700"> We put our expertise at the service 
             of your vehicle. Specialized in maintenance, repair, and automotive diagnostics, we guarantee you a fast, reliable, and high-quality service.</p>
-        <button pButton pRipple [rounded]="true" type="button" label="Make appoitment" class="!text-xl mt-8 !px-4"></button>
+        <button pButton pRipple [rounded]="true" type="button" label="Make appoitment" class="!text-xl mt-8 !px-4" 
+        (click)="router.navigate(['/auth/login'])" ></button>
     </div>
     <div class="flex justify-center md:justify-end ">
         <img src="http://res.cloudinary.com/dcufspbrh/image/upload/v1742392345/zvmjtqynoxdv2noqtsss.jpg" alt="Hero Image" class="w-9/12 md:w-auto" />
     </div>
 </div>
+
+
+
+

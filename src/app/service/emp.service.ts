@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Emp } from '../class/emp';
 import { environement } from '../../environement/environement';
+import { Loginm } from '../class/loginm';
 @Injectable({
   providedIn: 'root'
 })
@@ -27,9 +28,8 @@ export class EmpService {
         }
         return new Observable<void>;
   }
-  login(value:Emp):Observable<Emp>{
-   
-    return this.http.post<Emp>(this.apiUrl+'emps/login', value);
+  login(value:Emp):Observable<Loginm>{
+    return this.http.post<Loginm>(this.apiUrl+'emps/login', value);
   }
 
 }

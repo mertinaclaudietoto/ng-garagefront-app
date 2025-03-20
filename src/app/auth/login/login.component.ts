@@ -8,10 +8,11 @@ import { PasswordModule } from 'primeng/password';
 import { RippleModule } from 'primeng/ripple';
 import { Emp } from '../../class/emp';
 import { EmpService } from '../../service/emp.service';
-
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
-  imports: [ButtonModule, CheckboxModule, InputTextModule, PasswordModule, FormsModule, RouterModule, RippleModule],
+  imports: [ButtonModule, CheckboxModule, InputTextModule, PasswordModule, FormsModule, RouterModule, RippleModule,CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -20,13 +21,21 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
   checked: boolean = false;
-  constructor(private empService: EmpService) {
+  column:number =-1;
+  constructor(private empService: EmpService,private router:Router) {
     this.login.login='';
     this.login.password='';
-
   }
   onlogin(){
-   this.empService.login(this.login).subscribe(response=>console.log(response))                       
+    this.empService.login(this.login).subscribe(
+      response =>{
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('image', response.picture);
+        localStorage.setItem('iduser', response.iduser);
+        localStorage.setItem('idrule', response.idrule);
+        this.router.navigate(['/client/cars-client']);
+      } ,
+      error => console.log('Erreur:',this.column= +error.error.column )
+    );                    
   }
-  
 }

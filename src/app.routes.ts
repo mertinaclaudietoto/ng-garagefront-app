@@ -16,6 +16,7 @@ import { RegisterComponent } from './app/auth/register/register.component';
 import { LoginComponent } from './app/auth/login/login.component';
 import { ProgressSrComponent } from './app/clients/progress-sr/progress-sr.component';
 import { CarClientsComponent } from './app/clients/car-clients/car-clients.component';
+import { DetServiceComponent } from './app/clients/det-service/det-service.component';
 
 export const appRoutes: Routes = [
     {
@@ -27,37 +28,33 @@ export const appRoutes: Routes = [
             { path: 'pages', loadChildren: () => import('./app/pages/pages.routes') }
         ]
     },
+    // {
+    //     path: 'client',
+    //     component: LayoutComponent,
+    //     children: [
+    //         { path: '', component: ServiceComponent },
+    //         { path: 'about', component: AboutComponent },
+    //         { path: 'sign-in', component: SignInComponent },
+    //         { path: 'works', component: ListWorksComponent },
+    //     ]
+    // },
     {
-        path: 'client',
-        component: LayoutComponent,
-        children: [
-            { path: '', component: ServiceComponent },
-            { path: 'about', component: AboutComponent },
-            { path: 'sign-in', component: SignInComponent },
-            { path: 'works', component: ListWorksComponent },
-        ]
+        path:'client',
+        component: LandingComponent,
     },
-    {
-        path:'nclient',
-        // component: LandingComponent,
-        children: [
-            { path: 'progress-service', component: ProgressSrComponent },
-            { path: 'cars-client', component: CarClientsComponent },
-        ]
-
-    },
+    { path: 'client/cars-client', component: CarClientsComponent },
+    { path: 'client/progress-service', component: ProgressSrComponent },
+    { path: 'client/det-services', component: DetServiceComponent },
     {
         path:'auth',
-        // component: LandingComponent,
         children: [
             { path: 'login', component: LoginComponent },
             { path: 'register', component: RegisterComponent },
         ]
-
     },
-    {
-        path:'landing',component: LandingComponent
-    },
+    // {
+    //     path:'landing',component: LandingComponent
+    // },
     { path: 'notfound', component: Notfound },
     { path: 'auth', loadChildren: () => import('./app/pages/auth/auth.routes') },
     { path: '**', redirectTo: '/notfound' }

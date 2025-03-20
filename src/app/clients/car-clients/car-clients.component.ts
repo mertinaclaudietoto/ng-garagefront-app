@@ -16,14 +16,17 @@ import { ServicepriceService } from '../../service/serviceprice.service';
 import { ToolbarModule } from 'primeng/toolbar';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { TopbarclientsComponent } from '../topbarclients/topbarclients.component';
+import { SetServiceComponent } from "../set-service/set-service.component";
+import { DialogModule } from 'primeng/dialog';
+
 @Component({
   selector: 'app-car-clients',
-    imports: [TopbarclientsComponent, PaginatorModule,ToolbarModule,InputTextModule, SplitterModule, SelectModule, ButtonModule, FormsModule, RippleModule, FluidModule, CommonModule, ImageModule, ServiceCarPriceComponent],
+    imports: [DialogModule,TopbarclientsComponent, PaginatorModule, ToolbarModule, InputTextModule, SplitterModule, SelectModule, ButtonModule, FormsModule, RippleModule, FluidModule, CommonModule, ImageModule, ServiceCarPriceComponent, SetServiceComponent],
   templateUrl: './car-clients.component.html',
   styleUrl: './car-clients.component.scss'
 })
 export class CarClientsComponent {
-dropdownItemsCarTypes :any=[];
+  dropdownItemsCarTypes :any=[];
   dropdownItemsEngine :any=[];
   dropdownItemsSize :any=[];
   dropdownItemsWeigth :any=[];
@@ -36,6 +39,7 @@ dropdownItemsCarTypes :any=[];
   keysearch: { [key: string]: string } = {
     service:""
   };
+  display: boolean = true;
 
   constructor(private carService: CarService,private servicepriceService: ServicepriceService) {
   }

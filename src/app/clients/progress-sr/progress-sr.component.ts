@@ -11,9 +11,13 @@ import { ServicePrice } from '../../class/servicePrice';
 import { ServicepriceService } from '../../service/serviceprice.service';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { TopbarclientsComponent } from '../topbarclients/topbarclients.component';
+import { DialogModule } from 'primeng/dialog';
+import { DetServiceComponent } from "../det-service/det-service.component";
+import { SetServiceComponent } from "../set-service/set-service.component";
+import { FooterComponent } from '../footer/footer.component';
 @Component({
   selector: 'app-progress-sr',
-  imports: [TopbarclientsComponent,ProgressBarModule,CommonModule, DataViewModule, FormsModule, SelectButtonModule, PickListModule, OrderListModule, TagModule, ButtonModule],
+  imports: [DialogModule, TopbarclientsComponent, ProgressBarModule, CommonModule, DataViewModule, FormsModule, SelectButtonModule, PickListModule, OrderListModule, TagModule, ButtonModule, DetServiceComponent, SetServiceComponent, FooterComponent],
   templateUrl: './progress-sr.component.html',
   styles: `
   ::ng-deep {
@@ -25,7 +29,7 @@ import { TopbarclientsComponent } from '../topbarclients/topbarclients.component
 })
 export class ProgressSrComponent {
   layout: 'list' | 'grid' = 'list';
-
+  display: boolean = true;
   options = ['list', 'grid'];
 
   products: ServicePrice[] = [];
@@ -79,3 +83,4 @@ export class ProgressSrComponent {
   }
  
 }
+

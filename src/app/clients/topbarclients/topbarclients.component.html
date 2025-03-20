@@ -26,7 +26,7 @@
     <ul class="list-none p-0 m-0 flex lg:items-center select-none flex-col lg:flex-row cursor-pointer gap-8">
         <li>
             <a (click)="router.navigate(['/landing'], { fragment: 'home' })" pRipple class="px-0 py-4 text-surface-900 dark:text-surface-0 font-medium text-xl">
-                <span>Home</span>
+                <span>My car</span>
             </a>
         </li>
         <li>
@@ -36,14 +36,14 @@
         </li>
         <li>
             <a (click)="router.navigate(['/landing'], { fragment: 'highlights' })" pRipple class="px-0 py-4 text-surface-900 dark:text-surface-0 font-medium text-xl">
-                <span>Localisations</span>
-            </a>
-        </li>
-        <li>
-            <a (click)="router.navigate(['/landing'], { fragment: 'pricing' })" pRipple class="px-0 py-4 text-surface-900 dark:text-surface-0 font-medium text-xl">
-                <span>Contacts</span>
+                <span>Processes</span>
             </a>
         </li>
     </ul>
-   
+    <div class="flex items-center flex-col sm:flex-row">
+        <p-chip label="Onyama Limba" image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png" styleClass="m-1"></p-chip>
+        <p-button icon="pi pi-sign-out" severity="secondary" rounded outlined />
+    </div>
 </div>
+
+

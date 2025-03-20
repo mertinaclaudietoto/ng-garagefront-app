@@ -1,5 +1,6 @@
 <div class="bg-surface-0 dark:bg-surface-900 h-screen flex">
     <div id="home" class="landing-wrapper overflow-hidden">
+        
         <app-topbarclients class="mx-0 md:mx-12 lg:mx-20 lg:px-20 flex items-center  relative lg:static"></app-topbarclients>
         <p-dataview [value]="products" [layout]="layout">
             <ng-template #list let-items>
@@ -34,7 +35,12 @@
 
                     
                 </div>
+                <p-dialog header="Details of services" [(visible)]="display" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '40vw' }" [modal]="true">
+                    <app-det-service></app-det-service>
+                    <app-set-service></app-set-service>
+                </p-dialog> 
             </ng-template>
+             
         </p-dataview>
     </div>
 </div>
