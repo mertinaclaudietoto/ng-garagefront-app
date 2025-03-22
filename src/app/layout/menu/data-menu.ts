@@ -24,7 +24,7 @@ export const DATAMENU: MenuItem[] = [
                     {
                         label: 'Moteur',
                         icon: 'pi pi-fw pi-times-circle',
-                        routerLink: ['/auth/error']
+                        routerLink: ['/car-engine']
                     },
                     {
                         label: 'Type',

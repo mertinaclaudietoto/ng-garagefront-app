@@ -1,0 +1,45 @@
+<div class="grid">
+  <div class="col-12">
+    <div class="card px-6 py-6">
+      <p-button
+        label="Profile"
+        icon="pi pi-plus"
+        label="Ajouter"
+        severity="success"
+      />
+      <h4>Liste des moteurs de voitures</h4>
+      <p-table
+        [value]="carEngineList"
+        stripedRows
+        [paginator]="true"
+        [rows]="10"
+        [tableStyle]="{ 'min-width': '50rem' }"
+      >
+        <ng-template #header>
+          <tr>
+            <th>Nom</th>
+            <th>Pourcentage</th>
+            <th>Action</th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-carEngine>
+          <tr>
+            <td>{{ carEngine.name }}</td>
+            <td>{{ carEngine.percentage }}</td>
+            <td class="flex gap-1">
+              <p-button icon="pi pi-pencil" severity="success" outlined />
+              <p-button icon="pi pi-trash" severity="danger" outlined />
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+<app-message></app-message>
+<app-confirmation-delete
+  [header]="'Confirmation'"
+  [message]="'Êtes-vous sûr de vouloir supprimer cet moteur de voiture ?'"
+  (accept)="handleDelete($event)"
+  (reject)="handleReject()"
+></app-confirmation-delete>
