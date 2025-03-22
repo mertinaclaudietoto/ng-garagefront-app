@@ -27,7 +27,12 @@
             <td>{{ carType.name }}</td>
             <td>{{ carType.percentage }}</td>
             <td class="flex gap-1">
-              <p-button icon="pi pi-pencil" severity="success" outlined />
+              <p-button
+                icon="pi pi-pencil"
+                severity="success"
+                (onClick)="updateCarType(carType)"
+                outlined
+              />
               <p-button
                 icon="pi pi-trash"
                 severity="danger"
@@ -46,6 +51,7 @@
   [(visibleDialog)]="modalVisible"
   (visibleDialogChange)="modalVisible = $event"
   (carTypeCreated)="onCarTypeCreated()"
+  [carType]="carType"
 ></app-car-type-form>
 <app-confirmation-delete
   [header]="'Confirmation'"

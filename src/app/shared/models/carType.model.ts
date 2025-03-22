@@ -1,5 +1,5 @@
 export interface CarType {
-     _id: number | null,
+     _id?: string,
      name: string,
      percentage: number
 }

@@ -22,4 +22,8 @@ export class CarTypeService {
   saveCarType(carType: Partial<CarType>): Observable<CarType> {
     return this.http.post<CarType>(this.url, carType);
   }
+
+  updateCarType(id: string, carType: Partial<CarType>): Observable<CarType> {
+    return this.http.put<CarType>(`${this.url}/${id}`, carType);
+  }
 }

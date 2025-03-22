@@ -30,6 +30,7 @@ export class CarTypeComponent implements OnInit, OnDestroy {
   @ViewChild(ConfirmationDeleteComponent) confirmationDeleteComponent!: ConfirmationDeleteComponent;
   carTypeList: CarType[] = [];
   modalVisible = false;
+  carType: CarType | null = null;
 
   constructor(
     private cartTypeService: CarTypeService
@@ -38,6 +39,12 @@ export class CarTypeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getAllCarTypes();
   }
+
+  updateCarType(carType: CarType) {
+    this.carType = carType;
+    this.modalVisible = true;
+  }
+
   onCarTypeCreated() {
     this.getAllCarTypes();
   }
