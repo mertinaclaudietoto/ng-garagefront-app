@@ -1,16 +1,16 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import { MessageComponent } from '../../../../shared/components/message/message.component';
 import { ConfirmationDeleteComponent } from '../../../../shared/components/confirmation-delete/confirmation-delete.component';
-import { Subject, takeUntil } from 'rxjs';
-import { CarEngine } from '../../../../shared/models/carEngine.model';
-import { CarEngineService } from '../../services/car-engine.service';
+import { CarWeight } from '../../../../shared/models/carWeight.model';
+import { CarWeightService } from '../../services/car-weight.service';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmationService } from 'primeng/api';
 
 @Component({
-  selector: 'app-car-engine',
+  selector: 'app-car-weight',
   imports: [
     CommonModule,
     TableModule,
@@ -19,33 +19,33 @@ import { ConfirmationService } from 'primeng/api';
     ConfirmationDeleteComponent,
   ],
   providers: [ConfirmationService],
-  templateUrl: './car-engine.component.html',
-  styleUrl: './car-engine.component.scss'
+  templateUrl: './car-weight.component.html',
+  styleUrl: './car-weight.component.scss'
 })
-export class CarEngineComponent implements OnInit, OnDestroy {
+export class CarWeightComponent implements OnInit, OnDestroy {
   private destroys$ = new Subject<void>();
   @ViewChild(MessageComponent) messageComponent!: MessageComponent;
   @ViewChild(ConfirmationDeleteComponent) confirmationDeleteComponent!: ConfirmationDeleteComponent;
-  carEngineList: CarEngine[] = [];
+  carWeightList: CarWeight[] = [];
   modalVisible = false;
-  engineType: CarEngine | null = null;
+  engineType: CarWeight | null = null;
 
   constructor(
-    private cartEngineService: CarEngineService
+    private carWeightService: CarWeightService
   ) { }
 
   ngOnInit(): void {
-    this.getAllCarEngines();
+    this.getAllCarWeights();
   }
 
-  getAllCarEngines() {
-    this.cartEngineService.getAllCarEngines().pipe(takeUntil(this.destroys$)).subscribe({
-      next: (engines) => {
-        this.carEngineList = engines;
+  getAllCarWeights() {
+    this.carWeightService.getAllCarWeights().pipe(takeUntil(this.destroys$)).subscribe({
+      next: (weights) => {
+        this.carWeightList = weights;
       },
       error: (err) => {
-        console.error('Error fetching car engines:', err)
-        this.messageComponent.showMessage('error', 'Erreur', 'Error fetching car engines');
+        console.error('Error fetching car weight:', err)
+        this.messageComponent.showMessage('error', 'Erreur', 'Error fetching car weights');
       }
     })
   }

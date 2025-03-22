@@ -1,0 +1,45 @@
+<div class="grid">
+  <div class="col-12">
+    <div class="card px-6 py-6">
+      <p-button
+        label="Profile"
+        icon="pi pi-plus"
+        label="Ajouter"
+        severity="success"
+      />
+      <h4>Liste des poids de voitures</h4>
+      <p-table
+        [value]="carWeightList"
+        stripedRows
+        [paginator]="true"
+        [rows]="10"
+        [tableStyle]="{ 'min-width': '50rem' }"
+      >
+        <ng-template #header>
+          <tr>
+            <th>Valeur</th>
+            <th>Pourcentage</th>
+            <th>Action</th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-carWieght>
+          <tr>
+            <td>{{ carWieght.name }}</td>
+            <td>{{ carWieght.percentage }}</td>
+            <td class="flex gap-1">
+              <p-button icon="pi pi-pencil" severity="success" outlined />
+              <p-button icon="pi pi-trash" severity="danger" outlined />
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+<app-message></app-message>
+<app-confirmation-delete
+  [header]="'Confirmation'"
+  [message]="'Êtes-vous sûr de vouloir supprimer cet poids de voiture ?'"
+  (accept)="handleDelete($event)"
+  (reject)="handleReject()"
+></app-confirmation-delete>

@@ -13,6 +13,7 @@ import { ListWorksComponent } from './app/clients/works/components/list-works/li
 import { CarTypeComponent } from './app/features/carType/components/car-type/car-type.component';
 import { CarSizeComponent } from './app/features/carSize/components/car-size/car-size.component';
 import { CarEngineComponent } from './app/features/carEngine/components/car-engine/car-engine.component';
+import { CarWeightComponent } from './app/features/carWeight/components/car-weight/car-weight.component';
 export const appRoutes: Routes = [
     {
         path: '',
@@ -24,6 +25,7 @@ export const appRoutes: Routes = [
             { path: 'car-type', component: CarTypeComponent },
             { path: 'car-size', component: CarSizeComponent },
             { path: 'car-engine', component: CarEngineComponent },
+            { path: 'car-weight', component: CarWeightComponent },
         ]
     },
     {

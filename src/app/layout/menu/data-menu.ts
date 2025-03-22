@@ -34,7 +34,7 @@ export const DATAMENU: MenuItem[] = [
                     {
                         label: 'Poids',
                         icon: 'pi pi-fw pi-lock',
-                        routerLink: ['/auth/access']
+                        routerLink: ['/car-weight']
                     }
                 ]
             },
