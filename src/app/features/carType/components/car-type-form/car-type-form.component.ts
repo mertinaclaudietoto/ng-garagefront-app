@@ -17,7 +17,6 @@ import { CarType } from '../../../../shared/models/carType.model';
     ButtonModule,
     Dialog,
     InputTextModule,
-    FormsModule,
     InputNumber,
     ReactiveFormsModule,
     MessageComponent

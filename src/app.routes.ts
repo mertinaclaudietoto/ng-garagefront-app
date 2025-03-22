@@ -14,6 +14,8 @@ import { CarTypeComponent } from './app/features/carType/components/car-type/car
 import { CarSizeComponent } from './app/features/carSize/components/car-size/car-size.component';
 import { CarEngineComponent } from './app/features/carEngine/components/car-engine/car-engine.component';
 import { CarWeightComponent } from './app/features/carWeight/components/car-weight/car-weight.component';
+import { ListServiceComponent } from './app/features/services/components/list-service/list-service.component';
+import { FormServiceComponent } from './app/features/services/components/form-service/form-service.component';
 export const appRoutes: Routes = [
     {
         path: '',
@@ -26,6 +28,13 @@ export const appRoutes: Routes = [
             { path: 'car-size', component: CarSizeComponent },
             { path: 'car-engine', component: CarEngineComponent },
             { path: 'car-weight', component: CarWeightComponent },
+            {
+                path: 'services',
+                children: [
+                    { path: '', component: ListServiceComponent },
+                    { path: 'form', component: FormServiceComponent },
+                ]
+            }
         ]
     },
     {
