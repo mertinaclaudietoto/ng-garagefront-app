@@ -18,4 +18,8 @@ export class CarTypeService {
   deleteCarType(id: string) {
     return this.http.delete<CarType>(`${this.url}/${id}`);
   }
+
+  saveCarType(carType: Partial<CarType>): Observable<CarType> {
+    return this.http.post<CarType>(this.url, carType);
+  }
 }

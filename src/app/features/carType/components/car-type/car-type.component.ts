@@ -5,31 +5,41 @@ import { CarType } from '../../../../shared/models/carType.model';
 import { ButtonModule } from 'primeng/button';
 import { Subject, takeUntil } from 'rxjs';
 import { CarTypeService } from '../../services/car-type.service';
-import { Dialog } from 'primeng/dialog';
-import { InputTextModule } from 'primeng/inputtext';
-import { FormsModule } from '@angular/forms';
-import { InputNumber } from 'primeng/inputnumber';
 import { MessageComponent } from '../../../../shared/components/message/message.component';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmationDeleteComponent } from '../../../../shared/components/confirmation-delete/confirmation-delete.component';
+import { CarTypeFormComponent } from '../car-type-form/car-type-form.component';
 
 @Component({
   selector: 'app-car-type',
-  imports: [CommonModule, TableModule, ButtonModule, Dialog, InputTextModule, FormsModule, InputNumber, MessageComponent],
+  imports: [
+    CommonModule,
+    TableModule,
+    ButtonModule,
+    MessageComponent,
+    ConfirmationDeleteComponent,
+    CarTypeFormComponent
+  ],
+  providers: [ConfirmationService],
   templateUrl: './car-type.component.html',
   styleUrl: './car-type.component.scss'
 })
 export class CarTypeComponent implements OnInit, OnDestroy {
-  carTypeList: CarType[] = [];
   private destroys$ = new Subject<void>();
-  visibleDialog: boolean = false;
   @ViewChild(MessageComponent) messageComponent!: MessageComponent;
+  @ViewChild(ConfirmationDeleteComponent) confirmationDeleteComponent!: ConfirmationDeleteComponent;
+  carTypeList: CarType[] = [];
+  modalVisible = false;
 
-  constructor(private cartTypeService: CarTypeService) { }
+  constructor(
+    private cartTypeService: CarTypeService
+  ) { }
+
   ngOnInit(): void {
     this.getAllCarTypes();
   }
-
-  submitForm() {
-
+  onCarTypeCreated() {
+    this.getAllCarTypes();
   }
 
   deleteCarType(id: string) {
@@ -45,12 +55,19 @@ export class CarTypeComponent implements OnInit, OnDestroy {
     })
   }
 
-  showDialog() {
-    this.visibleDialog = true;
+  handleDelete(id: string) {
+    this.deleteCarType(id);
   }
 
-  cancelDialog() {
-    this.visibleDialog = false;
+  handleReject() {
+  }
+
+  showConfirmation(id: string) {
+    this.confirmationDeleteComponent.show(id);
+  }
+
+  addCar() {
+    this.modalVisible = true;
   }
 
   getAllCarTypes() {
@@ -60,6 +77,7 @@ export class CarTypeComponent implements OnInit, OnDestroy {
       },
       error: (err) => {
         console.error('Error fetching car types:', err)
+        this.messageComponent.showMessage('error', 'Erreur', 'Error fetching car types');
       }
     })
   }

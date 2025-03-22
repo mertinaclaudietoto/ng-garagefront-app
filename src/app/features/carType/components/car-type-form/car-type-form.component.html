@@ -1,0 +1,43 @@
+<p-dialog
+  header="Ajouter type de voiture"
+  [(visible)]="visibleDialog"
+  [style]="{ width: '25rem' }"
+  [modal]="true"
+  (onHide)="onHide()"
+>
+  <form [formGroup]="carTypeForm">
+    <div class="flex items-center gap-4 mb-4">
+      <label for="nom" class="font-semibold w-24">Nom</label>
+      <input
+        pInputText
+        id="nom"
+        class="flex-auto"
+        formControlName="name"
+        autocomplete="off"
+      />
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+      <label for="pourcentage" class="font-semibold w-24">Pourcentage</label>
+      <p-inputnumber
+        id="pourcentage"
+        class="flex-auto"
+        inputId="minmaxfraction"
+        mode="decimal"
+        [minFractionDigits]="2"
+        [maxFractionDigits]="2"
+        [min]="0"
+        [max]="100"
+        formControlName="percentage"
+      />
+    </div>
+    <div class="flex justify-end gap-2">
+      <p-button label="Annuler" severity="secondary" (click)="cancelDialog()" />
+      <p-button
+        label="Enregistrer"
+        (click)="submitForm()"
+        [disabled]="carTypeForm.invalid"
+      />
+    </div>
+  </form>
+</p-dialog>
+<app-message></app-message>
