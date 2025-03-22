@@ -64,6 +64,7 @@ export class CarTypeFormComponent implements OnInit, OnDestroy {
         this.carType = null;
         this.visibleDialogChange.emit(false);
         this.carTypeCreated.emit();
+        this.carTypeForm.reset();
       },
       error: (err) => {
         console.error('Error fetching car types:', err)
@@ -78,6 +79,7 @@ export class CarTypeFormComponent implements OnInit, OnDestroy {
         this.messageComponent.showMessage('success', 'Enregistrement réussie', 'Le type de voiture a été enregsitré avec succès.');
         this.visibleDialogChange.emit(false);
         this.carTypeCreated.emit();
+        this.carTypeForm.reset();
       },
       error: (err) => {
         console.error('Error fetching car types:', err)

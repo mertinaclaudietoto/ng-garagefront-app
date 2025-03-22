@@ -6,11 +6,11 @@
         icon="pi pi-plus"
         label="Ajouter"
         severity="success"
-        (click)="addCar()"
+        (click)="addCarSize()"
       />
-      <h4>Liste des types de voitures</h4>
+      <h4>Liste des tailles de voitures</h4>
       <p-table
-        [value]="carTypeList"
+        [value]="carSizeList"
         stripedRows
         [paginator]="true"
         [rows]="10"
@@ -23,21 +23,21 @@
             <th>Action</th>
           </tr>
         </ng-template>
-        <ng-template #body let-carType>
+        <ng-template #body let-carSize>
           <tr>
-            <td>{{ carType.name }}</td>
-            <td>{{ carType.percentage }}</td>
+            <td>{{ carSize.name }}</td>
+            <td>{{ carSize.percentage }}</td>
             <td class="flex gap-1">
               <p-button
                 icon="pi pi-pencil"
                 severity="success"
-                (onClick)="updateCarType(carType)"
+                (onClick)="updateCarSize(carSize)"
                 outlined
               />
               <p-button
                 icon="pi pi-trash"
                 severity="danger"
-                (onClick)="showConfirmation(carType._id)"
+                (onClick)="showConfirmation(carSize._id)"
                 outlined
               />
             </td>
@@ -48,15 +48,15 @@
   </div>
 </div>
 <app-message></app-message>
-<app-car-type-form
-  [(visibleDialog)]="modalVisible"
-  (visibleDialogChange)="modalVisible = $event"
-  (carTypeCreated)="onCarTypeCreated()"
-  [carType]="carType"
-></app-car-type-form>
 <app-confirmation-delete
   [header]="'Confirmation'"
-  [message]="'Êtes-vous sûr de vouloir supprimer cet type de voiture ?'"
+  [message]="'Êtes-vous sûr de vouloir supprimer cet taille de voiture ?'"
   (accept)="handleDelete($event)"
   (reject)="handleReject()"
 ></app-confirmation-delete>
+<app-car-size-form
+  [(visibleDialog)]="modalVisible"
+  (visibleDialogChange)="modalVisible = $event"
+  (carSizeCreated)="onCarSizeCreated()"
+  [carSize]="careSize"
+></app-car-size-form>

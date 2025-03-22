@@ -74,6 +74,7 @@ export class CarTypeComponent implements OnInit, OnDestroy {
   }
 
   addCar() {
+    this.carType = null;
     this.modalVisible = true;
   }
 

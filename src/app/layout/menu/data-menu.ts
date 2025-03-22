@@ -19,7 +19,7 @@ export const DATAMENU: MenuItem[] = [
                     {
                         label: 'Taille',
                         icon: 'pi pi-fw pi-sign-in',
-                        routerLink: ['/car-type']
+                        routerLink: ['/car-size']
                     },
                     {
                         label: 'Moteur',
@@ -29,7 +29,7 @@ export const DATAMENU: MenuItem[] = [
                     {
                         label: 'Type',
                         icon: 'pi pi-fw pi-lock',
-                        routerLink: ['/auth/access']
+                        routerLink: ['/car-type']
                     },
                     {
                         label: 'Poids',
