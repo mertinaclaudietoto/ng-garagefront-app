@@ -1,0 +1,119 @@
+<div class="card flex flex-col gap-4">
+  <div class="font-semibold text-xl">
+    <h4>Nouveau Service</h4>
+  </div>
+  <div class="card">
+    <form [formGroup]="serviceForm">
+      <div class="flex flex-wrap gap-6">
+        <div class="flex flex-col grow basis-0 gap-2">
+          <p-image src="images/test.jpg" alt="Image" width="250" />
+        </div>
+        <div class="flex flex-col grow basis-0 gap-2">
+          <p-fileupload
+            mode="basic"
+            name="demo[]"
+            chooseIcon="pi pi-upload"
+            url="https://www.primefaces.org/cdn/api/upload.php"
+            accept="image/*"
+            maxFileSize="1000000"
+            [auto]="true"
+            chooseLabel="Choisir une image"
+          />
+          <label for="email2">Nom de la service</label>
+          <input pInputText id="email2" type="text" formControlName="name" />
+        </div>
+      </div>
+      <h4 class="text-center">Prix en % des propriétés</h4>
+      <div class="flex flex-col gap-4 mt-10">
+        <div class="flex flex-wrap gap-6">
+          <div class="flex flex-col grow basis-0 gap-2">
+            <label for="email2">Taille</label>
+            <p-inputnumber
+              id="pourcentage"
+              class="flex-auto"
+              inputId="minmaxfraction"
+              mode="decimal"
+              [minFractionDigits]="2"
+              [maxFractionDigits]="2"
+              [min]="0"
+              formControlName="sizeTypePrice"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-4 mt-10">
+        <div class="flex flex-wrap gap-6">
+          <div class="flex flex-col grow basis-0 gap-2">
+            <label for="email2">Moteur</label>
+            <p-inputnumber
+              id="pourcentage"
+              class="flex-auto"
+              inputId="minmaxfraction"
+              mode="decimal"
+              [minFractionDigits]="2"
+              [maxFractionDigits]="2"
+              [min]="0"
+              formControlName="engineTypePrice"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-4 mt-10">
+        <div class="flex flex-wrap gap-6">
+          <div class="flex flex-col grow basis-0 gap-2">
+            <label for="email2">Type</label>
+            <p-inputnumber
+              id="pourcentage"
+              class="flex-auto"
+              inputId="minmaxfraction"
+              mode="decimal"
+              [minFractionDigits]="2"
+              [maxFractionDigits]="2"
+              [min]="0"
+              formControlName="carTypePrice"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-4 mt-10">
+        <div class="flex flex-wrap gap-6">
+          <div class="flex flex-col grow basis-0 gap-2">
+            <label for="email2">Poids</label>
+            <p-inputnumber
+              id="pourcentage"
+              class="flex-auto"
+              inputId="minmaxfraction"
+              mode="decimal"
+              [minFractionDigits]="2"
+              [maxFractionDigits]="2"
+              [min]="0"
+              formControlName="weigthTypePrice"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-row-reverse flex-wrap mt-5">
+        <div
+          class="flex align-items-center justify-content-center w-4rem h-4rem bg-primary font-bold border-round m-2"
+        >
+          <p-button
+            label="Enregistrer"
+            severity="success"
+            (click)="submitForm()"
+            [disabled]="serviceForm.invalid"
+          />
+        </div>
+        <div
+          class="flex align-items-center justify-content-center w-4rem h-4rem bg-primary font-bold border-round m-2"
+        >
+          <p-button
+            label="Retour"
+            severity="secondary"
+            (click)="cancelToList()"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<app-message></app-message>
