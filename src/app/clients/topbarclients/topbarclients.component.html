@@ -21,7 +21,9 @@
 </a>
 
 
-
+<a pButton [text]="true" severity="secondary" [rounded]="true" pRipple class="lg:!hidden" pStyleClass="@next" enterClass="hidden" leaveToClass="hidden" [hideOnOutsideClick]="true">
+    <i class="pi pi-bars !text-2xl"></i>
+</a>
 <div class="items-center bg-surface-0 dark:bg-surface-900 grow justify-between hidden lg:flex absolute lg:static w-full left-0 top-full px-12 lg:px-0 z-20 rounded-border">
     <ul class="list-none p-0 m-0 flex lg:items-center select-none flex-col lg:flex-row cursor-pointer gap-8">
         <li>
@@ -40,10 +42,11 @@
             </a>
         </li>
     </ul>
-    <div class="flex items-center flex-col sm:flex-row">
+    <div class="flex border-t lg:border-t-0 border-surface py-4 lg:py-0 mt-4 lg:mt-0 gap-2">
         <p-chip label="Onyama Limba" image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png" styleClass="m-1"></p-chip>
         <p-button icon="pi pi-sign-out" severity="secondary" rounded outlined />
     </div>
+    
 </div>
 
 

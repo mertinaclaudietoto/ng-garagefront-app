@@ -1,7 +1,7 @@
-import { IdName } from './car-type'; // Assurez-vous que `CarType` est exporté dans ce fichier
-
-export class Car {
-    _id: '';
+import { IdName } from './car-type'; 
+import { Emp } from './emp';
+export class CarClient {
+    _id: string;
     picture: string;
     brand: string;
     model: string;
@@ -12,7 +12,7 @@ export class Car {
     engineType: IdName; 
     sizeType: IdName; 
     weigthType: IdName; 
-
+    costumer:Emp;
     constructor(
         _id: any = undefined,
         image: string = '',
@@ -24,7 +24,8 @@ export class Car {
         carType: IdName = { _id: 0, name: '' },  // Valeurs par défaut pour IdName
         engineType: IdName = { _id: 0, name: '' },
         sizeType: IdName = { _id: 0, name: '' },
-        weigthType: IdName = { _id: 0, name: '' }
+        weigthType: IdName = { _id: 0, name: '' },
+        costumer:Emp=new Emp()
     ) {
         this._id = _id;
         this.picture = image;
@@ -37,5 +38,6 @@ export class Car {
         this.engineType = engineType;
         this.sizeType = sizeType;
         this.weigthType = weigthType;
+        this.costumer=costumer;
     }
 }

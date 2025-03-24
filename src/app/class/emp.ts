@@ -1,6 +1,6 @@
 import { IdName } from "./car-type";
 export class Emp{
-    _id:number|undefined;
+    _id:string|undefined;
     picture:string;
     name:string;
     firstName:string;
@@ -9,11 +9,12 @@ export class Emp{
     login:string;
     password:string;
     rule:IdName;
+    sex:IdName;
     skills:IdName[];
 
     constructor(
         picture: string = "default.jpg",
-        id: number | undefined = undefined, 
+        id: string | undefined = undefined, 
         name: string = "John",
         firstName: string = "Doe",
         dateofbirth: Date = new Date("2000-01-01"),
@@ -21,8 +22,8 @@ export class Emp{
         skills: IdName[] = [],
         login:string ="",
         password:string="",
-        rule: IdName = { _id: 0, name: "Employee" } // Exemple d'objet par défaut
-    ) {
+        rule: IdName = { _id: 0, name: "Employee" } ,
+        sex: IdName = { _id: 0, name: "Employee" } ) {
         this._id = id;
         this.login=login;
         this.password=password;
@@ -33,6 +34,7 @@ export class Emp{
         this.dateofemp = dateofemp;
         this.skills = skills;
         this.rule = rule;
+        this.sex = sex;
     }
 }
 

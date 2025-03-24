@@ -1,21 +1,20 @@
 
-<div class="bg-surface-0 dark:bg-surface-900 h-screen flex">
-    <div id="home" class="landing-wrapper overflow-hidden">
-        <app-topbarclients class="mx-0 md:mx-12 lg:mx-20 lg:px-20 flex items-center  relative lg:static"></app-topbarclients>
-        <p-fluid id="features" class="bg-white">
-            <div   class="mt-2 flex flex-col md:flex-row gap-8 bg-white m-0">
+<div class="bg-surface-0 dark:bg-surface-900 h-screen flex w-full ">
+    <div id="home" class="w-full landing-wrapper ">
+        <app-topbarclients [style]="{width: '100%'}" class="py-6 px-10 mx-0 md:mx-12 lg:mx-20 lg:px-20 flex items-center justify-between relative lg:static"></app-topbarclients>
+        <p-fluid id="features" class="bg-white ">
+            <div   class="w-full flex flex-col md:flex-row gap-8 bg-white  mt-10 ">
                 <div [style]="{width: '70%'}" class="w-full h-90  flex flex-wrap ml-10 mr-0 "> 
-                    <div *ngFor="let item of servicepriceListe">
-                        <app-service-car-price [value]="item"></app-service-car-price>
-                   </div>
+                    <div *ngFor="let item of carCostumerListe">
+                        <app-car-client-list [value]="item"></app-car-client-list>
+                    </div>
                    <div class="w-full">
-                    <p-paginator (onPageChange)="onPageChange($event)" [first]="skip" [rows]="limit" [totalRecords]="50" [rowsPerPageOptions]="[6, 9, 12]" />
+                    <p-paginator *ngIf="rows>0" (onPageChange)="onPageChange($event)" [first]="skip" [rows]="limit" [totalRecords]="50" [rowsPerPageOptions]="[6, 9, 12]" />
                    </div>
                 </div>
                 
                 <div [style]="{width: '30%'}" class="ml-0 justify-center items-center pr-2 "> 
-                   
-                    <div class="card ">
+                    <div class="card w-full bg-red-200">
                         <div class="flex flex-wrap gap-6">
                             <div class="flex flex-col grow basis-0 gap-2">
                                 <p-image [src]="addOrUpdateValue.picture" alt="Image" width="250" />
@@ -69,10 +68,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="flex flex-wrap items-start gap-6">
+                        <div class="flex flex-wrap items-start gap-6">
                             <p-button class="mt-5" label="validate" [fluid]="false" (onClick)="modifOrAdd(addOrUpdateValue)"></p-button>
-                            <p-button class="mt-5" label="reload" [fluid]="false"(onClick)="relaod()"></p-button>
-                        </div> -->
+                            <!-- <p-button class="mt-5" label="reload" [fluid]="false"(onClick)="relaod()"></p-button> -->
+                        </div>
                     </div>
                     
                 </div>

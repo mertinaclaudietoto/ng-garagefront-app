@@ -18,10 +18,12 @@ import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { TopbarclientsComponent } from '../topbarclients/topbarclients.component';
 import { SetServiceComponent } from "../set-service/set-service.component";
 import { DialogModule } from 'primeng/dialog';
-
+import { CarClient } from '../../class/car-client';
+import { CarCostumersService } from '../../service/car-costumers.service';
+import { CarClientListComponent } from "../car-client-list/car-client-list.component";
 @Component({
   selector: 'app-car-clients',
-    imports: [DialogModule,TopbarclientsComponent, PaginatorModule, ToolbarModule, InputTextModule, SplitterModule, SelectModule, ButtonModule, FormsModule, RippleModule, FluidModule, CommonModule, ImageModule, ServiceCarPriceComponent, SetServiceComponent],
+    imports: [DialogModule, TopbarclientsComponent, PaginatorModule, ToolbarModule, InputTextModule, SplitterModule, SelectModule, ButtonModule, FormsModule, RippleModule, FluidModule, CommonModule, ImageModule, ServiceCarPriceComponent, SetServiceComponent, CarClientListComponent],
   templateUrl: './car-clients.component.html',
   styleUrl: './car-clients.component.scss'
 })
@@ -31,8 +33,8 @@ export class CarClientsComponent {
   dropdownItemsSize :any=[];
   dropdownItemsWeigth :any=[];
   dropdownItemsServices :any=[];
-  addOrUpdateValue:Car =new Car();
-  servicepriceListe:ServicePrice[]=[];
+  addOrUpdateValue:CarClient =new CarClient();
+  carCostumerListe:CarClient[]=[];
   skip:number=0;
   limit:number=9;
   rows:number=0;
@@ -40,12 +42,15 @@ export class CarClientsComponent {
     service:""
   };
   display: boolean = true;
-
-  constructor(private carService: CarService,private servicepriceService: ServicepriceService) {
+  constructor(private carService: CarService,private servicepriceService: ServicepriceService,private carCostumersService:CarCostumersService) {
   }
   ngOnInit() {
-      this.servicepriceService.getRows().subscribe(value=>{
+    if (this.addOrUpdateValue.costumer) {
+      this.addOrUpdateValue.costumer._id = localStorage.getItem('iduser') ?? '';
+    }
+    this.carCostumersService.getRows(this.addOrUpdateValue.costumer._id).subscribe(value=>{
         this.rows=value;});
+
       this.loadData();
       this.carService.getCarType("cartypes").subscribe(table=>{
         this.dropdownItemsCarTypes = table?.map(value=>({name:value.name,_id:value._id}))
@@ -62,9 +67,12 @@ export class CarClientsComponent {
       this.carService.getCarType("services").subscribe(table=> {
         this.dropdownItemsServices = table?.map(value=>({name:value.name,_id:value._id}))
       })
+      
   }  
   loadData() {
-    this.servicepriceService.getServicePricePagination(this.skip,this.limit).subscribe(table=> this.servicepriceListe=table);
+    this.carCostumersService.getMine(this.skip,this.limit,this.addOrUpdateValue.costumer._id).subscribe(table=> this.carCostumerListe=table);
+    this.skip=0;
+    this.limit=9; 
   }
   onPageChange(event: PaginatorState) {
       this.skip = event.first ?? 0;
@@ -87,4 +95,17 @@ export class CarClientsComponent {
         console.log(urlImage.url);
     }
   }
+  modifOrAdd(value:CarClient){
+      value.costumer._id=localStorage.getItem('iduser')||undefined; 
+      this.carCostumersService.modifOrAddCar(value).subscribe( response => {
+          
+          this.loadData();
+        },
+        error => {
+          console.error("❌ Erreur lors de l'envoi de la requête PUT :", error);
+        }
+      );
+  }
+
+
 }

@@ -15,11 +15,11 @@ export class EmpService {
     return this.http.get<Emp[]>(this.apiUrl+'emps');
   }
   modifOrAddCar(value:Emp) :Observable<Emp>{
-        if(value._id!=undefined){
-          return this.http.put<Emp>(`${this.apiUrl}${'emps'}/${encodeURIComponent(value._id)}`, value)
-        }else{
-          return this.http.post<Emp>(this.apiUrl+'emps',value) ;
-        }
+      if(value._id!=undefined){
+        return this.http.put<Emp>(`${this.apiUrl}${'emps'}/${encodeURIComponent(value._id)}`, value)
+      }else{
+        return this.http.post<Emp>(this.apiUrl+'emps',value) ;
+      }
   }
   
   deleteCar(value:Emp|undefined):Observable<void>{
@@ -32,6 +32,7 @@ export class EmpService {
     return this.http.post<Loginm>(this.apiUrl+'emps/login', value);
   }
 
+  
 }
 
 
