@@ -62,4 +62,3 @@ export class CarTypeComponent implements OnInit {
   }
 
 }
-

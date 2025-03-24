@@ -20,7 +20,7 @@ import { Emp } from '../../class/emp';
 import { EmpService } from '../../service/emp.service';
 import { IdName } from '../../class/car-type';
 import { CarService } from '../../service/car.service';
-import { convertFileToBase64 } from '../../expo/base64';
+
 import { IMAGESDEFAULTS } from '../../expo/dataimage';
 @Component({
   selector: 'app-emp',
@@ -97,18 +97,21 @@ export class EmpComponent {
     }
     checkboxValue: any[] = [];
 
-    onFileSelected(event: any): void {
+   async onFileSelected(event: any) {
       const file: File = event.target.files[0];
       if (file) {
-        convertFileToBase64(file)
-          .then(value => {
-            this.addOrUpdateValue.picture=value;
-            console.log(value)
-          })
-          .catch(error => {
-            console.error('Erreur de conversion en Base64:', error); // Gérer les erreurs
-          });
-      }
+        const data = new FormData();
+        data.append("file",file);
+        data.append("upload_preset","projet_mean_images");
+        data.append("cloud_name","dcufspbrh");
+        const res =await fetch("https://api.cloudinary.com/v1_1/dcufspbrh/image/upload",{
+          method:'POST',
+          body:data
+        })
+        const urlImage = await res.json();
+        this.addOrUpdateValue.picture=urlImage.url;
+        console.log(urlImage.url);
+    }
     }
  
 

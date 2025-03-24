@@ -1,0 +1,70 @@
+<div class="card flex flex-col gap-4 m-0">
+    <div class="flex flex-col sm:flex-row sm:items-center p-6 gap-4 " >
+        <div class="md:w-40 relative">
+            <img class="block xl:block mx-auto rounded w-full" [src]="item.car.picture" alt="car-info" />
+        </div>
+        <div class="flex flex-col md:flex-row justify-between md:items-center flex-1 gap-6">
+            <div class="flex flex-row md:flex-col justify-between items-start gap-2">
+                <div>
+                    <span class="font-medium text-surface-500 dark:text-surface-400 text-sm">2023-04-15</span>
+                    <div class="text-lg font-medium mt-2">Marque et model voiture</div>
+                </div>
+                <div class="bg-surface-100 p-1" style="border-radius: 30px;width:300px;">
+                    <p-progressbar [value]="50" [showValue]="false"></p-progressbar>
+                </div>
+            </div>
+            <div class="flex flex-col md:items-end gap-8">
+                <span class="text-xl font-semibold"> {{ item.price }}/20</span>
+                
+            </div>
+        </div>
+    </div>
+  <div class="pl-10 ">
+    <div class="font-semibold text-xl mb-3">List of services</div>
+        <div class="flex flex-row mt-2">
+            <div style="width:80%" class="border border-gray-200">
+                <div class="items-start m-2">
+                    <p-checkbox id="checkOption1" name="option" value="Chicago" [(ngModel)]="radioValue" />
+                    <strong for="option1" class="leading-none ml-2">Consultation</strong>
+                </div>   
+            </div>
+            <div style="width:20% " class="border border-gray-200">
+                <div class="col flex items-center justify-center m-2">20 000 AR</div>
+            </div>
+        </div>
+        <div class="flex flex-row mt-2">
+            <div style="width:80%" class="border border-gray-200">
+                <div class="items-start m-2">
+                    <p-checkbox id="checkOption1" name="option" value="Chicago" [(ngModel)]="radioValue" />
+                    <strong for="option1" class="leading-none ml-2">Consultation</strong>
+                </div>   
+            </div>
+            <div style="width:20% " class="border border-gray-200">
+                <div class="col flex items-center justify-center m-2">20 000 AR</div>
+            </div>
+        </div>
+      
+        <div class="flex flex-row mt-2">
+            <div style="width:80%" class="border border-gray-200">
+                <div class="items-start m-2">
+                    <p-checkbox id="checkOption1" name="option" value="Chicago" [(ngModel)]="radioValue" />
+                    <strong for="option1" class="leading-none ml-2">Consultation</strong>
+                </div>   
+            </div>
+            <div style="width:20% " class="border border-gray-200">
+                <div class="col flex items-center justify-center m-2">20 000 AR</div>
+            </div>
+        </div>
+   
+        <div class="flex flex-row mt-2">
+            <div style="width:80%" class="border border-gray-200">
+                
+            </div>
+            <div style="width:20% " class="border border-gray-200">
+                <div class="col flex items-center justify-center m-2">20 000 AR</div>
+            </div>
+        </div>
+   
+  </div>
+ 
+</div>

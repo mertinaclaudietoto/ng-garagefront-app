@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ServicePrice } from '../class/servicePirce';
+import { ServicePrice } from '../class/servicePrice';
 import { environement } from '../../environement/environement';
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,13 @@ export class ServicepriceService {
         return this.http.delete<void>(this.apiUrl+"serviceprices/"+value._id) ;
       }
       return new Observable<void>;
+    }
+    getServicePricePagination(skip:number,limit:number):Observable<ServicePrice[]> {
+      return this.http.get<ServicePrice[]>(this.apiUrl+'serviceprices/'+skip+"/"+limit);
+    }
+
+    getRows(){
+      return this.http.get<number>(this.apiUrl+'serviceprices/rows');
     }
 }
 

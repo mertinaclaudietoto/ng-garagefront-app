@@ -1,7 +1,7 @@
 import { IdName } from './car-type'; // Assurez-vous que `CarType` est exporté dans ce fichier
 
 export class Car {
-    _id: number;
+    _id: '';
     picture: string;
     brand: string;
     model: string;

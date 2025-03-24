@@ -23,7 +23,7 @@ import { CarTypeComponent } from '../../layout/car/car-type/car-type.component';
 import { Car } from '../../class/car';
 // service component
 
-import { ServicePrice } from '../../class/servicePirce';
+import { ServicePrice } from '../../class/servicePrice';
 import { ServicepriceService } from '../../service/serviceprice.service';
 import { CarService } from '../../service/car.service';
 import { IdName } from '../../class/car-type';

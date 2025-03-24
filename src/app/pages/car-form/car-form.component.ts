@@ -26,8 +26,14 @@ import { Car } from '../../class/car';
 import { CarService } from '../../service/car.service';
 // Assurez-vous que `CarType` est exporté dans ce fichier
 import { IdName } from '../../class/car-type';
-import { convertFileToBase64 } from '../../expo/base64';
 import { IMAGESDEFAULTS } from '../../expo/dataimage';
+
+
+// cloudinary
+
+import {fill} from "@cloudinary/url-gen/actions/resize";
+import {Cloudinary, CloudinaryImage} from '@cloudinary/url-gen';
+
 @Component({
   selector: 'app-car-form',
   imports: [InputTextModule, FluidModule, ButtonModule, SelectModule, FormsModule, TextareaModule, CarouselModule, ButtonModule, GalleriaModule, ImageModule, TagModule, IconFieldModule, InputIconModule, ToolbarModule, SplitButtonModule, CarTypeComponent,TableModule,DialogModule],
@@ -43,9 +49,11 @@ export class CarFormComponent implements OnInit{
     display: boolean = false;
     addOrUpdateValue:Car =new Car();
     deleteValue :Car =new Car();
+    img!: CloudinaryImage;
+    cld!:Cloudinary;
     constructor(private carService: CarService) {
+      
     }
-
     ngOnInit() {
       this.carService.getCar().subscribe(table=> this.carList=table);
       this.carService.getCarType("cartypes").subscribe(table=>{
@@ -61,6 +69,11 @@ export class CarFormComponent implements OnInit{
         this.dropdownItemsWeigth = table?.map(value=>({name:value.name,_id:value._id}))
       });
       this.addOrUpdateValue.picture=IMAGESDEFAULTS["car"];
+      this.cld = new Cloudinary({
+        cloud: {
+          cloudName: 'dcufspbrh'
+        }
+      });
     }
 
     crudSelect=["cartypes","engines","sizes","weigths"];
@@ -71,17 +84,20 @@ export class CarFormComponent implements OnInit{
     this.addOrUpdateValue=carType;
   }
 
-  onFileSelected(event: any): void {
+ async onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
-      // Appeler la méthode convertFileToBase64 et récupérer la chaîne Base64
-      convertFileToBase64(file)
-        .then(value => {
-          this.addOrUpdateValue.picture=value;
+        const data = new FormData();
+        data.append("file",file);
+        data.append("upload_preset","projet_mean_images");
+        data.append("cloud_name","dcufspbrh");
+        const res =await fetch("https://api.cloudinary.com/v1_1/dcufspbrh/image/upload",{
+          method:'POST',
+          body:data
         })
-        .catch(error => {
-          console.error('Erreur de conversion en Base64:', error); // Gérer les erreurs
-        });
+        const urlImage = await res.json();
+        this.addOrUpdateValue.picture=urlImage.url;
+        console.log(urlImage.url);
     }
   }
 

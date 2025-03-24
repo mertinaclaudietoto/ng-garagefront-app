@@ -1,0 +1,66 @@
+<div id="pricing" class="py-12 px-12 mx-0 mt-20 lg:mx-20">
+    <div class="grid grid-cols-12 gap-4">
+        <div class="col-span-12 md:col-span-2">
+            <a (click)="router.navigate(['/pages/landing'], { fragment: 'home' })" class="flex flex-wrap items-center justify-center md:justify-start md:mb-0 mb-6 cursor-pointer">
+                <svg viewBox="0 0 54 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-14 mr-2">
+                    <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M10 15L27 3L44 15V35H10V15ZM10 13L27 3L44 13V35H10V13Z"
+                        fill="#4CAF50"
+                    />
+                    <path
+                        d="M10 15L27 3L44 15V35H10V15Z"
+                        fill="none"
+                        stroke="#4CAF50"
+                        stroke-width="2"
+                    />
+                    <path
+                        d="M10 35H44V33H10V35Z"
+                        fill="#4CAF50"
+                    />
+                </svg>                
+                <h4 class="font-medium text-3xl text-surface-900 dark:text-surface-0">G- NTSIKA</h4>
+            </a>
+        </div>
+
+        <div class="col-span-12 md:col-span-10">
+            <div class="grid grid-cols-12 gap-8 text-center md:text-left">
+                <div class="col-span-12 md:col-span-3">
+                   
+                    <a (click)="router.navigate(['/landing'], { fragment: 'home' })" pRipple class="px-0 py-4 text-surface-900 dark:text-surface-0 font-medium text-xl">
+                        <span>Home</span>
+                    </a>
+                    <a (click)="router.navigate(['/landing'], { fragment: 'home' })" pRipple class="px-0 py-4 text-surface-900 dark:text-surface-0 font-medium text-xl">
+                        <span>Services</span>
+                    </a>
+                    <a (click)="router.navigate(['/landing'], { fragment: 'home' })" pRipple class="px-0 py-4 text-surface-900 dark:text-surface-0 font-medium text-xl">
+                        <span>Localisations</span>
+                    </a>
+                    <a (click)="router.navigate(['/landing'], { fragment: 'home' })" pRipple class="px-0 py-4 text-surface-900 dark:text-surface-0 font-medium text-xl">
+                        <span>Contacts</span>
+                    </a>
+                </div>
+
+                <div class="col-span-12 md:col-span-3">
+                    <h4 class="font-medium text-2xl leading-normal mb-6 text-surface-900 dark:text-surface-0">Employement</h4>
+                    <a class="leading-normal text-xl block cursor-pointer mb-2 text-surface-700 dark:text-surface-100">Manager</a>
+                    <a class="leading-normal text-xl block cursor-pointer mb-2 text-surface-700 dark:text-surface-100">Mechanic</a>
+          
+                </div>
+
+                <div class="col-span-12 md:col-span-3">
+                    <h4 class="font-medium text-2xl leading-normal mb-6 text-surface-900 dark:text-surface-0">Administrator</h4>
+                    <a class="leading-normal text-xl block cursor-pointer mb-2 text-surface-700 dark:text-surface-100">TOTO Mertina Claudie</a>
+                    <a class="leading-normal text-xl block cursor-pointer mb-2 text-surface-700 dark:text-surface-100">Tafitasoa</a>
+                </div>
+
+                <div class="col-span-12 md:col-span-3">
+                    <h4 class="font-medium text-2xl leading-normal mb-6 text-surface-900 dark:text-surface-0">Contact</h4>
+                    <a class="leading-normal text-xl block cursor-pointer mb-2 text-surface-700 dark:text-surface-100">Tet:034 66 790 01</a>
+                    <a class="leading-normal text-xl block cursor-pointer mb-2 text-surface-700 dark:text-surface-100">garagentsikagmail.com</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
