@@ -1,0 +1,62 @@
+<div class="grid">
+  <div class="col-12">
+    <div class="card px-6 py-6">
+      <p-button
+        label="Profile"
+        icon="pi pi-plus"
+        label="Ajouter"
+        severity="success"
+        (click)="addCar()"
+      />
+      <h4>Liste des types de voitures</h4>
+      <p-table
+        [value]="carTypeList"
+        stripedRows
+        [paginator]="true"
+        [rows]="10"
+        [tableStyle]="{ 'min-width': '50rem' }"
+      >
+        <ng-template #header>
+          <tr>
+            <th>Nom</th>
+            <th>Pourcentage</th>
+            <th>Action</th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-carType>
+          <tr>
+            <td>{{ carType.name }}</td>
+            <td>{{ carType.percentage }}</td>
+            <td class="flex gap-1">
+              <p-button
+                icon="pi pi-pencil"
+                severity="success"
+                (onClick)="updateCarType(carType)"
+                outlined
+              />
+              <p-button
+                icon="pi pi-trash"
+                severity="danger"
+                (onClick)="showConfirmation(carType._id)"
+                outlined
+              />
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+<app-message></app-message>
+<app-car-type-form
+  [(visibleDialog)]="modalVisible"
+  (visibleDialogChange)="modalVisible = $event"
+  (carTypeCreated)="onCarTypeCreated()"
+  [carType]="carType"
+></app-car-type-form>
+<app-confirmation-delete
+  [header]="'Confirmation'"
+  [message]="'Êtes-vous sûr de vouloir supprimer cet type de voiture ?'"
+  (accept)="handleDelete($event)"
+  (reject)="handleReject()"
+></app-confirmation-delete>
