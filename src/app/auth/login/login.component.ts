@@ -6,8 +6,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { RippleModule } from 'primeng/ripple';
-import { Emp } from '../../class/emp';
-import { EmpService } from '../../service/emp.service';
+import { Emp } from '../../features/costumers/models/emp';
+import { EmpService } from '../../features/costumers/services/emp.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 @Component({
