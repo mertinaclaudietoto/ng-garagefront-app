@@ -6,11 +6,11 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { RippleModule } from 'primeng/ripple';
-import { Emp } from '../../class/emp';
+import { Emp } from '../../features/costumers/models/emp';
 import { CommonModule } from '@angular/common';
-import { CostumersService } from '../../service/costumers.service';
-import { CarService } from '../../service/car.service';
-import { IdName } from '../../class/car-type';
+import { CostumersService } from '../../features/costumers/services/costumers.service';
+import { CarService } from '../../features/costumers/services/car.service';
+import { IdName } from '../../features/costumers/models/car-type';
 import { SelectModule } from 'primeng/select';
 
 @Component({

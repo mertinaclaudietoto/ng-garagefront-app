@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { StyleClassModule } from 'primeng/styleclass';
 import { LayoutService } from '../layout.service';
-import { ConfiguratorComponent } from '../../conf/configurator/configurator.component';
+import { ConfiguratorComponent } from '../../shared/components/configurator/configurator.component';
 @Component({
   selector: 'app-topbar',
   imports: [RouterModule, CommonModule, StyleClassModule, ConfiguratorComponent],

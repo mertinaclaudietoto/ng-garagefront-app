@@ -2,14 +2,14 @@ import { Routes } from '@angular/router';
 // import { AppLayout } from './app/layout/component/app.layout';
 import { LayoutappComponent } from './app/layout/layoutapp/layoutapp.component';
 
-import { Notfound } from './app/pages/notfound/notfound';
+import { Notfound } from './app/features/notfound/notfound';
 
-import { CarFormComponent } from './app/pages/car-form/car-form.component';
-import { LayoutComponent } from './app/clients/layout/layout.component';
-import { ServiceComponent } from './app/clients/service/service.component';
-import { AboutComponent } from './app/clients/about/about.component';
-import { SignInComponent } from './app/clients/sign-in/sign-in.component';
-import { ListWorksComponent } from './app/clients/works/components/list-works/list-works.component';
+import { CarFormComponent } from './app/features/costumers/car-form/car-form.component';
+import { LayoutComponent } from './app/features/costumers/old/layout/layout.component';
+import { ServiceComponent } from './app/features/costumers/old/service/service.component';
+import { AboutComponent } from './app/features/costumers/old/about/about.component';
+import { SignInComponent } from './app/features/sign-in/sign-in.component';
+import { ListWorksComponent } from './app/features/works/components/list-works/list-works.component';
 
 import { CarTypeComponent } from './app/features/carType/components/car-type/car-type.component';
 import { CarSizeComponent } from './app/features/carSize/components/car-size/car-size.component';
@@ -18,22 +18,20 @@ import { CarWeightComponent } from './app/features/carWeight/components/car-weig
 import { ListServiceComponent } from './app/features/services/components/list-service/list-service.component';
 import { FormServiceComponent } from './app/features/services/components/form-service/form-service.component';
 
-import { LandingComponent } from './app/clients/landing/landing/landing.component';
-
-import { RegisterComponent } from './app/auth/register/register.component';
+import { LandingComponent } from './app/features/costumers/landing/landing/landing.component';
 import { LoginComponent } from './app/auth/login/login.component';
-import { ProgressSrComponent } from './app/clients/progress-sr/progress-sr.component';
-import { CarClientsComponent } from './app/clients/car-clients/car-clients.component';
-import { DetServiceComponent } from './app/clients/det-service/det-service.component';
-
+import { ProgressSrComponent } from './app/features/costumers/progress-sr/progress-sr.component';
+import { DetServiceComponent } from './app/features/costumers/det-service/det-service.component';
+import { RegisterComponent } from './app/auth/register/register.component';
+import { CarClientsComponent } from './app/features/costumers/car-clients/car-clients.component';
 export const appRoutes: Routes = [
     {
         path: '',
         component: LayoutappComponent,
         children: [
             { path: '', component: CarFormComponent },
-            { path: 'uikit', loadChildren: () => import('./app/pages/uikit/uikit.routes') },
-            { path: 'pages', loadChildren: () => import('./app/pages/pages.routes') },
+            { path: 'uikit', loadChildren: () => import('./app/features/uikit/uikit.routes') },
+            { path: 'pages', loadChildren: () => import('./app/features/pages.routes') },
             { path: 'car-type', component: CarTypeComponent },
             { path: 'car-size', component: CarSizeComponent },
             { path: 'car-engine', component: CarEngineComponent },
@@ -75,6 +73,6 @@ export const appRoutes: Routes = [
     //     path:'landing',component: LandingComponent
     // },
     { path: 'notfound', component: Notfound },
-    { path: 'auth', loadChildren: () => import('./app/pages/auth/auth.routes') },
+ 
     { path: '**', redirectTo: '/notfound' }
 ];
