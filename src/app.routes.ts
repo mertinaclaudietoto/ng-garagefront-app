@@ -23,8 +23,9 @@ import { LandingComponent } from './app/clients/landing/landing/landing.componen
 import { RegisterComponent } from './app/auth/register/register.component';
 import { LoginComponent } from './app/auth/login/login.component';
 import { ProgressSrComponent } from './app/clients/progress-sr/progress-sr.component';
-import { CarClientsComponent } from './app/clients/car-clients/car-clients.component';
+
 import { DetServiceComponent } from './app/clients/det-service/det-service.component';
+
 
 export const appRoutes: Routes = [
     {
@@ -61,7 +62,7 @@ export const appRoutes: Routes = [
         path:'client',
         component: LandingComponent,
     },
-    { path: 'client/cars-client', component: CarClientsComponent },
+    // { path: 'client/cars-client', component: CarClientsComponent },
     { path: 'client/progress-service', component: ProgressSrComponent },
     { path: 'client/det-services', component: DetServiceComponent },
     {
