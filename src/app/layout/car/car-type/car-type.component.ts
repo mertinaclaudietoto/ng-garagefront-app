@@ -4,7 +4,7 @@ import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { CarService } from '../../../features/costumers/services/car.service';
-import { IdName } from '../../../features/costumers/models/car-type';
+import { IdName } from '../../../shared/models/car-type';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
 import { response } from 'express';

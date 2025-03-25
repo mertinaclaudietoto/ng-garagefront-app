@@ -20,13 +20,13 @@ import { DialogModule } from 'primeng/dialog';
 //other component
 import { CarTypeComponent } from '../../../layout/car/car-type/car-type.component';
 //classe
-import { Car } from '../../costumers/models/car';
+import { Car } from '../../../shared/models/car';
 // service component
 
-import { ServicePrice } from '../../costumers/models/servicePrice';
+import { ServicePrice } from '../../../shared/models/servicePrice';
 import { ServicepriceService } from '../../costumers/services/serviceprice.service';
 import { CarService } from '../../costumers/services/car.service';
-import { IdName } from '../../costumers/models/car-type';
+import { IdName } from '../../../shared/models/car-type';
 import { FormatnumberpipePipe } from '../../../shared/pipe/formatnumber/formatnumberpipe.pipe';
 @Component({
   selector: 'app-service',

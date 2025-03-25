@@ -3,7 +3,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environement } from '../../../../environement/environement';
-import { CarClient } from '../models/car-client';
+import { CarClient } from '../../../shared/models/car-client';
 @Injectable({
   providedIn: 'root'
 })

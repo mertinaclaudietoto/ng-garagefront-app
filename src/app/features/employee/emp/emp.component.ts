@@ -16,9 +16,9 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { TableCheckbox, TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 
-import { Emp } from '../../costumers/models/emp';
+import { Emp } from '../../../shared/models/emp';
 import { EmpService } from '../../costumers/services/emp.service';
-import { IdName } from '../../costumers/models/car-type';
+import { IdName } from '../../../shared/models/car-type';
 import { CarService } from '../../costumers/services/car.service';
 
 import { IMAGESDEFAULTS } from '../../costumers/dataimage';

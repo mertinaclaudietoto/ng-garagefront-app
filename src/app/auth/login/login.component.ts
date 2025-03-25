@@ -6,7 +6,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { RippleModule } from 'primeng/ripple';
-import { Emp } from '../../features/costumers/models/emp';
+import { Emp } from '../../shared/models/emp';
 import { EmpService } from '../../features/costumers/services/emp.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -29,11 +29,16 @@ export class LoginComponent {
   onlogin(){
     this.empService.login(this.login).subscribe(
       response =>{
+        console.log(response)
         localStorage.setItem('token', response.token);
         localStorage.setItem('image', response.picture);
         localStorage.setItem('iduser', response.iduser);
         localStorage.setItem('idrule', response.idrule);
-        this.router.navigate(['/client/cars-client']);
+        console.log(response.idrule);
+        if(response.idrule=="000000000000000000000002"){
+          this.router.navigate(['/client/cars-client']);
+        }
+       
       } ,
       error => console.log('Erreur:',this.column= +error.error.column )
     );                    
