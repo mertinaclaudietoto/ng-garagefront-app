@@ -11,4 +11,7 @@ export class StatswidgetComponent {
   @Input() nbrTacheencours: number = 0;
   @Input() nbrTacheenAttent: number = 0;
   @Input() nbrEmployeedispo: number = 0;
+  @Input() nbrMechanic: number = 0;
+
+  
 }

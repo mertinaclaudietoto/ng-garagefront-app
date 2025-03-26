@@ -11,6 +11,11 @@ export class EmpService {
   private apiUrl = environement.apiUrl;
 
   constructor(private http: HttpClient) {}
+
+  getNombreCategorieUser(id:string):Observable<number> {
+    return this.http.get<number>(this.apiUrl+'emps/nbrcostumers/'+id);
+  }
+
   getEmp():Observable<Emp[]> {
     return this.http.get<Emp[]>(this.apiUrl+'emps');
   }
