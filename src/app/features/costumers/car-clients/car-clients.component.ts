@@ -15,7 +15,7 @@ import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { TopbarclientsComponent } from '../topbarclients/topbarclients.component';
 import { SetServiceComponent } from "../set-service/set-service.component";
 import { DialogModule } from 'primeng/dialog';
-import { CarClient } from '../models/car-client';
+import { CarClient } from '../../../shared/models/car-client';
 import { CarCostumersService } from '../services/car-costumers.service';
 import { CarClientListComponent } from "../car-client-list/car-client-list.component";
 import { ServicepriceService } from '../services/serviceprice.service';
@@ -33,21 +33,26 @@ export class CarClientsComponent {
   dropdownItemsWeigth :any=[];
   dropdownItemsServices :any=[];
   addOrUpdateValue:CarClient =new CarClient();
+  deleteValue:CarClient =new CarClient();
   carCostumerListe:CarClient[]=[];
   skip:number=0;
   limit:number=9;
   rows:number=0;
+  display: boolean = false;
+  displayDelete: boolean = false;
+
   keysearch: { [key: string]: string } = {
     service:""
   };
-  display: boolean = true;
+ 
   constructor(private carService: CarService,private servicepriceService: ServicepriceService,private carCostumersService:CarCostumersService) {
   }
   ngOnInit() {
     if (this.addOrUpdateValue.costumer) {
+      console.log("costumer present");
       this.addOrUpdateValue.costumer._id = localStorage.getItem('iduser') ?? '';
     }
-    this.carCostumersService.getRows(this.addOrUpdateValue.costumer._id).subscribe(value=>{
+    this.carCostumersService.getRows(localStorage.getItem('iduser')?? '').subscribe(value=>{
         this.rows=value;});
 
       this.loadData();
@@ -94,7 +99,12 @@ export class CarClientsComponent {
         console.log(urlImage.url);
     }
   }
+  setUpdateValue(value:CarClient){
+    console.log('value');
+    this.addOrUpdateValue=value;
+  }
   modifOrAdd(value:CarClient){
+    console.log(value)
       value.costumer._id=localStorage.getItem('iduser')||undefined; 
       this.carCostumersService.modifOrAddCar(value).subscribe( response => {
           this.loadData();
@@ -104,6 +114,19 @@ export class CarClientsComponent {
         }
       );
   }
-
+  close(carType:CarClient) {
+    console.log("valueee ")
+   
+    this.carCostumersService.deleteCar(carType).subscribe( response => {
+      this.loadData();
+    },
+    error => {
+      console.error("❌ Erreur lors de l'envoi de la requête DELETE :", error);
+    });
+  }
+  open(carType:CarClient) {
+      this.deleteValue=carType;
+      this.displayDelete = true;
+  }
 
 }

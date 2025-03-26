@@ -7,7 +7,7 @@ import { OrderListModule } from 'primeng/orderlist';
 import { PickListModule } from 'primeng/picklist';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { TagModule } from 'primeng/tag';
-import { ServicePrice } from '../models/servicePrice';
+import { ServicePrice } from '../../../shared/models/servicePrice';
 import { ServicepriceService } from '../services/serviceprice.service';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { TopbarclientsComponent } from '../topbarclients/topbarclients.component';
