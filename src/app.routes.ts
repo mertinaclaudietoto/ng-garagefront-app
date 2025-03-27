@@ -1,9 +1,7 @@
 import { Routes } from '@angular/router';
 // import { AppLayout } from './app/layout/component/app.layout';
 import { LayoutappComponent } from './app/layout/layoutapp/layoutapp.component';
-
 import { Notfound } from './app/features/notfound/notfound';
-
 import { CarFormComponent } from './app/features/costumers/car-form/car-form.component';
 import { LayoutComponent } from './app/features/costumers/old/layout/layout.component';
 import { ServiceComponent } from './app/features/costumers/old/service/service.component';
@@ -17,7 +15,6 @@ import { CarEngineComponent } from './app/features/carEngine/components/car-engi
 import { CarWeightComponent } from './app/features/carWeight/components/car-weight/car-weight.component';
 import { ListServiceComponent } from './app/features/services/components/list-service/list-service.component';
 import { FormServiceComponent } from './app/features/services/components/form-service/form-service.component';
-
 import { LandingComponent } from './app/features/costumers/landing/landing/landing.component';
 import { ProgressSrComponent } from './app/features/costumers/progress-sr/progress-sr.component';
 import { DetServiceComponent } from './app/features/costumers/det-service/det-service.component';
@@ -25,6 +22,7 @@ import { RegisterComponent } from './app/auth/register/register.component';
 import { LoginComponent } from './app/auth/login/login.component';
 import { CarClientsComponent } from './app/features/costumers/car-clients/car-clients.component';
 
+import { DashboardComponent } from './app/features/manager/dashboard/dashboard/dashboard.component';
 
 export const appRoutes: Routes = [
     {
@@ -32,6 +30,7 @@ export const appRoutes: Routes = [
         component: LayoutappComponent,
         children: [
             { path: '', component: CarFormComponent },
+            { path: 'manager', component: DashboardComponent },
             { path: 'uikit', loadChildren: () => import('./app/features/uikit/uikit.routes') },
             { path: 'pages', loadChildren: () => import('./app/features/pages.routes') },
             { path: 'car-type', component: CarTypeComponent },
@@ -57,6 +56,10 @@ export const appRoutes: Routes = [
     //         { path: 'works', component: ListWorksComponent },
     //     ]
     // },
+    {
+        path:'manager',
+        component: DashboardComponent,
+    },
     {
         path:'client',
         component: LandingComponent,

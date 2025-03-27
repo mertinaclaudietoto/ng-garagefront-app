@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IdName } from '../models/car-type';
-import { Car } from '../models/car';
+import { IdName } from '../../../shared/models/car-type';
+import { Car } from '../../../shared/models/car';
 import { environement } from '../../../../environement/environement';
 const headers = new HttpHeaders().set("Content-Type", "application/json");
 

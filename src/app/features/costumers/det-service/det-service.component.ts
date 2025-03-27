@@ -3,7 +3,7 @@ import { FluidModule } from 'primeng/fluid';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
-import { ServicePrice } from '../models/servicePrice';
+import { ServicePrice } from '../../../shared/models/servicePrice';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { FormsModule } from '@angular/forms';

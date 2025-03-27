@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Emp } from '../models/emp';
+import { Emp } from '../../../shared/models/emp';
 import { environement } from '../../../../environement/environement';
-import { Loginm } from '../models/loginm';
+import { Loginm } from '../../../shared/models/loginm';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +11,11 @@ export class EmpService {
   private apiUrl = environement.apiUrl;
 
   constructor(private http: HttpClient) {}
+
+  getNombreCategorieUser(id:string):Observable<number> {
+    return this.http.get<number>(this.apiUrl+'emps/nbrcostumers/'+id);
+  }
+
   getEmp():Observable<Emp[]> {
     return this.http.get<Emp[]>(this.apiUrl+'emps');
   }

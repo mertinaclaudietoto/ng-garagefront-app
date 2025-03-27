@@ -6,10 +6,10 @@
             <div   class="w-full flex flex-col md:flex-row gap-8 bg-white  mt-10 ">
                 <div [style]="{width: '70%'}" class="w-full h-90  flex flex-wrap ml-10 mr-0 "> 
                     <div *ngFor="let item of carCostumerListe">
-                        <app-car-client-list [value]="item"></app-car-client-list>
+                        <app-car-client-list [value]="item" (updateF)="setUpdateValue($event)"  (deleteF)="open($event)"  (close)="close($event)"></app-car-client-list>
                     </div>
                    <div class="w-full">
-                    <p-paginator *ngIf="rows>0" (onPageChange)="onPageChange($event)" [first]="skip" [rows]="limit" [totalRecords]="50" [rowsPerPageOptions]="[6, 9, 12]" />
+                    <p-paginator *ngIf="rows>0" (onPageChange)="onPageChange($event)" [first]="skip" [rows]="limit" [totalRecords]="rows" [rowsPerPageOptions]="[6, 9, 12]" />
                    </div>
                 </div>
                 

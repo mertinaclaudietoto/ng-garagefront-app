@@ -1,11 +1,11 @@
 
-import { ServicePrice } from './../../models/servicePrice';
+import { ServicePrice } from '../../../../shared/models/servicePrice';
 import { Component, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { FluidModule } from 'primeng/fluid';
 import { CarService } from '../../services/car.service';
-import { Car } from '../../models/car';
+import { Car } from '../../../../shared/models/car';
 import { CommonModule } from '@angular/common';
 import { SelectModule } from 'primeng/select';
 import { FormsModule } from '@angular/forms';

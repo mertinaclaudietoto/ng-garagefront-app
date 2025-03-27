@@ -20,12 +20,12 @@ import { CarTypeComponent } from '../../../layout/car/car-type/car-type.componen
 
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
-import { Car } from '../models/car';
+import { Car } from '../../../shared/models/car';
 
 
 import { CarService } from '../services/car.service';
 // Assurez-vous que `CarType` est exporté dans ce fichier
-import { IdName } from '../models/car-type';
+import { IdName } from '../../../shared/models/car-type';
 import { IMAGESDEFAULTS } from '../dataimage';
 
 
@@ -118,8 +118,7 @@ export class CarFormComponent implements OnInit{
     },
     error => {
       console.error("❌ Erreur lors de l'envoi de la requête DELETE :", error);
-    }
-  );
+    });
   }
   open(carType:Car) {
     this.deleteValue=carType;
