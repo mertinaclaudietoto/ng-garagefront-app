@@ -57,4 +57,17 @@ export class ListServiceComponent implements OnInit, OnDestroy {
     this.destroys$.next();
     this.destroys$.complete();
   }
+
+  deleteService(id: string) {
+    this.serviceService.deleteService(id).pipe(takeUntil(this.destroys$)).subscribe({
+      next: () => {
+        this.messageComponent.showMessage('success', 'Suppression réussie', 'Le service a été supprimé avec succès.');
+        this.getAllCarTypes();
+      },
+      error: (err) => {
+        console.error('Error fetching services:', err)
+        this.messageComponent.showMessage('error', 'Erreur', 'Error delete service');
+      }
+    })
+  }
 }
