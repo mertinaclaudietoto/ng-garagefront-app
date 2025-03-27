@@ -72,7 +72,7 @@
                 icon="pi pi-trash"
                 severity="danger"
                 outlined
-                (click)="deleteService(service._id)"
+                (click)="showConfirmation(service._id)"
               />
             </td>
           </tr>
@@ -82,3 +82,9 @@
   </div>
 </div>
 <app-message></app-message>
+<app-confirmation-delete
+  [header]="'Confirmation'"
+  [message]="'Êtes-vous sûr de vouloir supprimer cet service ?'"
+  (accept)="handleDelete($event)"
+  (reject)="handleReject()"
+></app-confirmation-delete>
