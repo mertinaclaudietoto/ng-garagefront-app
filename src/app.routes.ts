@@ -44,6 +44,7 @@ export const appRoutes: Routes = [
                 children: [
                     { path: '', component: ListServiceComponent },
                     { path: 'form', component: FormServiceComponent },
+                    { path: 'edit/:id', component: FormServiceComponent },
                 ]
             },
             {

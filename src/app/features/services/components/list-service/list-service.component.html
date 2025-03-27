@@ -67,7 +67,12 @@
               {{ service.weigthTypePrice }}
             </td>
             <td class="flex gap-1">
-              <p-button icon="pi pi-pencil" severity="success" outlined />
+              <p-button
+                icon="pi pi-pencil"
+                severity="success"
+                outlined
+                (click)="updateService(service._id)"
+              />
               <p-button
                 icon="pi pi-trash"
                 severity="danger"

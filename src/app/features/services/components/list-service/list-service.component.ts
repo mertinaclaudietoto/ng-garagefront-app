@@ -86,4 +86,8 @@ export class ListServiceComponent implements OnInit, OnDestroy {
   showConfirmation(id: string) {
     this.confirmationDeleteComponent.show(id);
   }
+
+  updateService(id: string) {
+    this.router.navigate(['/services/edit', id]);
+  }
 }
