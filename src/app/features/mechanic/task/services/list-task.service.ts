@@ -18,4 +18,12 @@ export class ListTaskService {
   toStartTask(taskId: string) {
     return this.http.get(this.urlServiceClient + '/task-start/' + taskId);
   }
+
+  toFinishTask(taskId: string) {
+    return this.http.get(this.urlServiceClient + '/task-finish/' + taskId);
+  }
+
+  getTaskToday(mechanicId: string): Observable<Task[]> {
+    return this.http.get<Task[]>(this.urlServiceClient + '/task-today/' + mechanicId);
+  }
 }

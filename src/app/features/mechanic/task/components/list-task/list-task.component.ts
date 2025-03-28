@@ -10,7 +10,6 @@ import { Task } from '../../../../../shared/models/task.model';
 import { Subject, takeUntil } from 'rxjs';
 import { ConfirmationService } from 'primeng/api';
 import { MessageComponent } from '../../../../../shared/components/message/message.component';
-import { ConfirmationDeleteComponent } from '../../../../../shared/components/confirmation-delete/confirmation-delete.component';
 import { ListTaskService } from '../../services/list-task.service';
 import { FomratDatePipe } from '../../../../../shared/pipe/formatDate/fomrat-date.pipe';
 
@@ -23,7 +22,8 @@ import { FomratDatePipe } from '../../../../../shared/pipe/formatDate/fomrat-dat
     ScrollPanelModule,
     ModalDetailTaskComponent,
     Tag,
-    FomratDatePipe
+    FomratDatePipe,
+    MessageComponent
   ],
   providers: [ConfirmationService],
   templateUrl: './list-task.component.html',
@@ -37,11 +37,12 @@ export class ListTaskComponent implements OnInit, OnDestroy {
   selectedTask!: Task;
   private destroys$ = new Subject<void>();
   @ViewChild(MessageComponent) messageComponent!: MessageComponent;
-  @ViewChild(ConfirmationDeleteComponent) confirmationDeleteComponent!: ConfirmationDeleteComponent;
 
   constructor(
     private listTaskService: ListTaskService
-  ) { }
+  ) {
+    this.getTaskToday("000000000000000000000001");
+  }
 
   ngOnInit() {
     this.getTaskMechanic("000000000000000000000001");
@@ -71,6 +72,31 @@ export class ListTaskComponent implements OnInit, OnDestroy {
     })
   }
 
+  finishTask(id: string) {
+    this.listTaskService.toFinishTask(id).pipe(takeUntil(this.destroys$)).subscribe({
+      next: () => {
+        this.getTaskMechanic("000000000000000000000001");
+        this.messageComponent.showMessage('success', 'Tâche réussie', 'La tâche est terminée avec succès.');
+      },
+      error: (err) => {
+        console.error(err)
+        this.messageComponent.showMessage('error', 'Erreur', 'Échec de la finition de tâche.' + err);
+      }
+    })
+  }
+
+  getTaskToday(mechanicId: string) {
+    this.listTaskService.getTaskToday(mechanicId).pipe(takeUntil(this.destroys$)).subscribe({
+      next: (tasks) => {
+        this.selectedTasks = tasks;
+      },
+      error: (err) => {
+        console.error(err)
+        this.messageComponent.showMessage('error', 'Erreur', "Échec de la récupération des tâches aujourd'hui." + err);
+      }
+    })
+  }
+
   ngOnDestroy(): void {
     this.destroys$.next();
     this.destroys$.complete();
@@ -82,10 +108,15 @@ export class ListTaskComponent implements OnInit, OnDestroy {
 
   drop() {
     if (this.draggedTask) {
-      let draggedProductIndex = this.findIndex(this.draggedTask);
-      this.selectedTasks = [...(this.selectedTasks as Task[]), this.draggedTask];
-      this.availableTasks = this.availableTasks?.filter((val, i) => i != draggedProductIndex);
-      this.draggedTask = null;
+      if (this.draggedTask.datedebut == null) {
+        this.messageComponent.showMessage('error', 'Erreur', "Commencez d'abord la tâche.");
+      } else {
+        this.finishTask(this.draggedTask._id!);
+        let draggedProductIndex = this.findIndex(this.draggedTask);
+        this.selectedTasks = [...(this.selectedTasks as Task[]), this.draggedTask];
+        this.availableTasks = this.availableTasks?.filter((val, i) => i != draggedProductIndex);
+        this.draggedTask = null;
+      }
     }
   }
 
