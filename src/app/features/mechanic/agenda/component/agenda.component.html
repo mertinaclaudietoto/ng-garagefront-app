@@ -20,25 +20,25 @@
             >
               <div *ngFor="let product of availableProducts">
                 <div class="product-item">
-                  <div class="image-container">
+                  <!-- <div class="image-container">
                     <img
                       [src]="product.image"
                       [alt]="product.name"
                       class="product-image"
                     />
-                  </div>
+                  </div> -->
                   <div class="product-list-detail">
                     <h5 class="mb-2">
-                      {{ product.name }}
+                      <!-- {{ product.name }} -->
                     </h5>
                     <i class="pi pi-tag product-category-icon"></i>
                     <span class="product-category">
-                      {{ product.category }}
+                      <!-- {{ product.category }} -->
                     </span>
                   </div>
                   <div class="product-list-action">
                     <h6 class="mb-2">
-                      {{ product.price }}
+                      <!-- {{ product.price }} -->
                     </h6>
                     <button
                       (click)="showModal(product)"

@@ -4,10 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
 import { FluidModule } from 'primeng/fluid';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
-import { Task } from '../../task/models/task.model';
-import { tasks } from '../../task/data/task';
 import { ButtonModule } from 'primeng/button';
 import { ModalDetailTaskComponent } from '../../../../shared/components/modal-detail-task/modal-detail-task.component';
+import { Task } from '../../../../shared/models/task.model';
 
 @Component({
   selector: 'app-agenda',
@@ -33,7 +32,7 @@ export class AgendaComponent {
 
   selectDate(event: Date) {
     console.log(event);
-    this.availableProducts = tasks;
+    // this.availableProducts = tasks;
   }
 
   showModal(task: Task) {
