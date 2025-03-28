@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environement } from '../../../environement/environement';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ServiceClient } from '../models/servicesclient';
 import { Emp } from '../models/emp';
@@ -10,10 +10,8 @@ import { Emp } from '../models/emp';
 })
 export class ServicesClientService {
     private apiUrl = environement.apiUrl;
-   
     constructor(private http: HttpClient) {}
     
-  
 
     getFreeMechanic():Observable<Emp[]> {
       return this.http.get<Emp[]>(this.apiUrl+'services-client/free-mechanic');
@@ -31,10 +29,13 @@ export class ServicesClientService {
       return this.http.get<ServiceClient[]>(this.apiUrl+'services-client');
     }
     modifOrAdd(value:ServiceClient) :Observable<ServiceClient>{
+      const token = localStorage.getItem('token'); 
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); 
+      
       if(value._id!=undefined){
-        return this.http.put<ServiceClient>(`${this.apiUrl}${'services-client'}/${encodeURIComponent(value._id)}`, value)
+        return this.http.put<ServiceClient>(`${this.apiUrl}${'services-client'}/${encodeURIComponent(value._id)}`, value,{headers})
       }else{
-        return this.http.post<ServiceClient>(this.apiUrl+'services-client',value) ;
+        return this.http.post<ServiceClient>(this.apiUrl+'services-client',value,{headers}) ;
       }
     }
     delete(value:ServiceClient|undefined):Observable<void>{

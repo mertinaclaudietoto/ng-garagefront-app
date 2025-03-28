@@ -38,7 +38,9 @@ export class LoginComponent {
         if(response.idrule=="000000000000000000000002"){
           this.router.navigate(['/client/cars-client']);
         }
-       
+        else if(response.idrule=="000000000000000000000001"){
+          this.router.navigate(['/manager']);
+        }
       } ,
       error => console.log('Erreur:',this.column= +error.error.column )
     );                    
