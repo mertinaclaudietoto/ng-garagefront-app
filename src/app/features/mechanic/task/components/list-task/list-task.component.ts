@@ -7,6 +7,7 @@ import { Task } from '../../models/task.model';
 import { ButtonModule } from 'primeng/button';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ModalDetailTaskComponent } from '../../../../../shared/components/modal-detail-task/modal-detail-task.component';
+import { Tag } from 'primeng/tag';
 
 @Component({
   selector: 'app-list-task',
@@ -15,7 +16,8 @@ import { ModalDetailTaskComponent } from '../../../../../shared/components/modal
     CommonModule,
     ButtonModule,
     ScrollPanelModule,
-    ModalDetailTaskComponent
+    ModalDetailTaskComponent,
+    Tag
   ],
   templateUrl: './list-task.component.html',
   styleUrl: './list-task.component.scss'
@@ -65,5 +67,18 @@ export class ListTaskComponent implements OnInit {
   showModal(task: Task) {
     this.selectedTask = task;
     this.modalVisible = true;
+  }
+
+  getSeverity(status: string) {
+    switch (status) {
+      case 'INSTOCK':
+        return 'success';
+      case 'LOWSTOCK':
+        return 'warn';
+      case 'OUTOFSTOCK':
+        return 'danger';
+      default:
+        return 'info'
+    }
   }
 }

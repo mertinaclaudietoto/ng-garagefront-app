@@ -23,6 +23,10 @@ import { LoginComponent } from './app/auth/login/login.component';
 import { CarClientsComponent } from './app/features/costumers/car-clients/car-clients.component';
 
 import { DashboardComponent } from './app/features/manager/dashboard/dashboard/dashboard.component';
+import { ListTaskComponent } from './app/features/mechanic/task/components/list-task/list-task.component';
+import { AgendaComponent } from './app/features/mechanic/agenda/component/agenda.component';
+import { SatisfactionComponent } from './app/features/mechanic/customer-satisfaction/components/satisfaction/satisfaction.component';
+import { EmpComponent } from './app/features/employee/emp/emp.component';
 
 export const appRoutes: Routes = [
     {
@@ -31,8 +35,6 @@ export const appRoutes: Routes = [
         children: [
             { path: '', component: CarFormComponent },
             { path: 'manager', component: DashboardComponent },
-            { path: 'uikit', loadChildren: () => import('./app/features/uikit/uikit.routes') },
-            { path: 'pages', loadChildren: () => import('./app/features/pages.routes') },
             { path: 'car-type', component: CarTypeComponent },
             { path: 'car-size', component: CarSizeComponent },
             { path: 'car-engine', component: CarEngineComponent },
@@ -42,8 +44,18 @@ export const appRoutes: Routes = [
                 children: [
                     { path: '', component: ListServiceComponent },
                     { path: 'form', component: FormServiceComponent },
+                    { path: 'edit/:id', component: FormServiceComponent },
                 ]
-            }
+            },
+            {
+                path: 'mechanic',
+                children: [
+                    { path: '', component: ListTaskComponent },
+                    { path: 'agenda-mechanic', component: AgendaComponent },
+                    { path: 'satisfaction-customer-mechanic', component: SatisfactionComponent },
+                ]
+            },
+            { path: 'employee', data: { breadcrumb: 'Menu' }, component: EmpComponent },
         ]
     },
     // {
@@ -57,18 +69,18 @@ export const appRoutes: Routes = [
     //     ]
     // },
     {
-        path:'manager',
+        path: 'manager',
         component: DashboardComponent,
     },
     {
-        path:'client',
+        path: 'client',
         component: LandingComponent,
     },
     { path: 'client/cars-client', component: CarClientsComponent },
     { path: 'client/progress-service', component: ProgressSrComponent },
     { path: 'client/det-services', component: DetServiceComponent },
     {
-        path:'auth',
+        path: 'auth',
         children: [
             { path: 'login', component: LoginComponent },
             { path: 'register', component: RegisterComponent },
@@ -78,6 +90,6 @@ export const appRoutes: Routes = [
     //     path:'landing',component: LandingComponent
     // },
     { path: 'notfound', component: Notfound },
- 
+
     { path: '**', redirectTo: '/notfound' }
 ];
