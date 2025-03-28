@@ -30,12 +30,10 @@ export class LoginComponent {
   onlogin(){
     this.empService.login(this.login).subscribe(
       response =>{
-        console.log(response)
         localStorage.setItem('token', response.token);
         localStorage.setItem('image', response.picture);
         localStorage.setItem('iduser', response.iduser);
         localStorage.setItem('idrule', response.idrule);
-        console.log(response.idrule);
         if(response.idrule==roles.costumer){
           this.router.navigate(['/client/cars-client']);
         }

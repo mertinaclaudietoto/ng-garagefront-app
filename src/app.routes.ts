@@ -42,11 +42,6 @@ export const appRoutes: Routes = [
             }
         ]
     },
-   
-    {
-        path:'manager',
-        component: DashboardComponent,
-    },
     {
         path:'client',
         component: LandingComponent,

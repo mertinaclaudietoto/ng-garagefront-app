@@ -3,10 +3,10 @@ import { MenuItem } from 'primeng/api';
 export const DATAMENU: MenuItem[] = [
     {
         label: 'Home',
-        items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }]
+        items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/manager'] }]
     },
     {
-        label: 'UI Components',
+        label: 'Services',
         items: [
             { label: 'Car form', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/car-form'] },
             { label: 'Car-type', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/car-type'] },
