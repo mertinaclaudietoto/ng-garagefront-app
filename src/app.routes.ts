@@ -3,11 +3,6 @@ import { Routes } from '@angular/router';
 import { LayoutappComponent } from './app/layout/layoutapp/layoutapp.component';
 import { Notfound } from './app/features/notfound/notfound';
 import { CarFormComponent } from './app/features/costumers/car-form/car-form.component';
-import { LayoutComponent } from './app/features/costumers/old/layout/layout.component';
-import { ServiceComponent } from './app/features/costumers/old/service/service.component';
-import { AboutComponent } from './app/features/costumers/old/about/about.component';
-import { SignInComponent } from './app/features/sign-in/sign-in.component';
-import { ListWorksComponent } from './app/features/works/components/list-works/list-works.component';
 
 import { CarTypeComponent } from './app/features/carType/components/car-type/car-type.component';
 import { CarSizeComponent } from './app/features/carSize/components/car-size/car-size.component';
@@ -28,6 +23,8 @@ import { AgendaComponent } from './app/features/mechanic/agenda/component/agenda
 import { SatisfactionComponent } from './app/features/mechanic/customer-satisfaction/components/satisfaction/satisfaction.component';
 import { EmpComponent } from './app/features/employee/emp/emp.component';
 
+import { authGuard } from './app/auth/guard/auth.guard';
+import { roleManagerGuard } from './app/auth/guard/role-manager.guard';
 export const appRoutes: Routes = [
     {
         path: '',
@@ -35,6 +32,7 @@ export const appRoutes: Routes = [
         children: [
             { path: '', component: CarFormComponent },
             { path: 'manager', component: DashboardComponent },
+            { path: 'manager', component: DashboardComponent,canActivate: [authGuard,roleManagerGuard], },
             { path: 'car-type', component: CarTypeComponent },
             { path: 'car-size', component: CarSizeComponent },
             { path: 'car-engine', component: CarEngineComponent },
@@ -58,20 +56,6 @@ export const appRoutes: Routes = [
             { path: 'employee', data: { breadcrumb: 'Menu' }, component: EmpComponent },
         ]
     },
-    // {
-    //     path: 'client',
-    //     component: LayoutComponent,
-    //     children: [
-    //         { path: '', component: ServiceComponent },
-    //         { path: 'about', component: AboutComponent },
-    //         { path: 'sign-in', component: SignInComponent },
-    //         { path: 'works', component: ListWorksComponent },
-    //     ]
-    // },
-    {
-        path: 'manager',
-        component: DashboardComponent,
-    },
     {
         path: 'client',
         component: LandingComponent,
@@ -86,10 +70,6 @@ export const appRoutes: Routes = [
             { path: 'register', component: RegisterComponent },
         ]
     },
-    // {
-    //     path:'landing',component: LandingComponent
-    // },
     { path: 'notfound', component: Notfound },
-
     { path: '**', redirectTo: '/notfound' }
 ];

@@ -13,4 +13,5 @@ export interface ServiceClient {
     __v: number;
     createdAt: Date;
     updatedAt: Date;
+    avancement:String;
   }

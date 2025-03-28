@@ -36,9 +36,11 @@
                     </tr>
                 </ng-template>
             </p-table>
+
             <p-dialog header="Detail Service " [(visible)]="display" [breakpoints]="{ '960px': '75vw' }"  [style]="{ width: '50vw',height:'50vh' }" [modal]="true">
                 <h4  *ngIf="detServiceClient">{{detServiceClient.idcustomer.name}} {{detServiceClient.idcarcustomer.brand}} {{detServiceClient.idcarcustomer.model}}</h4>
-                <p-table *ngIf="detServiceClient"  [value]="detServiceClient.detail"  responsiveLayout="scroll">
+                
+                <p-table *ngIf="detServiceClient"  [value]="detServiceClient.detail"  responsiveLayout="scroll" >
                     <ng-template #header>
                         <tr>
                             <th>Mechanic</th>
@@ -47,13 +49,14 @@
                             <th >Mechanic tach</th>
                         </tr>
                     </ng-template>
-                    <ng-template #body let-product>
-                        <tr>
+                    <ng-template #body let-product class="h-full">
+                        <tr class="w-full transition-all duration-300 ease-in-out">
                             <td>{{ product.idmechanic.name}}</td>
                             <td>{{ product.idservice.name}}</td>
                             <td>{{ product.prix }}</td>
-                            <td>
-                                <p-select id="state" [(ngModel)]="product.idmechanic" [options]="listFreeMechanic" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
+                            <td *ngIf="!product.datefin"  class="flex flex-wrap gap-2 w-full">
+                                <p-select id="state" [(ngModel)]="product.idmechanic" [options]="listFreeMechanic" optionLabel="name" placeholder="Select One"
+                                class="w-full"  appendTo="body"></p-select>
                             </td>
                         </tr>
                         <tr></tr>
@@ -61,6 +64,7 @@
 
                     </ng-template>
                 </p-table>
+                <p class="text-red-500 ml-2">Une tâche qui est déjà finie ne pourrait pas être modifiée.</p>
                 <ng-template #footer>
                     <p-button label="Set mechanic" severity="info"  (onClick)="modifOrAdd(detServiceClient)" />
                     <!-- <p-button label="Send facture" severity="success"  /> -->
@@ -97,10 +101,10 @@
                 <ng-template #header>
                     <tr>
                         <th></th>
-                        <th>Brand</th>
-                        <th>Model</th>
-                        <th pSortableColumn="price">client N</th>
-                        <th pSortableColumn="price">client F</th>
+                        <th>Car</th>
+                        <th>Client</th>
+                        <th pSortableColumn="price">avancement</th>
+                        <th >View</th>
                     </tr>
                 </ng-template>
                 <ng-template #body let-product>
@@ -108,15 +112,45 @@
                         <td>
                             <img [src]="product.idcarcustomer.picture " class="shadow-lg" alt="{{ product.name }}" width="50" />
                         </td>
-                        <td>{{ product.idcarcustomer.brand }}</td>
-                        <td>{{ product.idcarcustomer.model }}</td>
-
-                        <td>{{ product.idcustomer.name }}</td>
-                        <td>{{ product.idcustomer.firstName }}</td>
-                       
+                        <td>{{ product.idcarcustomer.brand }}   {{ product.idcarcustomer.model }}</td>
+                        <td>{{ product.idcustomer.name }}       {{ product.idcustomer.firstName }}</td>
+                        <td>
+                            {{ getAvancement(product) }} / {{ product.detail.length }}
+                        </td>
+                        <td>
+                            <p-button (onClick)="setViewDetaille(product)" icon="pi pi-eye" severity="secondary" rounded />
+                        </td>
                     </tr>
                 </ng-template>
             </p-table>
+            <p-dialog header="Detail Service " [(visible)]="displayView" [breakpoints]="{ '960px': '75vw' }"  [style]="{ width: '50vw',height:'50vh' }" [modal]="true">
+                <h4  *ngIf="avancementServiceClient">{{avancementServiceClient.idcustomer.name}} {{avancementServiceClient.idcarcustomer.brand}} {{avancementServiceClient.idcarcustomer.model}}</h4>
+                <p-table *ngIf="avancementServiceClient"  [value]="avancementServiceClient.detail"  responsiveLayout="scroll" >
+                    <ng-template #header>
+                        <tr>
+                            <th>Do or Not</th>
+                            <th>Service</th>
+                            <th>Mechanic</th>
+                            <th>Prix</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template #body let-product class="h-full">
+                        <tr class="w-full transition-all duration-300 ease-in-out">
+                            <td>
+                                <p-checkbox [binary]="true" [disabled]="trueFalse(product)" readonly="true"/>
+                            </td>   
+                            <td>{{ product.idservice.name}}</td>                           
+                            <td>{{ product.idmechanic.name}}</td>
+                            <td>{{ product.prix }}</td>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                    </ng-template>
+                </p-table>
+                <ng-template #footer>
+                    <p-button label="Set mechanic" severity="info"  (onClick)="modifOrAdd(detServiceClient)" />
+                </ng-template>
+            </p-dialog> 
         </div>
  
      
