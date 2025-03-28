@@ -3,11 +3,6 @@ import { Routes } from '@angular/router';
 import { LayoutappComponent } from './app/layout/layoutapp/layoutapp.component';
 import { Notfound } from './app/features/notfound/notfound';
 import { CarFormComponent } from './app/features/costumers/car-form/car-form.component';
-import { LayoutComponent } from './app/features/costumers/old/layout/layout.component';
-import { ServiceComponent } from './app/features/costumers/old/service/service.component';
-import { AboutComponent } from './app/features/costumers/old/about/about.component';
-import { SignInComponent } from './app/features/sign-in/sign-in.component';
-import { ListWorksComponent } from './app/features/works/components/list-works/list-works.component';
 
 import { CarTypeComponent } from './app/features/carType/components/car-type/car-type.component';
 import { CarSizeComponent } from './app/features/carSize/components/car-size/car-size.component';
@@ -23,14 +18,15 @@ import { LoginComponent } from './app/auth/login/login.component';
 import { CarClientsComponent } from './app/features/costumers/car-clients/car-clients.component';
 
 import { DashboardComponent } from './app/features/manager/dashboard/dashboard/dashboard.component';
-
+import { authGuard } from './app/auth/guard/auth.guard';
+import { roleManagerGuard } from './app/auth/guard/role-manager.guard';
 export const appRoutes: Routes = [
     {
         path: '',
         component: LayoutappComponent,
         children: [
             { path: '', component: CarFormComponent },
-            { path: 'manager', component: DashboardComponent },
+            { path: 'manager', component: DashboardComponent,canActivate: [authGuard,roleManagerGuard], },
             { path: 'uikit', loadChildren: () => import('./app/features/uikit/uikit.routes') },
             { path: 'pages', loadChildren: () => import('./app/features/pages.routes') },
             { path: 'car-type', component: CarTypeComponent },
@@ -46,16 +42,7 @@ export const appRoutes: Routes = [
             }
         ]
     },
-    // {
-    //     path: 'client',
-    //     component: LayoutComponent,
-    //     children: [
-    //         { path: '', component: ServiceComponent },
-    //         { path: 'about', component: AboutComponent },
-    //         { path: 'sign-in', component: SignInComponent },
-    //         { path: 'works', component: ListWorksComponent },
-    //     ]
-    // },
+   
     {
         path:'manager',
         component: DashboardComponent,
@@ -74,10 +61,6 @@ export const appRoutes: Routes = [
             { path: 'register', component: RegisterComponent },
         ]
     },
-    // {
-    //     path:'landing',component: LandingComponent
-    // },
     { path: 'notfound', component: Notfound },
- 
     { path: '**', redirectTo: '/notfound' }
 ];

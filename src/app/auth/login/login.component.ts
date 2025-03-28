@@ -10,6 +10,7 @@ import { Emp } from '../../shared/models/emp';
 import { EmpService } from '../../features/costumers/services/emp.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { roles } from '../guard/RULE';
 @Component({
   selector: 'app-login',
   imports: [ButtonModule, CheckboxModule, InputTextModule, PasswordModule, FormsModule, RouterModule, RippleModule,CommonModule],
@@ -35,10 +36,10 @@ export class LoginComponent {
         localStorage.setItem('iduser', response.iduser);
         localStorage.setItem('idrule', response.idrule);
         console.log(response.idrule);
-        if(response.idrule=="000000000000000000000002"){
+        if(response.idrule==roles.costumer){
           this.router.navigate(['/client/cars-client']);
         }
-        else if(response.idrule=="000000000000000000000001"){
+        else if(response.idrule==roles.manager){
           this.router.navigate(['/manager']);
         }
       } ,
