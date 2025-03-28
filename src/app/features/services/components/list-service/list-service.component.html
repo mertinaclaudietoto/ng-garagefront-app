@@ -67,8 +67,18 @@
               {{ service.weigthTypePrice }}
             </td>
             <td class="flex gap-1">
-              <p-button icon="pi pi-pencil" severity="success" outlined />
-              <p-button icon="pi pi-trash" severity="danger" outlined />
+              <p-button
+                icon="pi pi-pencil"
+                severity="success"
+                outlined
+                (click)="updateService(service._id)"
+              />
+              <p-button
+                icon="pi pi-trash"
+                severity="danger"
+                outlined
+                (click)="showConfirmation(service._id)"
+              />
             </td>
           </tr>
         </ng-template>
@@ -77,3 +87,9 @@
   </div>
 </div>
 <app-message></app-message>
+<app-confirmation-delete
+  [header]="'Confirmation'"
+  [message]="'Êtes-vous sûr de vouloir supprimer cet service ?'"
+  (accept)="handleDelete($event)"
+  (reject)="handleReject()"
+></app-confirmation-delete>

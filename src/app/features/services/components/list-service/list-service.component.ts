@@ -9,6 +9,8 @@ import { ServiceService } from '../../services/service.service';
 import { Subject, takeUntil } from 'rxjs';
 import { Service } from '../../../../shared/models/service.model';
 import { MessageComponent } from '../../../../shared/components/message/message.component';
+import { ConfirmationDeleteComponent } from '../../../../shared/components/confirmation-delete/confirmation-delete.component';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-list-service',
@@ -18,14 +20,17 @@ import { MessageComponent } from '../../../../shared/components/message/message.
     ButtonModule,
     RippleModule,
     ToolbarModule,
-    MessageComponent
+    MessageComponent,
+    ConfirmationDeleteComponent
   ],
+  providers: [ConfirmationService],
   templateUrl: './list-service.component.html',
   styleUrl: './list-service.component.scss'
 })
 export class ListServiceComponent implements OnInit, OnDestroy {
   private destroys$ = new Subject<void>();
   @ViewChild(MessageComponent) messageComponent!: MessageComponent;
+  @ViewChild(ConfirmationDeleteComponent) confirmationDeleteComponent!: ConfirmationDeleteComponent;
   serviceList: Service[] = [];
 
   constructor(
@@ -56,5 +61,33 @@ export class ListServiceComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroys$.next();
     this.destroys$.complete();
+  }
+
+  deleteService(id: string) {
+    this.serviceService.deleteService(id).pipe(takeUntil(this.destroys$)).subscribe({
+      next: () => {
+        this.messageComponent.showMessage('success', 'Suppression réussie', 'Le service a été supprimé avec succès.');
+        this.getAllCarTypes();
+      },
+      error: (err) => {
+        console.error('Error fetching services:', err)
+        this.messageComponent.showMessage('error', 'Erreur', 'Error delete service');
+      }
+    })
+  }
+
+  handleDelete(id: string) {
+    this.deleteService(id);
+  }
+
+  handleReject() {
+  }
+
+  showConfirmation(id: string) {
+    this.confirmationDeleteComponent.show(id);
+  }
+
+  updateService(id: string) {
+    this.router.navigate(['/services/edit', id]);
   }
 }

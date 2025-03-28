@@ -22,4 +22,12 @@ export class ServiceService {
   saveService(carType: Partial<Service>): Observable<Service> {
     return this.http.post<Service>(this.url, carType);
   }
+
+  getServiceById(id: string): Observable<Service> {
+    return this.http.get<Service>(`${this.url}/${id}`);
+  }
+
+  updateService(id: string, service: Partial<Service>): Observable<Service> {
+    return this.http.put<Service>(`${this.url}/${id}`, service);
+  }
 }

@@ -33,9 +33,14 @@
                   </span>
                 </div>
                 <div class="product-list-action">
-                  <h6 class="mb-2">
+                  <h6>
                     {{ product.price }}
                   </h6>
+                  <p-tag
+                    class="mb-2"
+                    [value]="product.inventoryStatus"
+                    [severity]="getSeverity(product.inventoryStatus)"
+                  />
                   <button
                     (click)="showModal(product)"
                     pButton
