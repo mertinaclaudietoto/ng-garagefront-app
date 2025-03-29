@@ -16,6 +16,10 @@ export class EmpService {
     return this.http.get<number>(this.apiUrl+'emps/nbrcostumers/'+id);
   }
 
+  get(id:string):Observable<Emp[]> {
+    return this.http.get<Emp[]>(this.apiUrl+'emps/findbyrule/'+id);
+  }
+
   getEmp():Observable<Emp[]> {
     return this.http.get<Emp[]>(this.apiUrl+'emps');
   }
@@ -33,6 +37,7 @@ export class EmpService {
         }
         return new Observable<void>;
   }
+
   login(value:Emp):Observable<Loginm>{
     return this.http.post<Loginm>(this.apiUrl+'emps/login', value);
   }

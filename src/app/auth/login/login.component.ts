@@ -38,7 +38,7 @@ export class LoginComponent {
           this.router.navigate(['/client/cars-client']);
         }
         else if(response.idrule==roles.manager){
-          this.router.navigate(['/manager']);
+          this.router.navigate(['/manager/dashboard']);
         }
       } ,
       error => console.log('Erreur:',this.column= +error.error.column )

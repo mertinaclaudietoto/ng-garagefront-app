@@ -20,7 +20,6 @@ import { Emp } from '../../../shared/models/emp';
 import { EmpService } from '../../costumers/services/emp.service';
 import { IdName } from '../../../shared/models/car-type';
 import { CarService } from '../../costumers/services/car.service';
-
 import { IMAGESDEFAULTS } from '../../costumers/dataimage';
 @Component({
   selector: 'app-emp',

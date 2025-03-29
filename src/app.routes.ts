@@ -31,12 +31,17 @@ export const appRoutes: Routes = [
         component: LayoutappComponent,
         children: [
             { path: '', component: CarFormComponent },
-            { path: 'manager', component: DashboardComponent },
-            { path: 'manager', component: DashboardComponent,canActivate: [authGuard,roleManagerGuard], },
-            { path: 'car-type', component: CarTypeComponent },
-            { path: 'car-size', component: CarSizeComponent },
-            { path: 'car-engine', component: CarEngineComponent },
-            { path: 'car-weight', component: CarWeightComponent },
+            {
+                path: 'manager', 
+                canActivate: [authGuard,roleManagerGuard],
+                children: [
+                    { path: 'dashboard', component: DashboardComponent },
+                    { path: 'car-type', component: CarTypeComponent },
+                    { path: 'car-size', component: CarSizeComponent },
+                    { path: 'car-engine', component: CarEngineComponent },
+                    { path: 'car-weight', component: CarWeightComponent },
+                ]
+            },
             {
                 path: 'services',
                 children: [
