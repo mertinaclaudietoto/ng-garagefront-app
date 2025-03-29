@@ -48,5 +48,4 @@ export class CarCostumersService {
     return this.http.get<number>(this.apiUrl+"car-costumers/rows/"+id,{headers}) ;
   }
 
-
 }
