@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Dialog } from 'primeng/dialog';
-import { Task } from '../../../features/mechanic/task/models/task.model';
+import { Task } from '../../models/task.model';
 
 @Component({
   selector: 'app-modal-detail-task',

@@ -4,9 +4,9 @@ import { TableModule } from 'primeng/table';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { CustomerSatisfaction } from '../../models/customerSatisfaction.model';
-import { Task } from '../../../task/models/task.model';
 import { Knob } from 'primeng/knob';
 import { ModalDetailTaskComponent } from '../../../../../shared/components/modal-detail-task/modal-detail-task.component';
+import { Task } from '../../../../../shared/models/task.model';
 
 @Component({
   selector: 'app-satisfaction',
@@ -116,18 +116,18 @@ export class SatisfactionComponent {
   }
 
   showModal(customerSatisfaction: CustomerSatisfaction) {
-    this.selectedTask = {
-      id: "1000",
-      code: "f230fh0g3",
-      name: "Bamboo Watch",
-      description: "Product Description",
-      image: "bamboo-watch.jpg",
-      price: 65,
-      category: "Accessories",
-      quantity: 24,
-      inventoryStatus: "INSTOCK",
-      rating: 5
-    } as Task;
+    // this.selectedTask = {
+    //   id: "1000",
+    //   code: "f230fh0g3",
+    //   name: "Bamboo Watch",
+    //   description: "Product Description",
+    //   image: "bamboo-watch.jpg",
+    //   price: 65,
+    //   category: "Accessories",
+    //   quantity: 24,
+    //   inventoryStatus: "INSTOCK",
+    //   rating: 5
+    // } as Task;
     this.modalVisible = true;
   }
 }

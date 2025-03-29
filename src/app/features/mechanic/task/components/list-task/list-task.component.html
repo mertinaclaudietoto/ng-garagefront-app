@@ -5,48 +5,35 @@
       <div class="card grid grid-cols-12 gap-4 grid-nogutter">
         <div class="col-span-12 md:col-span-6 drag-column">
           <h5 class="text-center">A faire</h5>
-          <!-- <div class="mt-14"></div> -->
           <p-scrollpanel
             [style]="{ width: '100%', height: 'calc(100vh - 23em)' }"
           >
-            <div *ngFor="let product of availableProducts">
+            <div *ngFor="let product of availableTasks">
               <div
                 class="product-item"
                 pDraggable="products"
                 (onDragStart)="dragStart(product)"
                 (onDragEnd)="dragEnd()"
               >
-                <div class="image-container">
-                  <img
-                    [src]="product.image"
-                    [alt]="product.name"
-                    class="product-image"
-                  />
-                </div>
                 <div class="product-list-detail">
-                  <h5 class="mb-2">
-                    {{ product.name }}
+                  <h5 class="">
+                    {{ product.service.name }}
+                    @if (!product.datedebut) {
+                      <p-button
+                        class="ml-2"
+                        icon="pi pi-bell"
+                        [rounded]="true"
+                        severity="success"
+                        (click)="startTask(product._id!)"
+                      />
+                    }
                   </h5>
-                  <i class="pi pi-tag product-category-icon"></i>
-                  <span class="product-category">
-                    {{ product.category }}
-                  </span>
                 </div>
-                <div class="product-list-action">
-                  <h6>
-                    {{ product.price }}
-                  </h6>
-                  <p-tag
-                    class="mb-2"
-                    [value]="product.inventoryStatus"
-                    [severity]="getSeverity(product.inventoryStatus)"
-                  />
-                  <button
-                    (click)="showModal(product)"
-                    pButton
-                    label="Détails"
-                  ></button>
-                </div>
+                @if (product.datedebut) {
+                  <div class="product-list-action">
+                    <p-tag class="mb-2" value="En cours" severity="warn" />
+                  </div>
+                }
               </div>
             </div>
           </p-scrollpanel>
@@ -58,32 +45,28 @@
         >
           <h5 class="text-center">Términé</h5>
           <p-table
-            [value]="selectedProducts"
+            [value]="selectedTasks"
             [scrollable]="true"
             [scrollHeight]="'calc(100vh - 25em)'"
             scrollDirection="vertical"
           >
             <ng-template pTemplate="header">
               <tr>
-                <th>ID</th>
-                <th>Category</th>
-                <th>Name</th>
-                <th>Price</th>
+                <th>Service</th>
+                <th>Date debut</th>
+                <th>Date Fin</th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-product>
               <tr>
                 <td>
-                  {{ product.id }}
+                  {{ product.service.name }}
                 </td>
                 <td>
-                  {{ product.category }}
+                  {{ product.datedebut | fomratDate }}
                 </td>
                 <td>
-                  {{ product.name }}
-                </td>
-                <td>
-                  {{ product.price }}
+                  {{ product.datefin }}
                 </td>
               </tr>
             </ng-template>
@@ -97,3 +80,4 @@
   [task]="selectedTask"
   [(display)]="modalVisible"
 ></app-modal-detail-task>
+<app-message></app-message>
