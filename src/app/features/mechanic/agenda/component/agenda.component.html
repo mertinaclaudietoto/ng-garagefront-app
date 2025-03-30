@@ -1,65 +1,3 @@
-<!-- <div class="grid">
-  <div class="col-12">
-    <div class="card">
-      <h4>Calendrier Globale</h4>
-      <div class="card grid grid-cols-12 gap-4">
-        <div class="col-span-12 md:col-span-6 div-calendar">
-          <p-calendar
-            class="max-w-full"
-            [(ngModel)]="date"
-            [inline]="true"
-            [showWeek]="true"
-            (onSelect)="selectDate($event)"
-          />
-        </div>
-        <div class="col-span-12 md:col-span-6 div-task">
-          <h5 class="text-center">Tâches</h5>
-          <div class="task">
-            <p-scrollpanel
-              [style]="{ width: '100%', height: 'calc(100vh - 20em)' }"
-            >
-              <div *ngFor="let product of availableProducts">
-                <div class="product-item">
-                  <div class="image-container">
-                    <img
-                      [src]="product.image"
-                      [alt]="product.name"
-                      class="product-image"
-                    />
-                  </div>
-                  <div class="product-list-detail">
-                    <h5 class="mb-2">
-                      {{ product.name }}
-                    </h5>
-                    <i class="pi pi-tag product-category-icon"></i>
-                    <span class="product-category">
-                      {{ product.category }}
-                    </span>
-                  </div>
-                  <div class="product-list-action">
-                    <h6 class="mb-2">
-                      {{ product.price }}
-                    </h6>
-                    <button
-                      (click)="showModal(product)"
-                      pButton
-                      label="Détails"
-                    ></button>
-                  </div>
-                </div>
-              </div>
-            </p-scrollpanel>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<app-modal-detail-task
-  [task]="selectedTask"
-  [(display)]="modalVisible"
-></app-modal-detail-task> -->
-
 <div class="grid">
   <div class="col-12">
     <div class="card">
@@ -72,3 +10,7 @@
     </div>
   </div>
 </div>
+<app-modal-detail-task
+  [task]="selectedTask"
+  [(display)]="modalVisible"
+></app-modal-detail-task>

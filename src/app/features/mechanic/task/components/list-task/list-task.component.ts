@@ -4,7 +4,6 @@ import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
-import { ModalDetailTaskComponent } from '../../../../../shared/components/modal-detail-task/modal-detail-task.component';
 import { Tag } from 'primeng/tag';
 import { Task } from '../../../../../shared/models/task.model';
 import { Subject, takeUntil } from 'rxjs';
@@ -20,7 +19,6 @@ import { FomratDatePipe } from '../../../../../shared/pipe/formatDate/fomrat-dat
     CommonModule,
     ButtonModule,
     ScrollPanelModule,
-    ModalDetailTaskComponent,
     Tag,
     FomratDatePipe,
     MessageComponent
@@ -33,10 +31,9 @@ export class ListTaskComponent implements OnInit, OnDestroy {
   availableTasks: Task[] = [];
   selectedTasks: Task[] = [];
   draggedTask: Task | undefined | null;
-  modalVisible = false;
-  selectedTask!: Task;
   private destroys$ = new Subject<void>();
   @ViewChild(MessageComponent) messageComponent!: MessageComponent;
+  newDate = new Date();
 
   constructor(
     private listTaskService: ListTaskService
@@ -133,10 +130,5 @@ export class ListTaskComponent implements OnInit, OnDestroy {
       }
     }
     return index;
-  }
-
-  showModal(task: Task) {
-    this.selectedTask = task;
-    this.modalVisible = true;
   }
 }

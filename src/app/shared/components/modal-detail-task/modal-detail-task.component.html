@@ -1,14 +1,19 @@
-<p-dialog
-  header="Détails tâche"
-  [(visible)]="display"
-  [modal]="true"
-  showEffect="fade"
-  [style]="{ width: '30vw' }"
-  [breakpoints]="{ '960px': '75vw' }"
-  (onHide)="onHide()"
->
-  <p>Client :</p>
-  <p>Véhicule :</p>
-  <p>A réparer :</p>
-  <p>Durée :</p>
-</p-dialog>
+@if (task) {
+  <p-dialog
+    header="Détails tâche"
+    [(visible)]="display"
+    [modal]="true"
+    showEffect="fade"
+    [style]="{ width: '30vw' }"
+    [breakpoints]="{ '960px': '75vw' }"
+    (onHide)="onHide()"
+  >
+    <p>
+      Véhicule : {{ task.carCustomer.model }} ({{
+        task.carCustomer.empathement
+      }})
+    </p>
+    <p>Service : {{ task.service.name }}</p>
+    <p>Date fin : {{ task.datefin }}</p>
+  </p-dialog>
+}

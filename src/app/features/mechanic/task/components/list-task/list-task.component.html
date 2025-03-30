@@ -81,7 +81,11 @@
                   {{ product.datedebut | fomratDate }}
                 </td>
                 <td>
-                  {{ product.datefin | fomratDate }}
+                  @if (product.datefin) {
+                    {{ product.datefin | fomratDate }}
+                  } @else {
+                    {{ newDate | fomratDate }}
+                  }
                 </td>
               </tr>
             </ng-template>
@@ -91,8 +95,4 @@
     </div>
   </div>
 </div>
-<app-modal-detail-task
-  [task]="selectedTask"
-  [(display)]="modalVisible"
-></app-modal-detail-task>
 <app-message></app-message>
