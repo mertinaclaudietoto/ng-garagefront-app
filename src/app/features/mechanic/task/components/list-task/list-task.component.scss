@@ -1,20 +1,21 @@
 :host ::ng-deep {
   .grid {
-    height: calc(100vh - 12em);
+    // height: calc(100vh - 12em);
+    height: auto;
   }
 
   .drag-column {
     padding-right: 0.5em;
     border: 1px solid gray;
     border-radius: 10px;
-    height: calc(100vh - 20em);
+    // height: calc(100vh - 20em);
   }
 
   .drop-column {
     border: 1px solid gray;
     border-radius: 10px;
     transition: border-color 0.2s;
-    height: calc(100vh - 20em);
+    // height: calc(100vh - 20em);
 
     &.p-draggable-enter {
       border-color: red;
