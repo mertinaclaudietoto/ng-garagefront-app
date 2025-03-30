@@ -51,7 +51,7 @@ export class ListTaskComponent implements OnInit, OnDestroy {
   getTaskMechanic(id: string) {
     this.listTaskService.getTaskMechanic(id).pipe(takeUntil(this.destroys$)).subscribe({
       next: (tasks) => {
-        this.availableTasks = tasks
+        this.availableTasks = tasks;
       },
       error: (err) => {
         console.error(err)

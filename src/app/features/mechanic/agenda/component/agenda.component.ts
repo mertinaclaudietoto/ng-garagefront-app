@@ -6,7 +6,12 @@ import { FluidModule } from 'primeng/fluid';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ButtonModule } from 'primeng/button';
 import { ModalDetailTaskComponent } from '../../../../shared/components/modal-detail-task/modal-detail-task.component';
-import { Task } from '../../../../shared/models/task.model';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { CalendarOptions } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import frLocale from '@fullcalendar/core/locales/fr';
+
 
 @Component({
   selector: 'app-agenda',
@@ -16,27 +21,53 @@ import { Task } from '../../../../shared/models/task.model';
     ScrollPanelModule,
     NgFor,
     ButtonModule,
-    ModalDetailTaskComponent
+    ModalDetailTaskComponent,
+    FullCalendarModule
   ],
   templateUrl: './agenda.component.html',
   styleUrl: './agenda.component.scss'
 })
 export class AgendaComponent {
-  date: Date[] | undefined;
-  availableProducts: Task[] | undefined;
-  modalVisible = false;
-  selectedTask!: Task;
+  // date: Date[] | undefined;
+  // availableProducts: Task[] | undefined;
+  // modalVisible = false;
+  // selectedTask!: Task;
 
-  ngOnInit() {
+  // ngOnInit() {
+  // }
+
+  // selectDate(event: Date) {
+  //   console.log(event);
+  //   // this.availableProducts = tasks;
+  // }
+
+  // showModal(task: Task) {
+  //   this.selectedTask = task;
+  //   this.modalVisible = true;
+  // }
+  calendarOptions: CalendarOptions = {
+    initialView: 'dayGridMonth',
+    plugins: [dayGridPlugin, interactionPlugin],
+    locale: frLocale,
+    views: {
+      dayGridMonth: {}, // Ajoute cette ligne
+    },
+    dateClick: this.handleDateClick.bind(this), // Clic sur une date
+    eventClick: this.handleEventClick.bind(this),
+    events: [
+      { title: 'Véhicule : 234433', date: '2025-03-01' }, // Mets une date actuelle
+      { title: 'Véhicule: 2323', date: '2025-03-02' }
+    ]
+  };
+
+  constructor() {
   }
 
-  selectDate(event: Date) {
-    console.log(event);
-    // this.availableProducts = tasks;
+  handleDateClick(arg: any) {
+    alert('Date cliquée : ' + arg.dateStr);
   }
 
-  showModal(task: Task) {
-    this.selectedTask = task;
-    this.modalVisible = true;
+  handleEventClick(info: any) {
+    alert('Événement cliqué : ' + info.event.title + '\nDate : ' + info.event.startStr);
   }
 }
