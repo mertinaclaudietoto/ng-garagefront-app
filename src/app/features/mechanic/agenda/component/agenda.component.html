@@ -1,4 +1,4 @@
-<div class="grid">
+<!-- <div class="grid">
   <div class="col-12">
     <div class="card">
       <h4>Calendrier Globale</h4>
@@ -20,25 +20,25 @@
             >
               <div *ngFor="let product of availableProducts">
                 <div class="product-item">
-                  <!-- <div class="image-container">
+                  <div class="image-container">
                     <img
                       [src]="product.image"
                       [alt]="product.name"
                       class="product-image"
                     />
-                  </div> -->
+                  </div>
                   <div class="product-list-detail">
                     <h5 class="mb-2">
-                      <!-- {{ product.name }} -->
+                      {{ product.name }}
                     </h5>
                     <i class="pi pi-tag product-category-icon"></i>
                     <span class="product-category">
-                      <!-- {{ product.category }} -->
+                      {{ product.category }}
                     </span>
                   </div>
                   <div class="product-list-action">
                     <h6 class="mb-2">
-                      <!-- {{ product.price }} -->
+                      {{ product.price }}
                     </h6>
                     <button
                       (click)="showModal(product)"
@@ -58,4 +58,17 @@
 <app-modal-detail-task
   [task]="selectedTask"
   [(display)]="modalVisible"
-></app-modal-detail-task>
+></app-modal-detail-task> -->
+
+<div class="grid">
+  <div class="col-12">
+    <div class="card">
+      <h4>Calendrier Globale</h4>
+      <div class="card grid grid-cols-12 gap-4">
+        <div class="col-span-12 md:col-span-12">
+          <full-calendar [options]="calendarOptions"></full-calendar>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

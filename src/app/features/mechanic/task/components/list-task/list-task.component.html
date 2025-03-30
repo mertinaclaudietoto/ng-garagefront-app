@@ -15,6 +15,12 @@
                 (onDragStart)="dragStart(product)"
                 (onDragEnd)="dragEnd()"
               >
+                <div class="image-container">
+                  <img
+                    [src]="product.carCustomer.picture"
+                    [alt]="product.carCustomer.picture"
+                  />
+                </div>
                 <div class="product-list-detail">
                   <h5 class="">
                     {{ product.service.name }}
@@ -28,6 +34,10 @@
                       />
                     }
                   </h5>
+                  <span class="product-category">
+                    {{ product.carCustomer.model }} :
+                    {{ product.carCustomer.empathement }}
+                  </span>
                 </div>
                 @if (product.datedebut) {
                   <div class="product-list-action">
@@ -52,6 +62,7 @@
           >
             <ng-template pTemplate="header">
               <tr>
+                <th>Véhicule</th>
                 <th>Service</th>
                 <th>Date debut</th>
                 <th>Date Fin</th>
@@ -60,13 +71,17 @@
             <ng-template pTemplate="body" let-product>
               <tr>
                 <td>
+                  {{ product.carCustomer.model }} :
+                  {{ product.carCustomer.empathement }}
+                </td>
+                <td>
                   {{ product.service.name }}
                 </td>
                 <td>
                   {{ product.datedebut | fomratDate }}
                 </td>
                 <td>
-                  {{ product.datefin }}
+                  {{ product.datefin | fomratDate }}
                 </td>
               </tr>
             </ng-template>
