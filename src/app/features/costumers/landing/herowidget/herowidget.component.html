@@ -10,47 +10,22 @@
             <p-paginator (onPageChange)="onPageChange($event)" [first]="skip" [rows]="limit" [totalRecords]="50" [rowsPerPageOptions]="[6, 9, 12]" />
            </div>
         </div>
-        
         <div class="md:w-1/4 ml-0 justify-center items-center pr-2 "> 
-           
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <label for="name2">Price of our services search</label>
-                    <p-select id="state" [(ngModel)]="keysearch" [options]="dropdownItemsServices" optionLabel="name" [placeholder]="addOrUpdateValue.carType.name" class="w-full"></p-select>
+            <div class="flex flex-col gap-4 mt-10">
+                <div class="flex flex-wrap gap-2">
+                    <label for="username">Marque model et version</label>
+                    <input  pInputText id="email2" type="text" [(ngModel)]="brandandmodel" />
                 </div>
             </div>
-                <div class="flex flex-col gap-4 mt-10">
-                    <div class="flex flex-wrap gap-6">
-                        <div class="flex flex-col grow basis-0 gap-2">
-                            
-                            <p-select id="state"  [(ngModel)]="addOrUpdateValue.carType" [options]="dropdownItemsCarTypes" optionLabel="name" placeholder="types car" class="w-full"></p-select>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col gap-4 mt-10">
-                    <div class="flex flex-wrap gap-2">
-                        <p-select id="state" [(ngModel)]="addOrUpdateValue.engineType" [options]="dropdownItemsEngine" optionLabel="name" placeholder="engines" class="w-full"></p-select>
-                    </div>
-                </div>
-                <div class="flex flex-col gap-4 mt-10">
-                    
-                    <div class="flex flex-wrap gap-6">
-                        <div class="flex flex-col grow basis-0 gap-2">
-                            <p-select id="state" [(ngModel)]="addOrUpdateValue.sizeType" [options]="dropdownItemsSize" optionLabel="name" placeholder="size" class="w-full"></p-select>
-                        </div>
-                        <div class="flex flex-col grow basis-0 gap-2">
-                            <p-select id="state" [(ngModel)]="addOrUpdateValue.weigthType" [options]="dropdownItemsWeigth" optionLabel="name" placeholder="weigth" class="w-full"></p-select>
-                        </div>
-                       
-                    </div>
-                </div>
-                <div class="flex flex-wrap items-start gap-6">
-                    <p-button class="mt-5" label="validate" [fluid]="false" ></p-button>
-                </div>
-           
+            <div class="flex flex-wrap items-start gap-6">
+                <p-button class="mt-5" label="validate" [fluid]="false" (onClick)="onsearche()" ></p-button>
+                <p-button class="mt-5" label="reload" [fluid]="false" (onClick)="loadData()" ></p-button>
+
+            </div>
             <div class="flex justify-center md:justify-end">
                 <img src="http://res.cloudinary.com/dcufspbrh/image/upload/v1742402504/gdbnycrf0cjq7gmu2don.jpg" alt="Hero Image" class="w-9/12 md:w-auto" />
             </div>
         </div>
     </div>
 </p-fluid>
+

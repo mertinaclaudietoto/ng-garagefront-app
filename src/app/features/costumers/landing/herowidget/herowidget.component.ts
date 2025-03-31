@@ -16,6 +16,7 @@ import { ServiceCarPriceComponent } from "../service-car-price/service-car-price
 import { ServicepriceService } from '../../services/serviceprice.service';
 import { ToolbarModule } from 'primeng/toolbar';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
+import { serviceCar, ServicesCarService } from '../../../manager/services-car/serice/services-car.service';
 @Component({
   selector: 'app-herowidget',
   imports: [ PaginatorModule,ToolbarModule,InputTextModule, SplitterModule, SelectModule, ButtonModule, FormsModule, RippleModule, FluidModule, CommonModule, ImageModule, ServiceCarPriceComponent],
@@ -23,50 +24,32 @@ import { PaginatorModule, PaginatorState } from 'primeng/paginator';
   styleUrl: './herowidget.component.scss'
 })
 export class HerowidgetComponent implements OnInit {
-  dropdownItemsCarTypes :any=[];
-  dropdownItemsEngine :any=[];
-  dropdownItemsSize :any=[];
-  dropdownItemsWeigth :any=[];
-  dropdownItemsServices :any=[];
-  addOrUpdateValue:Car =new Car();
-  servicepriceListe:ServicePrice[]=[];
+  brandandmodel:string|null=null;
+  servicepriceListe:serviceCar[]=[];
   skip:number=0;
   limit:number=6;
   rows:number=0;
   keysearch: { [key: string]: string } = {
     service:""
   };
-
-  constructor(private carService: CarService,private servicepriceService: ServicepriceService) {
+  constructor(private serviceCarService:ServicesCarService) {
   }
   ngOnInit() {
-      this.servicepriceService.getRows().subscribe(value=>{
-        this.rows=value;});
+      this.serviceCarService.getRows().subscribe(value=>{
+      this.rows=value;});
       this.loadData();
-      this.carService.getCarType("cartypes").subscribe(table=>{
-        this.dropdownItemsCarTypes = table?.map(value=>({name:value.name,_id:value._id}))
-      } );
-      this.carService.getCarType("sizes").subscribe(table=> {
-        this.dropdownItemsSize = table?.map(value=>({name:value.name,_id:value._id}))
-      });
-      this.carService.getCarType("engines").subscribe(table=> {
-        this.dropdownItemsEngine = table?.map(value=>({name:value.name,_id:value._id}))
-      });
-      this.carService.getCarType("weigths").subscribe(table=> {
-        this.dropdownItemsWeigth = table?.map(value=>({name:value.name,_id:value._id}))
-      });
-      this.carService.getCarType("services").subscribe(table=> {
-        this.dropdownItemsServices = table?.map(value=>({name:value.name,_id:value._id}))
-      })
   }  
   loadData() {
-    this.servicepriceService.getServicePricePagination(this.skip,this.limit).subscribe(table=> this.servicepriceListe=table);
+    this.serviceCarService.getAll(this.skip,this.limit).subscribe(table=> this.servicepriceListe=table);
   }
   onPageChange(event: PaginatorState) {
       this.skip = event.first ?? 0;
       this.limit = event.rows ?? 10;
       this.loadData();
   }
-  
+  onsearche(){
+    this.serviceCarService.getBrandModel(this.brandandmodel).subscribe(table=> this.servicepriceListe=table);
+  }
+ 
 
 }

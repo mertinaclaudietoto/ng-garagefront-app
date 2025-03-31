@@ -3,7 +3,6 @@ import { Routes } from '@angular/router';
 import { LayoutappComponent } from './app/layout/layoutapp/layoutapp.component';
 import { Notfound } from './app/features/notfound/notfound';
 import { CarFormComponent } from './app/features/costumers/car-form/car-form.component';
-
 import { CarTypeComponent } from './app/features/carType/components/car-type/car-type.component';
 import { CarSizeComponent } from './app/features/carSize/components/car-size/car-size.component';
 import { CarEngineComponent } from './app/features/carEngine/components/car-engine/car-engine.component';
@@ -25,17 +24,19 @@ import { EmpComponent } from './app/features/employee/emp/emp.component';
 
 import { authGuard } from './app/auth/guard/auth.guard';
 import { roleManagerGuard } from './app/auth/guard/role-manager.guard';
+import { ServicesCarComponent } from './app/features/manager/services-car/services-car.component';
 export const appRoutes: Routes = [
     {
         path: '',
         component: LayoutappComponent,
         children: [
-            { path: '', component: CarFormComponent },
+            { path: '', component: ServicesCarComponent },
             {
                 path: 'manager', 
                 canActivate: [authGuard,roleManagerGuard],
                 children: [
                     { path: 'dashboard', component: DashboardComponent },
+                    { path: 'service-garage', component: ServicesCarComponent },
                     { path: 'car-type', component: CarTypeComponent },
                     { path: 'car-size', component: CarSizeComponent },
                     { path: 'car-engine', component: CarEngineComponent },

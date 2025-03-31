@@ -8,6 +8,7 @@ export const DATAMENU: MenuItem[] = [
     {
         label: 'Services',
         items: [
+            { label: 'Services', icon: 'pi pi-fw pi-table', routerLink: ['/manager/service-garage'] },
             { label: 'Employee', icon: 'pi pi-fw pi-table', routerLink: ['/employee'] },
             { label: 'Services', icon: 'pi pi-fw pi-database', routerLink: ['/services'] },
             {
