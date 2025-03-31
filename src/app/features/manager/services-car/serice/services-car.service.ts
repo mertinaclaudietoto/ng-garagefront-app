@@ -9,7 +9,7 @@ export interface serviceCar {
   picture: string;
   brandandmodel: string;
   servicelist: { 
-    idservice: string; 
+    idservice:{_id:number|string,name:string}; 
     price: number; 
     time: number; 
   }[];
@@ -22,6 +22,21 @@ export class ServicesCarService {
 private apiUrl = environement.apiUrl;
   constructor(private http: HttpClient) {}
   
+    getRows(): Observable<number> {
+      return this.http.get<number>(
+        `${this.apiUrl}servicecars/rows`, 
+      );
+    } 
+
+    getBrandModel(brandandmodel: string|null): Observable<serviceCar[]> {
+      const token = localStorage.getItem('token');
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+      return this.http.get<serviceCar[]>(
+        `${this.apiUrl}servicecars/search/?brandandmodel=${brandandmodel}`, 
+        { headers }
+      );
+    } 
+
     getAll(skip: number, limit: number): Observable<serviceCar[]> {
       const token = localStorage.getItem('token');
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
@@ -30,6 +45,7 @@ private apiUrl = environement.apiUrl;
         { headers }
       );
     }  
+
     modifOrAdd(value:serviceCar) :Observable<serviceCar>{
       const token = localStorage.getItem('token'); 
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); 

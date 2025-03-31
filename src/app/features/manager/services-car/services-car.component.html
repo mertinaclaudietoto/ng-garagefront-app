@@ -84,13 +84,13 @@
                                             <p-select  id="state" [(ngModel)]="product.idservice" [options]="dropdownItemsService" optionLabel="name" [placeholder]="product.idservice.name" ></p-select>
                                         </td>
                                         <td>
-                                            <input pInputText type="text" [(ngModel)]="product.price">
+                                            <input pInputText type="number" [(ngModel)]="product.price">
                                         </td> 
                                         <td>
                                             <input pInputText type="number" [(ngModel)]="product.time">
                                         </td> 
                                         <td>
-                                            <p-button icon="pi pi-trash" severity="danger" outlined (onClick)="removeRow(product.idservice)"/>
+                                            <p-button icon="pi pi-trash" severity="danger" outlined (onClick)="removeRow(product.idservice._id)"/>
                                         </td>         
                                     </tr>
                                 </ng-template>

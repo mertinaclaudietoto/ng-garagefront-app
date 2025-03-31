@@ -49,7 +49,7 @@ export class ServicesCarComponent {
     brandandmodel: '',
     servicelist: [
       {
-        idservice: '',
+        idservice:{_id:0,name:''},
         price: 0,
         time: 0
       }
@@ -61,7 +61,7 @@ export class ServicesCarComponent {
     brandandmodel: '',
     servicelist: [
       {
-        idservice: '',
+        idservice:{_id:0,name:''},
         price: 0,
         time: 0
       }
@@ -138,12 +138,12 @@ export class ServicesCarComponent {
   }
   
   addRow() {
-    this.addOrUpdateValue.servicelist.push({ idservice: '', price: 0,time:0 });
+    this.addOrUpdateValue.servicelist.push({ idservice: {_id:0,name:''}, price: 0,time:0 });
   }
 
   removeRow(index: string) {
     console.log(index);
-    this.addOrUpdateValue.servicelist = this.addOrUpdateValue.servicelist.filter(value => value.idservice !== index || value.idservice !== '' );
+    this.addOrUpdateValue.servicelist = this.addOrUpdateValue.servicelist.filter(value => value.idservice._id !== index || value.idservice._id !== '' );
   }
   // 0dfab175c8b1c1355b90c1ef0679acb2
   ngOnDestroy() {
