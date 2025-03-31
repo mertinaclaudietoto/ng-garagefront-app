@@ -1,0 +1,66 @@
+
+<div   class="flex flex-col md:flex-row w-full ">
+    <div *ngIf="servicelist" class="card flex flex-col  w-full">
+        <div class="font-semibold text-xl">Historique Services</div>
+        <p-table 
+            [value]="servicelist" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template #header>
+                <tr>
+                    <th id="name">Picture</th>
+                    <th id="name">Marque model et version</th>
+                    <th id="name">Mécanicien</th>
+                    <th id="name">Nom service</th>
+                    <th id="name">Prix</th>
+                    <th id="name">Heure</th>
+                    <th id="name">Satisfaction</th>
+                    <th id="name">Payer</th>
+                </tr>
+            </ng-template>
+            <ng-template #body let-product let-rowIndex="rowIndex">
+                <ng-container *ngFor="let item of product.serviceList;let i = index;">
+                    <tr>
+                        <td>
+                            <img [src]="item.picture" alt={{item.brandandmodel}}  class="flag flag-" width="30" />
+                        </td>
+                        <td>{{ item.brandandmodel }}</td> 
+                        <td>{{ item.service.idmechanic?.name }}</td>                   
+                        <td>{{ item.service.idservice.name }}</td>                   
+                        <td>{{ item.service.price }} Ar</td>                   
+                        <td>{{ item.service.time }}</td> 
+                        <td>
+                            <p-button icon="pi pi-star-fill text-yellow-500" severity="info" outlined (onClick)="open(product,i)">
+                                <span class="text-surface-900 font-medium text-sm">{{ item.nbrstars}}</span>
+                            </p-button> 
+                        </td> 
+                        <td>                                            
+                            <p-button icon="pi pi-credit-card"  styleClass="flex-auto md:flex-initial whitespace-nowrap"></p-button>
+                        </td>                  
+                        <td> 
+                        
+                    </tr>
+                    <p-dialog header="Avis" [(visible)]="display" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '30vw' }" [modal]="true">
+                        <p class="leading-normal m-0 justify-center items-center">
+                            Votre avis sur ce service et ce mécanicien  
+                        </p>
+                        <div class="flex flex-col gap-4 mt-10">
+                            <div class="flex flex-wrap gap-2">
+                                <label for="username"></label>
+                                <input *ngIf="this.modifivalue"  pInputText id="email2" type="text" [(ngModel)]="this.modifivalue.serviceList[this.index].nbrstars" />
+                            </div>
+                        </div>
+                       
+                        <ng-template #footer>
+                            <p-button label="Do"severity="success" (onClick)="close()" />
+                        </ng-template>
+                    </p-dialog> 
+                </ng-container>
+            </ng-template>
+        </p-table>
+                         
+        
+        <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="120" [rowsPerPageOptions]="[10, 20, 30]" />
+         
+    </div>
+</div>
+
+

@@ -25,6 +25,10 @@ import { EmpComponent } from './app/features/employee/emp/emp.component';
 import { authGuard } from './app/auth/guard/auth.guard';
 import { roleManagerGuard } from './app/auth/guard/role-manager.guard';
 import { ServicesCarComponent } from './app/features/manager/services-car/services-car.component';
+import { ServiceviewComponent } from './app/features/costumers/serviceview/serviceview.component';
+import { roleCostumerGuard } from './app/auth/guard/role-costumer.guard';
+import { PanierviewComponent } from './app/features/costumers/panierview/panierview.component';
+import { HistoriqueComponent } from './app/features/costumers/historique/historique.component';
 export const appRoutes: Routes = [
     {
         path: '',
@@ -41,6 +45,16 @@ export const appRoutes: Routes = [
                     { path: 'car-size', component: CarSizeComponent },
                     { path: 'car-engine', component: CarEngineComponent },
                     { path: 'car-weight', component: CarWeightComponent },
+                ]
+            },
+            {
+                path: 'client', 
+                canActivate: [authGuard,roleCostumerGuard],
+                children: [
+                    {path: '',component: LandingComponent},
+                    { path: 'service-view', component: ServiceviewComponent },
+                    { path: 'panier-view', component: PanierviewComponent },
+                    { path: 'historique-view', component: HistoriqueComponent },
                 ]
             },
             {
@@ -62,13 +76,6 @@ export const appRoutes: Routes = [
             { path: 'employee', data: { breadcrumb: 'Menu' }, component: EmpComponent },
         ]
     },
-    {
-        path: 'client',
-        component: LandingComponent,
-    },
-    { path: 'client/cars-client', component: CarClientsComponent },
-    { path: 'client/progress-service', component: ProgressSrComponent },
-    { path: 'client/det-services', component: DetServiceComponent },
     {
         path: 'auth',
         children: [

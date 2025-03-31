@@ -1,0 +1,48 @@
+
+    <div   class="flex flex-col md:flex-row w-full ">
+        <div *ngIf="servicelist" class="card flex flex-col  w-full">
+            <div class="font-semibold text-xl">List Panier</div>
+            <p-table 
+                [value]="servicelist" [tableStyle]="{ 'min-width': '50rem' }">
+                <ng-template #header>
+                    <tr>
+                        <th id="name">Picture</th>
+                        <th id="name">Marque model et version</th>
+                        <th id="name">Nom service</th>
+                        <th id="name">Prix</th>
+                        <th id="name">Heure</th>
+                        <th id="name">Delete</th>
+                    </tr>
+                </ng-template>
+                <ng-template #body let-product let-rowIndex="rowIndex">
+                    <tr>
+                        <td>
+                            <img [src]="product.picture" alt={{product.brandandmodel}}  class="flag flag-" width="30" />
+                        </td>
+                        <td>{{ product.brandandmodel }}</td> 
+                        <td>{{ product.service.idservice.name }} Ar</td>                   
+                        <td>{{ product.service.price }} Ar</td>                   
+                        <td>{{ product.service.time }}</td>                   
+                        <td><p-button icon="pi pi-trash" severity="danger" outlined (onClick)="open(product.service.idservice._id+product.idcar)"/></td>                   
+                    </tr>
+                    
+                </ng-template>
+                
+            </p-table>
+                             
+            <p-button label="Valider demande service" (onClick)="savePanier()" severity="info" />
+           
+            <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="120" [rowsPerPageOptions]="[10, 20, 30]" />
+            <p-dialog header="Alert" [(visible)]="display" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '30vw' }" [modal]="true">
+                <p class="leading-normal m-0 justify-center items-center">
+                    Do you really want to delete this services? This action is irreversible. 
+                </p>
+                  
+                <ng-template #footer>
+                    <p-button label="Yes"severity="danger" (onClick)="close()" />
+                </ng-template>
+            </p-dialog>  
+        </div>
+    </div>
+
+

@@ -4,15 +4,16 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { environement } from '../../../../../environement/environement';
 import { Observable } from 'rxjs';
 
+export interface serviceprice {
+  idservice:{_id:number|string,name:string}; 
+  price: number; 
+  time: number; 
+}
 export interface serviceCar {
   _id: string|null;
   picture: string;
   brandandmodel: string;
-  servicelist: { 
-    idservice:{_id:number|string,name:string}; 
-    price: number; 
-    time: number; 
-  }[];
+  servicelist: serviceprice[];
 }
 
 @Injectable({
