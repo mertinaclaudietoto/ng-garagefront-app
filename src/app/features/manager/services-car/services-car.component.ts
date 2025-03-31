@@ -149,8 +149,6 @@ export class ServicesCarComponent {
   ngOnDestroy() {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
- 
-
     onPageChange(event: PaginatorState) {
         this.first = event.first ?? 0;
         this.rows = event.rows ?? 10;

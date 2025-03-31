@@ -34,8 +34,12 @@ export class LoginComponent {
         localStorage.setItem('image', response.picture);
         localStorage.setItem('iduser', response.iduser);
         localStorage.setItem('idrule', response.idrule);
+        localStorage.setItem('panier', JSON.stringify([]));
+        localStorage.setItem('panierlist', JSON.stringify([]));
+
+
         if(response.idrule==roles.costumer){
-          this.router.navigate(['/client/cars-client']);
+          this.router.navigate(['/client/service-view']);
         }
         else if(response.idrule==roles.manager){
           this.router.navigate(['/manager/dashboard']);
