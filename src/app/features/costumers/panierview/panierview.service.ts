@@ -30,4 +30,14 @@ export class PanierviewService {
     }
     return new Observable<detserviceClient>();
   }
+
+  updateFacture(value:detserviceClient|null):Observable<detserviceClient> {
+    const token = localStorage.getItem('token'); 
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); 
+    if(value!=null){
+      return this.http.put<detserviceClient>(this.apiUrl+'servicecostumers/facture/'+value._id,value, { headers });
+    }
+    return new Observable<detserviceClient>();
+  }
+
 }

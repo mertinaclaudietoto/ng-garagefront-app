@@ -35,7 +35,7 @@ export interface serviceList {
 export interface detserviceClient {
   _id:string|null,
   idcostumer:string|null,
-  etats:number,
+  etats:number|0,
   serviceList:Partial<{
     idmechanic: {
       _id:string|null,

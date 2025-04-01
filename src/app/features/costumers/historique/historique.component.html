@@ -1,5 +1,5 @@
 
-<div   class="flex flex-col md:flex-row w-full ">
+<div  class="flex flex-col md:flex-row w-full ">
     <div *ngIf="servicelist" class="card flex flex-col  w-full">
         <div class="font-semibold text-xl">Historique Services</div>
         <p-table 
@@ -33,7 +33,7 @@
                             </p-button> 
                         </td> 
                         <td>                                            
-                            <p-button icon="pi pi-credit-card"  styleClass="flex-auto md:flex-initial whitespace-nowrap"></p-button>
+                            <p-button icon="pi pi-credit-card" [severity]="getColorInvoinceButon(product.etats)"  styleClass="flex-auto md:flex-initial whitespace-nowrap" (onClick)="getColorInvoinceFunct(product)"></p-button>
                         </td>                  
                         <td> 
                         
@@ -53,6 +53,50 @@
                             <p-button label="Do"severity="success" (onClick)="close()" />
                         </ng-template>
                     </p-dialog> 
+                    <!-- payement facture -->
+                    <p-dialog header="Payement Facture" [(visible)]="displaypaiement" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '30vw' }" [modal]="true">
+                        <div class="flex flex-col gap-2 mb-2">
+                            <label for="email1">Person Name</label>
+                            <input pInputText id="email1" type="text" required [(ngModel)]="infopayement.name"  #name="ngModel"/>
+                            <div [hidden]="name.valid || name.pristine"
+                                class="card-panel red accent-1">
+                                Le nom du personne du cart et requise.
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2 mb-2">
+                            <label for="age1">Card Number</label>
+                            <input pInputText id="age1" type="text" pattern="^[0-9]{1,25}$" required [(ngModel)]="infopayement.numbercard"  #numbercard="ngModel" maxlength="16" minlength="16"/>
+                            <div [hidden]="numbercard.valid || numbercard.pristine"
+                                class="card-panel red accent-1">
+                                La taille du numéro de carte devrait être 16
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-6 mb-2">
+                            <div class="flex flex-col grow basis-0 gap-2">
+                                <label for="name2">Expiry</label>
+                                <input pInputText id="name2" type="text" required [(ngModel)]="infopayement.expiry"  #expiry="ngModel" maxlength="5" minlength="5"/>
+                                <div [hidden]="expiry.valid || expiry.pristine"
+                                    class="card-panel red accent-1">
+                                    format du expriry MM/YY
+                                </div>
+                            </div>
+                            <div class="flex flex-col grow basis-0 gap-2 mb-2">
+                                <label for="email2">CVV/CVC</label>
+                                <input pInputText id="email2" type="text" pattern="^[0-9]{1,25}$"  required [(ngModel)]="infopayement.cvv"  #cvv="ngModel" maxlength="3" minlength="3"/>
+                                <div [hidden]="cvv.valid || cvv.pristine"
+                                    class="card-panel red accent-1">
+                                    Taille du chiffre 3
+                                </div>
+                            </div>
+                        </div>
+                        <div class="font-semibold text-xl">Paiement de la facture de somme de {{getTotalInvoice() |formatnumberpipe}} Ar</div>
+                       
+                        <ng-template #footer>
+                            <p-button label="Payer"severity="success" (onClick)="closeInvoice()" />
+                        </ng-template>
+                          
+                    </p-dialog> 
+
                 </ng-container>
             </ng-template>
         </p-table>
