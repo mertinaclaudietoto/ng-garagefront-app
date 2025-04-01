@@ -29,6 +29,7 @@ import { ServiceviewComponent } from './app/features/costumers/serviceview/servi
 import { roleCostumerGuard } from './app/auth/guard/role-costumer.guard';
 import { PanierviewComponent } from './app/features/costumers/panierview/panierview.component';
 import { HistoriqueComponent } from './app/features/costumers/historique/historique.component';
+import { EmployeeFormComponent } from './app/features/employee/employee-form/employee-form.component';
 export const appRoutes: Routes = [
     {
         path: '',
@@ -36,8 +37,8 @@ export const appRoutes: Routes = [
         children: [
             { path: '', component: ServicesCarComponent },
             {
-                path: 'manager', 
-                canActivate: [authGuard,roleManagerGuard],
+                path: 'manager',
+                canActivate: [authGuard, roleManagerGuard],
                 children: [
                     { path: 'dashboard', component: DashboardComponent },
                     { path: 'service-garage', component: ServicesCarComponent },
@@ -48,10 +49,10 @@ export const appRoutes: Routes = [
                 ]
             },
             {
-                path: 'client', 
-                canActivate: [authGuard,roleCostumerGuard],
+                path: 'client',
+                canActivate: [authGuard, roleCostumerGuard],
                 children: [
-                    {path: '',component: LandingComponent},
+                    { path: '', component: LandingComponent },
                     { path: 'service-view', component: ServiceviewComponent },
                     { path: 'panier-view', component: PanierviewComponent },
                     { path: 'historique-view', component: HistoriqueComponent },
@@ -73,7 +74,14 @@ export const appRoutes: Routes = [
                     { path: 'satisfaction-customer-mechanic', component: SatisfactionComponent },
                 ]
             },
-            { path: 'employee', data: { breadcrumb: 'Menu' }, component: EmpComponent },
+            {
+                path: 'employee',
+                children: [
+                    { path: '', component: EmpComponent },
+                    { path: 'form', component: EmployeeFormComponent },
+                    { path: 'edit/:id', component: EmployeeFormComponent }
+                ]
+            },
         ]
     },
     {

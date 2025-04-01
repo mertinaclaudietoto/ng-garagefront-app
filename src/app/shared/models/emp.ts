@@ -15,8 +15,8 @@ export class Emp{
     constructor(
         picture: string = "default.jpg",
         id: string | undefined = undefined, 
-        name: string = "John",
-        firstName: string = "Doe",
+        name: string = "",
+        firstName: string = "",
         dateofbirth: Date = new Date("2000-01-01"),
         dateofemp: Date = new Date(),
         skills: IdName[] = [],
