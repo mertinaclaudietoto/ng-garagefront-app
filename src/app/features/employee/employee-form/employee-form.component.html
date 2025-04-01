@@ -1,0 +1,111 @@
+<div class="card flex flex-col gap-4">
+  <div class="flex flex-wrap gap-6">
+    <div class="flex flex-col grow basis-0 gap-2">
+      <p-image
+        *ngIf="employeId"
+        [src]="addOrUpdateValue.picture"
+        alt="Image"
+        width="250"
+      />
+    </div>
+    <div class="flex flex-col grow basis-0 gap-2">
+      <label for="email2">Photo</label>
+      <input
+        pInputText
+        id="email2"
+        type="file"
+        (change)="onFileSelected($event)"
+      />
+      <label for="email2">Nom</label>
+      <input
+        pInputText
+        id="email2"
+        type="text"
+        [(ngModel)]="addOrUpdateValue.name"
+      />
+      <label for="email2">Prénoms</label>
+      <input
+        pInputText
+        id="email2"
+        type="text"
+        [(ngModel)]="addOrUpdateValue.firstName"
+      />
+    </div>
+  </div>
+  <div class="flex flex-wrap gap-4">
+    <div class="flex flex-col grow basis-0 gap-2">
+      <label for="name2">Date de naissance</label>
+      <input
+        pInputText
+        id="date"
+        type="date"
+        [(ngModel)]="addOrUpdateValue.dateofbirth"
+      />
+    </div>
+    <div class="flex flex-col grow basis-0 gap-2">
+      <label for="email2">Date d'embauche</label>
+      <input
+        pInputText
+        id="email2"
+        type="date"
+        [(ngModel)]="addOrUpdateValue.dateofemp"
+      />
+    </div>
+    <div class="flex flex-col grow basis-0 gap-2">
+      <label for="name2">Poste</label>
+      <p-select
+        id="state"
+        [(ngModel)]="addOrUpdateValue.rule"
+        [options]="dropdownItems"
+        optionLabel="name"
+        placeholder="Select One"
+        class="w-full"
+      ></p-select>
+    </div>
+  </div>
+  <div class="flex flex-col gap-4">
+    <div class="flex flex-wrap gap-4">
+      <div class="flex flex-col grow basis-0 gap-2">
+        <label for="name2">Genre</label>
+        <p-select
+        id="state"
+        [(ngModel)]="addOrUpdateValue.sex"
+        [options]="dropdownSex"
+        optionLabel="name"
+        placeholder="Select One"
+        class="w-full"
+      ></p-select>
+      </div>
+      <div *ngIf="!employeId" class="flex flex-col grow basis-0 gap-2">
+        <label for="name2">E-mail</label>
+        <input
+          pInputText
+          id="date"
+          type="text"
+          [(ngModel)]="addOrUpdateValue.login"
+        />
+      </div>
+      <div *ngIf="!employeId" class="flex flex-col grow basis-0 gap-2">
+        <label for="email2">Mot de passe</label>
+        <input
+          pInputText
+          id="email2"
+          type="text"
+          [(ngModel)]="addOrUpdateValue.password"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-wrap items-end gap-5 mt-2">
+    <p-button
+      label="Retour"
+      severity="secondary"
+      (onClick)="cancelToList()"
+    ></p-button>
+    <p-button
+      label="Enregistrer"
+      (onClick)="modifOrAdd(addOrUpdateValue)"
+    ></p-button>
+  </div>
+</div>
+<app-message></app-message>
