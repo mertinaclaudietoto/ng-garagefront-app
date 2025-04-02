@@ -27,7 +27,7 @@ import { IMAGESDEFAULTS } from '../../costumers/dataimage';
 
 import {fill} from "@cloudinary/url-gen/actions/resize";
 import {Cloudinary, CloudinaryImage} from '@cloudinary/url-gen';
-import { serviceCar, ServicesCarService } from './serice/services-car.service';
+import { serviceCar, ServicesCarService } from './services/services-car.service';
 import { IdName } from '../../../shared/models/car-type';
 import { Subscription } from 'rxjs';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';

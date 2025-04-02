@@ -5,7 +5,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ServicePrice } from '../../../../shared/models/servicePrice';
 import { ButtonModule } from 'primeng/button';
 import { FormatnumberpipePipe } from '../../../../shared/pipe/formatnumber/formatnumberpipe.pipe';
-import { serviceCar } from '../../../manager/services-car/serice/services-car.service';
+import { serviceCar } from '../../../manager/services-car/services/services-car.service';
 import { CommonModule } from '@angular/common';
 
 

@@ -17,6 +17,7 @@ export class CarService {
   getCar():Observable<Car[]> {
     return this.http.get<Car[]>(this.apiUrl+'cars');
   }
+  
   modifOrAddCar(value:Car) :Observable<Car>{
     if(value._id!=undefined){
       return this.http.put<Car>(`${this.apiUrl}${'cars'}/${encodeURIComponent(value._id)}`, value,{headers})
@@ -44,6 +45,7 @@ export class CarService {
       return this.http.post<IdName>(this.apiUrl+indexd,value) ;
     }
   }
+
   deleteCarType(indexd:string,value:IdName):Observable<void>{
     return this.http.delete<void>(this.apiUrl+indexd+"/"+value._id) ;
   }

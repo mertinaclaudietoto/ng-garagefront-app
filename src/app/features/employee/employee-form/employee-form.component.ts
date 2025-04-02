@@ -18,7 +18,8 @@ import { FluidModule } from 'primeng/fluid';
 import { InputTextModule } from 'primeng/inputtext';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
-import { SexService } from '../../../shared/service/sex.service';
+import { SexService } from '../../../shared/services/sex.service';
+import { IMAGESDEFAULTS } from '../../costumers/dataimage';
 
 @Component({
   selector: 'app-employee-form',
@@ -58,6 +59,7 @@ export class EmployeeFormComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private sexService: SexService
   ) {
+    this.addOrUpdateValue.picture = IMAGESDEFAULTS["photo"];
     this.routeSub = this.route.params.subscribe(params => {
       this.employeId = params['id'];
       if (this.employeId) {

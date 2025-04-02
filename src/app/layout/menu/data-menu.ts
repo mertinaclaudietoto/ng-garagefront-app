@@ -1,6 +1,7 @@
 import { MenuItem } from 'primeng/api';
 import { roles } from '../../auth/guard/RULE';
 import { BehaviorSubject } from 'rxjs';
+
 function getMenu(): MenuItem[] {
     const menuManager = [
         {
@@ -8,19 +9,17 @@ function getMenu(): MenuItem[] {
             items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/manager/dashboard'] }]
         },
         {
-            label: 'Services',
+            label: 'Manager',
             items: [
                 { label: 'Services', icon: 'pi pi-fw pi-table', routerLink: ['/manager/service-garage'] },
                 { label: 'Employee', icon: 'pi pi-fw pi-table', routerLink: ['/employee'] },
                 { label: 'Services', icon: 'pi pi-fw pi-database', routerLink: ['/services'] },
                 {
-                    label: 'Paramètres',
+                    label: 'Services',
                     icon: 'pi pi-fw pi-cog',
                     items: [
-                        { label: 'Taille', icon: 'pi pi-fw pi-sign-in', routerLink: ['/car-size'] },
-                        { label: 'Moteur', icon: 'pi pi-fw pi-times-circle', routerLink: ['/car-engine'] },
-                        { label: 'Type', icon: 'pi pi-fw pi-lock', routerLink: ['/car-type'] },
-                        { label: 'Poids', icon: 'pi pi-fw pi-lock', routerLink: ['/car-weight'] }
+                        { label: 'Type service', icon: 'pi pi-fw pi-sign-in', routerLink: ['/manager/type-service'] },
+                        { label: 'Service', icon: 'pi pi-fw pi-times-circle', routerLink: ['/manager/service-garage'] }
                     ]
                 }
             ]
@@ -36,16 +35,16 @@ function getMenu(): MenuItem[] {
     ];
     const panierSubject = new BehaviorSubject<number>(
         (JSON.parse(localStorage.getItem('panierlist') || '[]') as any[]).length
-      );
-    let panierclient= 'Panier ' ;
+    );
+    let panierclient = 'Panier ';
     panierSubject.asObservable().subscribe(count => {
-        panierclient='Panier '+count ;
+        panierclient = 'Panier ' + count;
         console.log('Panier mis à jour, nombre d\'éléments :', count);
     });
-    
+
     console.log((JSON.parse(localStorage.getItem('panierlist') || '[]') as any[]).length);
-    
-    
+
+
     const menuCustomer = [
         {
             label: 'Home',
@@ -53,11 +52,11 @@ function getMenu(): MenuItem[] {
         },
         {
             label: 'Service',
-            items: [{ label:panierclient, icon: 'pi pi-shopping-cart', routerLink: ['/client/service-view'] }]
+            items: [{ label: panierclient, icon: 'pi pi-shopping-cart', routerLink: ['/client/service-view'] }]
         },
-        
-    ]; 
-    const menuMechanic = [...menuManager]; 
+
+    ];
+    const menuMechanic = [...menuManager];
     const userRole = localStorage.getItem("idrule");
     if (userRole === roles.manager) {
         return menuManager;
@@ -66,7 +65,7 @@ function getMenu(): MenuItem[] {
     } else if (userRole === roles.mechanic) {
         return menuMechanic;
     } else {
-        return []; 
+        return [];
     }
 }
 
