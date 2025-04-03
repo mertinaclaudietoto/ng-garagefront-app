@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { StatswidgetComponent } from "../statswidget/statswidget.component";
 import { CommonModule } from '@angular/common';
 import { ServiceClient } from '../../../../shared/models/servicesclient';
-import { ServicesClientService } from '../../../../shared/service/services-client.service';
+import { ServicesClientService } from '../../../../shared/services/services-client.service';
 
 import { TableModule } from 'primeng/table';
 import { Emp } from '../../../../shared/models/emp';

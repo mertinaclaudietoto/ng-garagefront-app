@@ -16,7 +16,7 @@ import { ServiceCarPriceComponent } from "../service-car-price/service-car-price
 import { ServicepriceService } from '../../services/serviceprice.service';
 import { ToolbarModule } from 'primeng/toolbar';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
-import { serviceCar, ServicesCarService } from '../../../manager/services-car/serice/services-car.service';
+import { serviceCar, ServicesCarService } from '../../../manager/services-car/services/services-car.service';
 @Component({
   selector: 'app-herowidget',
   imports: [ PaginatorModule,ToolbarModule,InputTextModule, SplitterModule, SelectModule, ButtonModule, FormsModule, RippleModule, FluidModule, CommonModule, ImageModule, ServiceCarPriceComponent],
