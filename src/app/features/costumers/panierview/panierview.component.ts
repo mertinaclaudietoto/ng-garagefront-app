@@ -1,3 +1,4 @@
+import { FormatnumberpipePipe } from './../../../shared/pipe/formatnumber/formatnumberpipe.pipe';
 import { Component } from '@angular/core';
 import { FluidModule } from 'primeng/fluid';
 import { InputTextModule } from 'primeng/inputtext';
@@ -20,10 +21,12 @@ import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { detserviceClient } from '../serviceview/serviceview.component';
 import { ServiceviewService } from '../serviceview.service';
 import { PanierviewService } from './panierview.service';
+// import { IonIcon } from "@ionic/angular/standalone";
+
 
 @Component({
   selector: 'app-panierview',
-  imports: [InputTextModule, FluidModule, ButtonModule, SelectModule, FormsModule, TextareaModule, CarouselModule, ButtonModule, GalleriaModule, ImageModule, TagModule, IconFieldModule, InputIconModule, ToolbarModule, SplitButtonModule, TableModule, DialogModule, PaginatorModule],
+  imports: [ InputTextModule, FluidModule, ButtonModule, SelectModule, FormsModule, TextareaModule, CarouselModule, ButtonModule, GalleriaModule, ImageModule, TagModule, IconFieldModule, InputIconModule, ToolbarModule, SplitButtonModule, TableModule, DialogModule, PaginatorModule,FormatnumberpipePipe],
 
   templateUrl: './panierview.component.html',
   styleUrl: './panierview.component.scss'

@@ -6,8 +6,8 @@
                 [value]="servicelist" [tableStyle]="{ 'min-width': '50rem' }">
                 <ng-template #header>
                     <tr>
-                        <th id="name">Picture</th>
-                        <th id="name">Marque model et version</th>
+                        <th id="name">Image</th>
+                        <th id="name"> Marque model et version</th>
                         <th id="name">Nom service</th>
                         <th id="name">Prix</th>
                         <th id="name">Heure</th>
@@ -21,7 +21,7 @@
                         </td>
                         <td>{{ product.brandandmodel }}</td> 
                         <td>{{ product.service.idservice.name }} Ar</td>                   
-                        <td>{{ product.service.price }} Ar</td>                   
+                        <td>{{ product.service.price | formatnumberpipe}} Ar</td>                   
                         <td>{{ product.service.time }}</td>                   
                         <td><p-button icon="pi pi-trash" severity="danger" outlined (onClick)="open(product.service.idservice._id+product.idcar)"/></td>                   
                     </tr>

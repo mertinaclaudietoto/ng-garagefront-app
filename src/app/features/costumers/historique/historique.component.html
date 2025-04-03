@@ -32,8 +32,9 @@
                                 <span class="text-surface-900 font-medium text-sm">{{ item.nbrstars}}</span>
                             </p-button> 
                         </td> 
-                        <td>                                            
-                            <p-button icon="pi pi-credit-card" [severity]="getColorInvoinceButon(product.etats)"  styleClass="flex-auto md:flex-initial whitespace-nowrap" (onClick)="getColorInvoinceFunct(product)"></p-button>
+                        <td>               
+                            <!-- getColorInvoinceButon(product.etats)                              -->
+                            <p-button icon="pi pi-credit-card" [severity]="'success'"  styleClass="flex-auto md:flex-initial whitespace-nowrap" (onClick)="getColorInvoinceFunct(product)"></p-button>
                         </td>                  
                         <td> 
                         
@@ -56,7 +57,7 @@
                     <!-- payement facture -->
                     <p-dialog header="Payement Facture" [(visible)]="displaypaiement" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '30vw' }" [modal]="true">
                         <div class="flex flex-col gap-2 mb-2">
-                            <label for="email1">Person Name</label>
+                            <label for="email1">Nom du personne</label>
                             <input pInputText id="email1" type="text" required [(ngModel)]="infopayement.name"  #name="ngModel"/>
                             <div [hidden]="name.valid || name.pristine"
                                 class="card-panel red accent-1">
@@ -64,7 +65,7 @@
                             </div>
                         </div>
                         <div class="flex flex-col gap-2 mb-2">
-                            <label for="age1">Card Number</label>
+                            <label for="age1">Numero du carte</label>
                             <input pInputText id="age1" type="text" pattern="^[0-9]{1,25}$" required [(ngModel)]="infopayement.numbercard"  #numbercard="ngModel" maxlength="16" minlength="16"/>
                             <div [hidden]="numbercard.valid || numbercard.pristine"
                                 class="card-panel red accent-1">
@@ -73,7 +74,7 @@
                         </div>
                         <div class="flex flex-wrap gap-6 mb-2">
                             <div class="flex flex-col grow basis-0 gap-2">
-                                <label for="name2">Expiry</label>
+                                <label for="name2">Date d'expiration</label>
                                 <input pInputText id="name2" type="text" required [(ngModel)]="infopayement.expiry"  #expiry="ngModel" maxlength="5" minlength="5"/>
                                 <div [hidden]="expiry.valid || expiry.pristine"
                                     class="card-panel red accent-1">

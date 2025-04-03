@@ -107,9 +107,10 @@ export class HistoriqueComponent {
     return "success";
   }
   getColorInvoinceFunct(modifivalue:detserviceClient){
-    if(modifivalue.etats!=10){
-       this.openInvoice(modifivalue);
-    }
+    this.openInvoice(modifivalue);
+    // if(modifivalue.etats!=10){
+       
+    // }
   }
   
 }

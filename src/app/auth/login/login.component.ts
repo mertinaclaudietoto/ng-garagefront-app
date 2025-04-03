@@ -44,6 +44,12 @@ export class LoginComponent {
         else if(response.idrule==roles.manager){
           this.router.navigate(['/manager/dashboard']);
         }
+        else if(response.idrule==roles.manager){
+          this.router.navigate(['/manager/dashboard']);
+        }else{
+          this.router.navigate(['/mechanic']);
+
+        }
       } ,
       error => console.log('Erreur:',this.column= +error.error.column )
     );                    

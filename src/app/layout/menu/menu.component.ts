@@ -19,41 +19,21 @@ export class MenuComponent implements OnInit {
     getMenu(panier: number): MenuItem[] {
         const menuManager = [
             {
-                label: 'Home',
-                items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/manager/dashboard'] }]
-            },
-            {
                 label: 'Manager',
-                items: [
-                    { label: 'Services', icon: 'pi pi-fw pi-table', routerLink: ['/manager/service-garage'] },
-                    { label: 'Employee', icon: 'pi pi-fw pi-table', routerLink: ['/employee'] },
-                    { label: 'Services', icon: 'pi pi-fw pi-database', routerLink: ['/services'] },
-                    {
-                        label: 'Services',
-                        icon: 'pi pi-fw pi-cog',
-                        items: [
-                            { label: 'Type service', icon: 'pi pi-fw pi-sign-in', routerLink: ['/manager/type-service'] },
-                            { label: 'Service', icon: 'pi pi-fw pi-times-circle', routerLink: ['/manager/service-garage'] }
-                        ]
-                    }
-                ]
+                items: [{ label: 'Dashboard', icon: '', routerLink: ['/manager/dashboard'] }]
             },
-            {
-                label: 'Mécanicien',
-                items: [
-                    { label: 'Tâches', icon: 'pi pi-fw pi-table', routerLink: ['/mechanic/'] },
-                    { label: 'Agenda', icon: 'pi pi-fw pi-database', routerLink: ['/mechanic/agenda-mechanic'] },
-                    { label: 'Statistique', icon: 'pi pi-fw pi-database', routerLink: ['/mechanic/satisfaction-customer-mechanic'] }
-                ]
+            {    
+                items: [{ label: 'Services', icon: '', routerLink: ['/manager/service-garage'] }]
+            },
+            {    
+                items: [{ label: 'Employee', icon: '', routerLink: ['/employee'] }]
             }
         ];
-
         let panierclient = 'Panier ' + panier;
-
         const menuCustomer = [
             {
                 label: 'Home',
-                items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/client/service-view'] }]
+                items: [{ label: 'home', icon: '', routerLink: ['/client/service-view'] }]
             },
             {
                 label: 'Service',
@@ -63,7 +43,15 @@ export class MenuComponent implements OnInit {
                 ]
             },
         ];
-        const menuMechanic = [...menuManager];
+        const menuMechanic = [ {
+            label: 'Mécanicien',
+                items: [
+                    { label: 'Tâches', icon: '', routerLink: ['/mechanic/'] },
+                    { label: 'Agenda', icon: '', routerLink: ['/mechanic/agenda-mechanic'] },
+                    { label: 'Statistique', icon: '', routerLink: ['/mechanic/satisfaction-customer-mechanic'] }
+                ]
+            }
+        ];
         const userRole = localStorage.getItem("idrule");
         if (userRole === roles.manager) {
             return menuManager;

@@ -143,7 +143,8 @@ export class ServicesCarComponent {
 
   removeRow(index: string) {
     console.log(index);
-    this.addOrUpdateValue.servicelist = this.addOrUpdateValue.servicelist.filter(value => value.idservice._id !== index || value.idservice._id !== '' );
+    console.log(this.addOrUpdateValue.servicelist)
+    this.addOrUpdateValue.servicelist = this.addOrUpdateValue.servicelist.filter(value => value.idservice._id.toString() != index.toString() || value.idservice._id != ''  );
   }
   // 0dfab175c8b1c1355b90c1ef0679acb2
   ngOnDestroy() {

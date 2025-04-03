@@ -25,53 +25,58 @@ import { TypeServiceComponent } from './app/features/manager/services-car/compon
 export const appRoutes: Routes = [
     {
         path: '',
-        component: LayoutappComponent,
+        component: LandingComponent,
         children: [
             { path: '', component: ServicesCarComponent },
-            {
-                path: 'manager',
-                canActivate: [authGuard, roleManagerGuard],
-                children: [
-                    { path: 'dashboard', component: DashboardComponent },
-                    { path: 'service-garage', component: ServicesCarComponent },
-                    { path: 'type-service', component: TypeServiceComponent },
-                    { path: 'car-size', component: CarSizeComponent }, 
-                ]
-            },
-            {
-                path: 'client',
-                canActivate: [authGuard, roleCostumerGuard],
-                children: [
-                    { path: '', component: LandingComponent },
-                    { path: 'service-view', component: ServiceviewComponent },
-                    { path: 'panier-view', component: PanierviewComponent },
-                    { path: 'historique-view', component: HistoriqueComponent },
-                ]
-            },
-            {
-                path: 'services',
-                children: [
-                    { path: '', component: ListServiceComponent },
-                    { path: 'form', component: FormServiceComponent },
-                    { path: 'edit/:id', component: FormServiceComponent },
-                ]
-            },
-            {
-                path: 'mechanic',
-                children: [
-                    { path: '', component: ListTaskComponent },
-                    { path: 'agenda-mechanic', component: AgendaComponent },
-                    { path: 'satisfaction-customer-mechanic', component: SatisfactionComponent },
-                ]
-            },
-            {
-                path: 'employee',
-                children: [
-                    { path: '', component: EmpComponent },
-                    { path: 'form', component: EmployeeFormComponent },
-                    { path: 'edit/:id', component: EmployeeFormComponent }
-                ]
-            },
+        ]
+    },
+    {
+        path: 'client',
+        component: LayoutappComponent,
+        canActivate: [authGuard, roleCostumerGuard],
+        children: [
+            { path: '', component: LandingComponent },
+            { path: 'service-view', component: ServiceviewComponent },
+            { path: 'panier-view', component: PanierviewComponent },
+            { path: 'historique-view', component: HistoriqueComponent },
+        ]
+    },
+    // {
+    //     path: 'services',
+    //     component: LayoutappComponent,
+    //     children: [
+    //         { path: '', component: ListServiceComponent },
+    //         { path: 'form', component: FormServiceComponent },
+    //         { path: 'edit/:id', component: FormServiceComponent },
+    //     ]
+    // },
+    {
+        path: 'mechanic',
+        component: LayoutappComponent,
+        children: [
+            { path: '', component: ListTaskComponent },
+            { path: 'agenda-mechanic', component: AgendaComponent },
+            { path: 'satisfaction-customer-mechanic', component: SatisfactionComponent },
+        ]
+    },
+    {
+        path: 'employee',
+        component: LayoutappComponent,
+        children: [
+            { path: '', component: EmpComponent },
+            { path: 'form', component: EmployeeFormComponent },
+            { path: 'edit/:id', component: EmployeeFormComponent }
+        ]
+    },
+    {
+        path: 'manager',
+        component: LayoutappComponent,
+        canActivate: [authGuard, roleManagerGuard],
+        children: [
+            { path: 'dashboard', component: DashboardComponent },
+            { path: 'service-garage', component: ServicesCarComponent },
+            { path: 'type-service', component: TypeServiceComponent },
+            { path: 'car-size', component: CarSizeComponent }, 
         ]
     },
     {
