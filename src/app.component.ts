@@ -12,8 +12,8 @@ export class AppComponent {
     
     constructor(private firenotif:FirebaseNotifService){}
     ngOnInit() {
+        console.log("value ");
         this.firenotif.requestPermission();
         this.firenotif.listen();
     }
-   
 }
