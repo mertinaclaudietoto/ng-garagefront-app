@@ -9,8 +9,8 @@ const app = initializeApp(environement.firebaseConfig);
 
 interface TokenFCM {
   token: string,
-  idrule:string,
-  iduser: string,
+  idrule:string|undefined,
+  iduser: string|undefined,
   expire: Date
 }
 @Injectable({

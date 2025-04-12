@@ -6,7 +6,7 @@ import { ServicesClientService } from '../../../../shared/services/services-clie
 
 import { TableModule } from 'primeng/table';
 import { Emp } from '../../../../shared/models/emp';
-import { EmpService } from '../../../costumers/services/emp.service';
+import { EmpService } from '../../emp/service/emp.service';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
@@ -51,10 +51,10 @@ export class DashboardComponent {
       this.nbrEmployeedispo=response.length;
     },error =>{console.log(error)})
     this.empService.getNombreCategorieUser("000000000000000000000002").subscribe(response=>{
-      this.nbrCostumer=response;
+      this.nbrCostumer=response.data??0;
     },error =>{console.log(error)})
     this.empService.getNombreCategorieUser("000000000000000000000003").subscribe(response=>{
-      this.nbrMechanic=response;
+      this.nbrMechanic=response.data??0;
     },error =>{console.log(error)})
   }
   setUpdateValue(carType:ServiceClient){

@@ -11,6 +11,7 @@ export class Emp{
     rule:IdName;
     sex:IdName;
     skills:IdName[];
+    active:number;
 
     constructor(
         picture: string = "default.jpg",
@@ -23,7 +24,8 @@ export class Emp{
         login:string ="",
         password:string="",
         rule: IdName = { _id: 0, name: "Employee" } ,
-        sex: IdName = { _id: 0, name: "Employee" } ) {
+        sex: IdName = { _id: 0, name: "Employee" },
+        active:number=0 ) {
         this._id = id;
         this.login=login;
         this.password=password;
@@ -35,6 +37,7 @@ export class Emp{
         this.skills = skills;
         this.rule = rule;
         this.sex = sex;
+        this.active=0;
     }
 }
 

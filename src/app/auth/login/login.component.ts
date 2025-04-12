@@ -7,11 +7,14 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { RippleModule } from 'primeng/ripple';
 import { Emp } from '../../shared/models/emp';
-import { EmpService } from '../../features/costumers/services/emp.service';
+import { EmpService } from '../../features/manager/emp/service/emp.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { roles } from '../guard/RULE';
 import { FirebaseNotifService } from '../../shared/services/firebasenotif/firebase-notif.service';
+import { Loginm } from '../../shared/models/loginm';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-login',
   imports: [ButtonModule, CheckboxModule, InputTextModule, PasswordModule, FormsModule, RouterModule, RippleModule,CommonModule],
@@ -24,21 +27,26 @@ export class LoginComponent {
   password: string = '';
   checked: boolean = false;
   column:number =-1;
-  constructor(private empService: EmpService,private router:Router,private tokenFCM:FirebaseNotifService) {
+  constructor(private empService: EmpService,private router:Router,private tokenFCM:FirebaseNotifService,private snackBar: MatSnackBar) {
     this.login.login='';
     this.login.password='';
   }
   onlogin() {
     this.empService.login(this.login).subscribe(
       response => {
+        this.snackBar.open(response.message, 'Fermer', {
+          duration: 3000, 
+          panelClass: ['snackbar-success'] 
+        });
+        
         const tokenFCM = localStorage.getItem("tokenFCM");
-  
+        var value=response.data;
         // Vérifie que le tokenFCM existe avant d'essayer de l'enregistrer
         if (tokenFCM) {
           const dataFCM = {
             token: tokenFCM,
-            idrule: response.idrule,
-            iduser: response.iduser,
+            idrule: value?.idrule,
+            iduser: value?.iduser,
             expire: new Date(Date.now() + 24 * 60 * 60 * 1000) // 24h plus tard
           };
   
@@ -49,15 +57,15 @@ export class LoginComponent {
         }
   
         // Stockage local
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('image', response.picture);
-        localStorage.setItem('iduser', response.iduser);
-        localStorage.setItem('idrule', response.idrule);
+        localStorage.setItem('token', value?.token ?? '');
+        localStorage.setItem('image', value?.picture ?? '');
+        localStorage.setItem('iduser', value?.iduser ?? '');
+        localStorage.setItem('idrule', value?.idrule ?? '');        
         localStorage.setItem('panier', JSON.stringify([]));
         localStorage.setItem('panierlist', JSON.stringify([]));
   
         // Redirection selon le rôle
-        switch (response.idrule) {
+        switch (value?.idrule) {
           case roles.costumer:
             this.router.navigate(['/client/service-view']);
             break;
@@ -73,6 +81,10 @@ export class LoginComponent {
         }
       },
       error => {
+        this.snackBar.open("User not authorized", 'Fermer', {
+          duration: 3000, 
+          panelClass: ['snackbar-success'] 
+        });
         console.error('Erreur de connexion:', error);
         if (error.error && error.error.column) {
           this.column = +error.error.column;
