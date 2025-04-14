@@ -6,4 +6,4 @@ export interface ServiceDetail {
     prix: number;
     datedebut: Date;
     datefin: Date | null;
-  }
+}

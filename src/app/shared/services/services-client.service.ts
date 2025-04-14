@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { environement } from '../../../environement/environement';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ServiceClient } from '../models/servicesclient';
+import { ServiceCostumer } from '../models/servicesclient';
 import { Emp } from '../models/emp';
+import { ApiResponse } from '../models/Apiresponse';
+import { Revenu } from '../../features/manager/dashboard/statistique/chartdemo';
 
 @Injectable({
   providedIn: 'root'
@@ -16,29 +18,36 @@ export class ServicesClientService {
     getFreeMechanic():Observable<Emp[]> {
       return this.http.get<Emp[]>(this.apiUrl+'services-client/free-mechanic');
     }
-
 // token manager
-    getWainting():Observable<ServiceClient[]> {
-      return this.http.get<ServiceClient[]>(this.apiUrl+'services-client/service-in-waiting');
+
+    getEtatsService(etats: number): Observable<ApiResponse<ServiceCostumer[]>> {
+      return this.http.get<ApiResponse<ServiceCostumer[]>>(`${this.apiUrl}servicecostumers/etats-service/${etats}`);
     }
 
-    getProgress():Observable<ServiceClient[]> {
-      return this.http.get<ServiceClient[]>(this.apiUrl+'services-client/service-in-progress');
+    getRevenu(value:string): Observable<ApiResponse<Revenu[]>> {
+      return this.http.get<ApiResponse<Revenu[]>>(`${this.apiUrl}servicecostumers/reservations/${value}`);
     }
-    getCar():Observable<ServiceClient[]> {
-      return this.http.get<ServiceClient[]>(this.apiUrl+'services-client');
+
+
+
+    getProgress():Observable<ServiceCostumer[]> {
+      return this.http.get<ServiceCostumer[]>(this.apiUrl+'services-client/service-in-progress');
     }
-    modifOrAdd(value:ServiceClient) :Observable<ServiceClient>{
+
+    getCar():Observable<ServiceCostumer[]> {
+      return this.http.get<ServiceCostumer[]>(this.apiUrl+'services-client');
+    }
+    modifOrAdd(value:ServiceCostumer) :Observable<ServiceCostumer>{
       const token = localStorage.getItem('token'); 
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); 
       
       if(value._id!=undefined){
-        return this.http.put<ServiceClient>(`${this.apiUrl}${'services-client'}/${encodeURIComponent(value._id)}`, value,{headers})
+        return this.http.put<ServiceCostumer>(`${this.apiUrl}${'services-client'}/${encodeURIComponent(value._id)}`, value,{headers})
       }else{
-        return this.http.post<ServiceClient>(this.apiUrl+'services-client',value,{headers}) ;
+        return this.http.post<ServiceCostumer>(this.apiUrl+'services-client',value,{headers}) ;
       }
     }
-    delete(value:ServiceClient|undefined):Observable<void>{
+    delete(value:ServiceCostumer|undefined):Observable<void>{
       if(value!=undefined){
         return this.http.delete<void>(this.apiUrl+"services-client/"+value._id) ;
       }

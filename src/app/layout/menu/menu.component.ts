@@ -27,6 +27,9 @@ export class MenuComponent implements OnInit {
             },
             {    
                 items: [{ label: 'Employé', icon: '', routerLink: ['/employee'] }]
+            },
+            {    
+                items: [{ label: 'Statistique', icon: '', routerLink: ['/manager/statistique'] }]
             }
         ];
         let panierclient = 'Panier ' + panier;

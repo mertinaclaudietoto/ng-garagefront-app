@@ -22,7 +22,7 @@ import { PanierviewComponent } from './app/features/costumers/panierview/panierv
 import { HistoriqueComponent } from './app/features/costumers/historique/historique.component';
 // import { EmployeeFormComponent } from './app/features/employee/employee-form/employee-form.component';
 import { TypeServiceComponent } from './app/features/manager/services-car/components/type-service/type-service.component';
-
+import { Statistique } from './app/features/manager/dashboard/statistique/chartdemo';
 export const appRoutes: Routes = [
     {
         path: '',
@@ -70,7 +70,7 @@ export const appRoutes: Routes = [
             { path: 'type-service', component: TypeServiceComponent },
             { path: 'car-size', component: CarSizeComponent }, 
             { path: 'emp', component: EmpComponent }, 
-
+            { path: 'statistique', component: Statistique }, 
         ]
     },
     {

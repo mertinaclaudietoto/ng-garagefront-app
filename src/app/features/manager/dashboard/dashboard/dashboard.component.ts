@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { StatswidgetComponent } from "../statswidget/statswidget.component";
 import { CommonModule } from '@angular/common';
-import { ServiceClient } from '../../../../shared/models/servicesclient';
+import {  ServiceCostumer } from '../../../../shared/models/servicesclient';
 import { ServicesClientService } from '../../../../shared/services/services-client.service';
-
 import { TableModule } from 'primeng/table';
 import { Emp } from '../../../../shared/models/emp';
 import { EmpService } from '../../emp/service/emp.service';
@@ -16,61 +15,69 @@ import { SelectModule } from 'primeng/select';
 import { DropdownModule } from 'primeng/dropdown';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ServiceDetail } from '../../../../shared/models/det-serviceclient';
-
+import { RULE } from '../../../../shared/data/RULE';
+import { FormatDatePipe } from '../../../../format-date.pipe';
 @Component({
   selector: 'app-dashboard',
-  imports: [TagModule,StatswidgetComponent,CommonModule,TableModule,DialogModule,ButtonModule,FormsModule,SelectModule,DropdownModule,CheckboxModule],
+  imports: [FormatDatePipe,TagModule,StatswidgetComponent,CommonModule,TableModule,DialogModule,ButtonModule,FormsModule,SelectModule,DropdownModule,CheckboxModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
+
+
   nbrCostumer:number=0;
   nbrMechanic:number=0;
-  display:boolean=false;
-  displayView:boolean=false;
-  checkboxValue:boolean=false;
   nbrTacheencours:number=0;
   nbrTacheenAttent:number=0;
   nbrEmployeedispo:number=0;
-  listClientEnAttent!:ServiceClient[];
-  listClientProgress!:ServiceClient[];
+
+  display:boolean=false;
+  displayView:boolean=false;
+  checkboxValue:boolean=false;
+ 
+  listClientEnAttent!:ServiceCostumer[];
+  listClientProgress!:ServiceCostumer[];
   listFreeMechanic!:Emp[];
   
-  detServiceClient!:ServiceClient;
-  avancementServiceClient!:ServiceClient;
+  detServiceCostumer!:ServiceCostumer;
+  avancementServiceCostumer!:ServiceCostumer;
 
-
-  constructor(private serviceclientService :ServicesClientService,private empService:EmpService){}
+  constructor(private ServiceCostumerService :ServicesClientService,private empService:EmpService){}
   ngOnInit() {
     this.relaod();
-    this.serviceclientService.getProgress().subscribe(response=>{
-      this.listClientProgress=response
-      this.nbrTacheencours=response.length;
-    },error =>{console.log(error)})
-    this.serviceclientService.getFreeMechanic().subscribe(response=>{this.listFreeMechanic=response
+    this.ServiceCostumerService.getEtatsService(2).subscribe(
+      response=>{
+        if(response.status==='success'){
+          this.listClientProgress=response.data??[]
+          this.nbrTacheencours=response.data?.length??0 ;
+        }
+      })
+    this.ServiceCostumerService.getFreeMechanic().subscribe(response=>{this.listFreeMechanic=response
       this.nbrEmployeedispo=response.length;
     },error =>{console.log(error)})
-    this.empService.getNombreCategorieUser("000000000000000000000002").subscribe(response=>{
+
+    this.empService.getNombreCategorieUser(RULE.costumer).subscribe(response=>{
       this.nbrCostumer=response.data??0;
     },error =>{console.log(error)})
-    this.empService.getNombreCategorieUser("000000000000000000000003").subscribe(response=>{
+
+    this.empService.getNombreCategorieUser(RULE.mechanic).subscribe(response=>{
       this.nbrMechanic=response.data??0;
     },error =>{console.log(error)})
   }
-  setUpdateValue(carType:ServiceClient){
-      this.detServiceClient=carType;
+  setUpdateValue(carType:ServiceCostumer){
+      this.detServiceCostumer=carType;
       this.display=true;
   }
   relaod(){
-    this.serviceclientService.getWainting().subscribe(response=>{this.listClientEnAttent=response
-      this.nbrTacheenAttent=response.length;
+    this.ServiceCostumerService.getEtatsService(1).subscribe(response=>{this.listClientEnAttent=response.data??[]
+      this.nbrTacheenAttent=response.data?.length??0 ;
     },error =>{console.log(error)})
   }
 
-  modifOrAdd(value:ServiceClient){
-    value.datedebut=new Date();
+  modifOrAdd(value:ServiceCostumer){
     console.log(value)
-    this.serviceclientService.modifOrAdd(value).subscribe( response => {
+    this.ServiceCostumerService.modifOrAdd(value).subscribe( response => {
       this.relaod();
     },
     error => {
@@ -78,11 +85,11 @@ export class DashboardComponent {
     }
     );
   }
-  getAvancement(product: ServiceClient): number {
-    return product?.detail ? product.detail.filter(value => value.datefin === null).length : 0;
-  }
-  setViewDetaille(carType:ServiceClient){
-    this.avancementServiceClient=carType;
+  // getAvancement(product: ServiceCostumer): number {
+  //   return product?.detail ? product.detail.filter(value => value.datefin === null).length : 0;
+  // }
+  setViewDetaille(carType:ServiceCostumer){
+    this.avancementServiceCostumer=carType;
     this.displayView=true;
   }
   trueFalse(product: ServiceDetail): boolean {

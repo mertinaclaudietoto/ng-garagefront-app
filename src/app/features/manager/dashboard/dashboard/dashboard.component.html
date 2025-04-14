@@ -8,28 +8,26 @@
 
     <div class="col-span-12 xl:col-span-6  ">
         <div  class="card !mb-8">
-            <div class="font-semibold text-xl mb-4">Customor who waiting</div>
-            <p-table [value]="listClientEnAttent" [paginator]="true" [rows]="5" responsiveLayout="scroll">
+            <div class="font-semibold text-xl mb-4">Service client en attente</div>
+            <p-table [value]="listClientEnAttent"  responsiveLayout="scroll">
                 <ng-template #header>
                     <tr>
-                        <th></th>
-                        <th>Brand</th>
-                        <th>Model</th>
-                        <th pSortableColumn="price">client N</th>
-                        <th pSortableColumn="price">client F</th>
+                        <th>Date rendez-vous</th>
+                        <th>Image</th>
+                        <th>Nom</th>
+                        <th pSortableColumn="price">Prenom</th>
                         <th pSortableColumn="price">View</th>
                     </tr>
                 </ng-template>
                 <ng-template #body let-product>
                     <tr>
+                        <td>{{ product.dateappoitement | date:'dd/MM/yyyy à HH:mm' }}</td>
                         <td>
-                            <img [src]="product.idcarcustomer.picture " class="shadow-lg" alt="{{ product.name }}" width="50" />
+                            <img [src]="product.idcostumer.picture " class="shadow-lg" alt="{{ product.name }}" width="50" />
                         </td>
-                        <td>{{ product.idcarcustomer.brand }}</td>
-                        <td>{{ product.idcarcustomer.model }}</td>
-
-                        <td>{{ product.idcustomer.name }}</td>
-                        <td>{{ product.idcustomer.firstName }}</td>
+                        <td>{{ product.idcostumer.name }}</td>
+                        <td>{{ product.idcostumer.firstName }}</td>
+                        <td>{{ product.idcostumer.firstname }}</td>
                         <td>
                             <p-button (onClick)="setUpdateValue(product)" icon="pi pi-eye" severity="secondary" rounded />
                         </td>
@@ -37,120 +35,39 @@
                 </ng-template>
             </p-table>
 
-            <p-dialog header="Detail Service " [(visible)]="display" [breakpoints]="{ '960px': '75vw' }"  [style]="{ width: '50vw',height:'50vh' }" [modal]="true">
-                <h4  *ngIf="detServiceClient">{{detServiceClient.idcustomer.name}} {{detServiceClient.idcarcustomer.brand}} {{detServiceClient.idcarcustomer.model}}</h4>
-                
-                <p-table *ngIf="detServiceClient"  [value]="detServiceClient.detail"  responsiveLayout="scroll" >
-                    <ng-template #header>
-                        <tr>
-                            <th>Mechanic</th>
-                            <th>Service</th>
-                            <th>Prix</th>
-                            <th >Mechanic tach</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template #body let-product class="h-full">
-                        <tr class="w-full transition-all duration-300 ease-in-out">
-                            <td>{{ product.idmechanic.name}}</td>
-                            <td>{{ product.idservice.name}}</td>
-                            <td>{{ product.prix }}</td>
-                            <td *ngIf="!product.datefin"  class="flex flex-wrap gap-2 w-full">
-                                <p-select id="state" [(ngModel)]="product.idmechanic" [options]="listFreeMechanic" optionLabel="name" placeholder="Select One"
-                                class="w-full"  appendTo="body"></p-select>
-                            </td>
-                        </tr>
-                        <tr></tr>
-                        <tr></tr>
-
-                    </ng-template>
-                </p-table>
-                <p class="text-red-500 ml-2">Une tâche qui est déjà finie ne pourrait pas être modifiée.</p>
-                <ng-template #footer>
-                    <p-button label="Set mechanic" severity="info"  (onClick)="modifOrAdd(detServiceClient)" />
-                    <!-- <p-button label="Send facture" severity="success"  /> -->
-                </ng-template>
-            </p-dialog> 
-        </div>
-    
-        <div  class="card !mb-8">
-            <div class="font-semibold text-xl mb-4">Mechanic dispo</div>
-            <p-table [value]="listFreeMechanic" [paginator]="true" [rows]="5" responsiveLayout="scroll">
-                <ng-template #header>
-                    <tr>
-                        <th></th>
-                        <th>Name</th>
-                        <th>First</th>
-                    </tr>
-                </ng-template>
-                <ng-template #body let-product>
-                    <tr>
-                        <td>
-                            <img [src]="product.picture " class="shadow-lg" alt="{{ product.name }}" width="50" />
-                        </td>
-                        <td>{{ product.name }}</td>
-                        <td>{{ product.firstName }}</td>                   
-                    </tr>
-                </ng-template>
-            </p-table>
+        
         </div>
     </div>
     <div class="col-span-12 xl:col-span-6  ">
         <div  class="card !mb-8">
-            <div class="font-semibold text-xl mb-4">Current task</div>
-            <p-table [value]="listClientProgress" [paginator]="true" [rows]="10" responsiveLayout="scroll">
+            <div class="font-semibold text-xl mb-4">Service en  cours</div>
+            <p-table [value]="listClientProgress"  responsiveLayout="scroll">
                 <ng-template #header>
                     <tr>
-                        <th></th>
-                        <th>Car</th>
-                        <th>Client</th>
-                        <th pSortableColumn="price">avancement</th>
-                        <th >View</th>
+                        <th>Date de prise en main</th>
+                        <th>Image</th>
+                        <th>Nom</th>
+                        <th pSortableColumn="price">Prenom</th>
+                        <th pSortableColumn="price">View</th>
                     </tr>
                 </ng-template>
                 <ng-template #body let-product>
+
                     <tr>
+                        <td>{{ product.dateappoitement | date:'dd/MM/yyyy à HH:mm' }}</td>
                         <td>
-                            <img [src]="product.idcarcustomer.picture " class="shadow-lg" alt="{{ product.name }}" width="50" />
+                            <img [src]="product.idcostumer.picture " class="shadow-lg" alt="{{ product.name }}" width="50" />
                         </td>
-                        <td>{{ product.idcarcustomer.brand }}   {{ product.idcarcustomer.model }}</td>
-                        <td>{{ product.idcustomer.name }}       {{ product.idcustomer.firstName }}</td>
-                        <td>
-                            {{ getAvancement(product) }} / {{ product.detail.length }}
-                        </td>
+                        <td>{{ product.idcostumer.name }}</td>
+                        <td>{{ product.idcostumer.firstName }}</td>
+                        <td>{{ product.idcostumer.firstname }}</td>
                         <td>
                             <p-button (onClick)="setViewDetaille(product)" icon="pi pi-eye" severity="secondary" rounded />
                         </td>
                     </tr>
                 </ng-template>
             </p-table>
-            <p-dialog header="Detail Service " [(visible)]="displayView" [breakpoints]="{ '960px': '75vw' }"  [style]="{ width: '50vw',height:'50vh' }" [modal]="true">
-                <h4  *ngIf="avancementServiceClient">{{avancementServiceClient.idcustomer.name}} {{avancementServiceClient.idcarcustomer.brand}} {{avancementServiceClient.idcarcustomer.model}}</h4>
-                <p-table *ngIf="avancementServiceClient"  [value]="avancementServiceClient.detail"  responsiveLayout="scroll" >
-                    <ng-template #header>
-                        <tr>
-                            <th>Do or Not</th>
-                            <th>Service</th>
-                            <th>Mechanic</th>
-                            <th>Prix</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template #body let-product class="h-full">
-                        <tr class="w-full transition-all duration-300 ease-in-out">
-                            <td>
-                                <p-checkbox [binary]="true" [disabled]="trueFalse(product)" readonly="true"/>
-                            </td>   
-                            <td>{{ product.idservice.name}}</td>                           
-                            <td>{{ product.idmechanic.name}}</td>
-                            <td>{{ product.prix }}</td>
-                        </tr>
-                        <tr></tr>
-                        <tr></tr>
-                    </ng-template>
-                </p-table>
-                <ng-template #footer>
-                    <p-button label="Set mechanic" severity="info"  (onClick)="modifOrAdd(detServiceClient)" />
-                </ng-template>
-            </p-dialog> 
+         
         </div>
  
      

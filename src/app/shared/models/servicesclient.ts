@@ -1,17 +1,23 @@
-import { CarClient } from "./car-client";
+
 import { Emp } from "./emp";
-import { ServiceDetail } from "./det-serviceclient";
-export interface ServiceClient {
+
+import { IdName } from "./car-type";
+export interface ServiceCostumer {
     _id: string;
-    idcustomer: Emp;
-    idcarcustomer: CarClient;
-    datedebut: Date;
-    datedemande: Date;
-    datefin: Date | null;
-    payed: boolean;
-    detail: ServiceDetail[];
-    __v: number;
-    createdAt: Date;
-    updatedAt: Date;
-    avancement:String;
-  }
+    idcostumer: Emp;
+    dateappoitement:Date;
+    etats:number;
+    serviceList:{idmechanic: Emp;
+      service:{
+        idservice:IdName,
+        price:number,
+        time:number,
+        commission:number,
+      }
+      startdate: Date,
+      enddate: Date,
+      nbrstars: number,
+      idcar: string,
+      brandandmodel: string,
+      picture: string,}[]
+}
