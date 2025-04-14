@@ -43,6 +43,8 @@ export class DashboardComponent {
   detServiceCostumer!:ServiceCostumer;
   avancementServiceCostumer!:ServiceCostumer;
 
+  viewDetaille!:ServiceCostumer;
+
   constructor(private ServiceCostumerService :ServicesClientService,private empService:EmpService){}
   ngOnInit() {
     this.relaod();
@@ -61,13 +63,19 @@ export class DashboardComponent {
       this.nbrCostumer=response.data??0;
     },error =>{console.log(error)})
 
-    this.empService.getNombreCategorieUser(RULE.mechanic).subscribe(response=>{
-      this.nbrMechanic=response.data??0;
+    this.empService.getlistByRule(RULE.mechanic).subscribe(response=>{
+      this.nbrMechanic=response.data?.length??0;
+      this.listFreeMechanic=response.data??[];
     },error =>{console.log(error)})
   }
   setUpdateValue(carType:ServiceCostumer){
-      this.detServiceCostumer=carType;
+    this.ServiceCostumerService. getDetailleService(carType._id).subscribe(response=>{
+      console.log(response.data);
+      this.viewDetaille=response.data?? carType;
       this.display=true;
+    })
+      
+      
   }
   relaod(){
     this.ServiceCostumerService.getEtatsService(1).subscribe(response=>{this.listClientEnAttent=response.data??[]
@@ -76,14 +84,15 @@ export class DashboardComponent {
   }
 
   modifOrAdd(value:ServiceCostumer){
-    console.log(value)
-    this.ServiceCostumerService.modifOrAdd(value).subscribe( response => {
-      this.relaod();
-    },
-    error => {
-      console.error("❌ Erreur lors de l'envoi de la requête POST OR PUT :", error);
+    if(value.etats==1){
+      console.log(value)
+      this.ServiceCostumerService.modifOrAdd(value).subscribe( response => {
+        this.relaod();
+      },
+      error => {
+        console.error("❌ Erreur lors de l'envoi de la requête POST OR PUT :", error);
+      });
     }
-    );
   }
   // getAvancement(product: ServiceCostumer): number {
   //   return product?.detail ? product.detail.filter(value => value.datefin === null).length : 0;

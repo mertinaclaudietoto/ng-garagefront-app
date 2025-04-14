@@ -14,6 +14,10 @@ export class EmpService {
 
   constructor(private http: HttpClient) { }
 
+  getlistByRule(id: string): Observable<ApiResponse<Emp[]>> {
+    return this.http.get<ApiResponse<Emp[]>>(this.apiUrl + 'emps/listbyrule/' + id);
+  }
+
   getNombreCategorieUser(id: string): Observable<ApiResponse<number>> {
     return this.http.get<ApiResponse<number>>(this.apiUrl + 'emps/nbrcostumers/' + id);
   }

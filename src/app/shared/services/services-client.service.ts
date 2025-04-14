@@ -42,6 +42,9 @@ export class ServicesClientService {
     getAvarageTime(): Observable<ApiResponse<avarageTimeEmp[]>> {
       return this.http.get<ApiResponse<avarageTimeEmp[]>>(`${this.apiUrl}servicecostumers/average-time`);
     }
+    getDetailleService(id:string): Observable<ApiResponse<ServiceCostumer>> {
+      return this.http.get<ApiResponse<ServiceCostumer>>(`${this.apiUrl}servicecostumers/service-detaille/${id}`);
+    }
 
 
     getProgress():Observable<ServiceCostumer[]> {

@@ -7,7 +7,8 @@ export interface ServiceCostumer {
     idcostumer: Emp;
     dateappoitement:Date;
     etats:number;
-    serviceList:{idmechanic: Emp;
+    serviceList:{
+      idmechanic: Emp;
       service:{
         idservice:IdName,
         price:number,
