@@ -2,37 +2,51 @@
     <div class="col-span-12 xl:col-span-6">
         <div class="card">
             <div class="font-semibold text-xl mb-4">Revenur par jour</div>
-            <p-chart type="bar" [data]="barDataDay" [options]="barOptions"></p-chart>
+            <p-chart type="line" [data]="revenuD" [options]="lineOptions"></p-chart>
         </div>
     </div>
     <div class="col-span-12 xl:col-span-6">
         <div class="card">
             <div class="font-semibold text-xl mb-4">Revenu par mois</div>
-            <p-chart type="bar" [data]="barData" [options]="barOptions"></p-chart>
+            <p-chart type="line" [data]="revenuM" [options]="lineOptions"></p-chart>
+        </div>
+    </div>
+
+    <div class="col-span-12 xl:col-span-6">
+        <div class="card">
+            <div class="font-semibold text-xl mb-4">Reservation par jour</div>
+            <p-chart type="line" [data]="reservationD" [options]="lineOptions"></p-chart>
         </div>
     </div>
     <div class="col-span-12 xl:col-span-6">
-        <div class="card flex flex-col items-center">
-            <div class="font-semibold text-xl mb-4">Pie</div>
-            <p-chart type="pie" [data]="pieData" [options]="pieOptions"></p-chart>
+        <div class="card">
+            <div class="font-semibold text-xl mb-4">Reservation par mois</div>
+            <p-chart type="line" [data]="reservationM" [options]="lineOptions"></p-chart>
         </div>
     </div>
-    <div class="col-span-12 xl:col-span-6">
-        <div class="card flex flex-col items-center">
-            <div class="font-semibold text-xl mb-4">Doughnut</div>
-            <p-chart type="doughnut" [data]="pieData" [options]="pieOptions"></p-chart>
-        </div>
-    </div>
-    <div class="col-span-12 xl:col-span-6">
-        <div class="card flex flex-col items-center">
-            <div class="font-semibold text-xl mb-4">Polar Area</div>
-            <p-chart type="polarArea" [data]="polarData" [options]="polarOptions"></p-chart>
-        </div>
-    </div>
-    <div class="col-span-12 xl:col-span-6">
-        <div class="card flex flex-col items-center">
-            <div class="font-semibold text-xl mb-4">Radar</div>
-            <p-chart type="radar" [data]="radarData" [options]="radarOptions"></p-chart>
+    <div class="col-span-12   ">
+        <div  class="card !mb-8">
+            <div class="font-semibold text-xl mb-4">Service client en attente</div>
+            <p-table [value]="avarageTimeEmp"  responsiveLayout="scroll">
+                <ng-template #header>
+                    <tr>
+                        <th>Image</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>temps moyen de travaille</th>
+                    </tr>
+                </ng-template>
+                <ng-template #body let-product>
+                    <tr>
+                        <td>
+                            <img [src]="product.picture " class="shadow-lg" alt="{{ product.name }}" width="50" />
+                        </td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.firstname }}</td>
+                        <td>{{ product.averageTime }} heure</td>
+                    </tr>
+                </ng-template>
+            </p-table>
         </div>
     </div>
 </p-fluid>

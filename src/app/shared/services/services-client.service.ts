@@ -5,8 +5,16 @@ import { Observable } from 'rxjs';
 import { ServiceCostumer } from '../models/servicesclient';
 import { Emp } from '../models/emp';
 import { ApiResponse } from '../models/Apiresponse';
-import { Revenu } from '../../features/manager/dashboard/statistique/chartdemo';
+import { Datachart } from '../../features/manager/dashboard/statistique/chartdemo';
 
+export interface avarageTimeEmp{
+  _id:string,
+  mechanicId:string,
+  avarageTime:number,
+  name:string,
+  firstname:string,
+  picture:string
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -23,11 +31,17 @@ export class ServicesClientService {
     getEtatsService(etats: number): Observable<ApiResponse<ServiceCostumer[]>> {
       return this.http.get<ApiResponse<ServiceCostumer[]>>(`${this.apiUrl}servicecostumers/etats-service/${etats}`);
     }
-
-    getRevenu(value:string): Observable<ApiResponse<Revenu[]>> {
-      return this.http.get<ApiResponse<Revenu[]>>(`${this.apiUrl}servicecostumers/reservations/${value}`);
+    getRevenu(value:string): Observable<ApiResponse<Datachart[]>> {
+      return this.http.get<ApiResponse<Datachart[]>>(`${this.apiUrl}servicecostumers/revenue/${value}`);
     }
 
+    getReservation(value:string): Observable<ApiResponse<Datachart[]>> {
+      return this.http.get<ApiResponse<Datachart[]>>(`${this.apiUrl}servicecostumers/reservations/${value}`);
+    }
+
+    getAvarageTime(): Observable<ApiResponse<avarageTimeEmp[]>> {
+      return this.http.get<ApiResponse<avarageTimeEmp[]>>(`${this.apiUrl}servicecostumers/average-time`);
+    }
 
 
     getProgress():Observable<ServiceCostumer[]> {
