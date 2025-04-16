@@ -3,22 +3,22 @@ import { Emp } from "./emp";
 
 import { IdName } from "./car-type";
 export interface ServiceCostumer {
-    _id: string;
-    idcostumer: Emp;
+    _id: string|null;
+    idcostumer: Emp|string;
     dateappoitement:Date;
     etats:number;
     serviceList:{
-      idmechanic: Emp;
+      idmechanic: Emp|null|undefined;
       service:{
         idservice:IdName,
         price:number,
         time:number,
         commission:number,
       }
-      startdate: Date,
-      enddate: Date,
+      startdate: Date|null,
+      enddate: Date|null,
       nbrstars: number,
-      idcar: string,
+      idcar: string|null,
       brandandmodel: string,
       picture: string,}[]
 }

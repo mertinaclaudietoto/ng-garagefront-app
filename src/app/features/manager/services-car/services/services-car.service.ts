@@ -3,11 +3,13 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 
 import { environement } from '../../../../../environement/environement';
 import { Observable } from 'rxjs';
+import { IdName } from '../../../../shared/models/car-type';
 
 export interface serviceprice {
-  idservice:{_id:number|string,name:string}; 
-  price: number; 
-  time: number; 
+  idservice:IdName,
+  price:number,
+  time:number,
+  commission:number,
 }
 export interface serviceCar {
   _id: string|null;

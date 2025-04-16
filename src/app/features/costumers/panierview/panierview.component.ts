@@ -18,9 +18,9 @@ import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { Subscription } from 'rxjs';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
-import { detserviceClient } from '../serviceview/serviceview.component';
 import { ServiceviewService } from '../serviceview.service';
-import { PanierviewService } from './panierview.service';
+import { PanierviewService } from './service/panierview.service'; 
+import { ServiceCostumer } from '../../../shared/models/servicesclient';
 // import { IonIcon } from "@ionic/angular/standalone";
 
 
@@ -33,7 +33,7 @@ import { PanierviewService } from './panierview.service';
 })
 export class PanierviewComponent {
   subscriptions: Subscription[] = [];
-  servicelist: detserviceClient[] | undefined = undefined;
+  servicelist: ServiceCostumer[] | undefined = undefined;
   display: boolean = false;
   rowIndex: string = '';
   first: number = 0;

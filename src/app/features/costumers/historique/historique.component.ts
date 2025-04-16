@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { PanierviewService } from './../panierview/panierview.service';
+import { PanierviewService } from '../panierview/service/panierview.service';
 import { Component, NgModule } from '@angular/core';
 import { FluidModule } from 'primeng/fluid';
 import { InputTextModule } from 'primeng/inputtext';
@@ -19,8 +19,8 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
-import { detserviceClient,  } from '../serviceview/serviceview.component';
 import { FormatnumberpipePipe } from '../../../shared/pipe/formatnumber/formatnumberpipe.pipe';
+import { ServiceCostumer } from '../../../shared/models/servicesclient';
 export interface PaymentInfo {
   name: string;        
   numbercard: number;  
@@ -35,8 +35,8 @@ export interface PaymentInfo {
   styleUrl: './historique.component.scss'
 })
 export class HistoriqueComponent {
-  servicelist:detserviceClient[]|undefined=undefined;
-  modifivalue!:detserviceClient|null;
+  servicelist:ServiceCostumer[]|undefined=undefined;
+  modifivalue!:ServiceCostumer|null;
   index:number=0;
   display: boolean = false;
   displaypaiement:boolean=false;
@@ -50,12 +50,11 @@ export class HistoriqueComponent {
     cvv:0,
   }
   
-  constructor(private  readonly panier :PanierviewService) {
-  }
+  constructor(private  readonly panier :PanierviewService) {}
   ngOnInit() {
     const userId = localStorage.getItem('iduser');
     this.panier.gethistorique(userId,this.first,this.rows).subscribe(response=>
-      this.servicelist =response
+      this.servicelist =response.data??[]
     );
   }
   close() {
@@ -71,12 +70,12 @@ export class HistoriqueComponent {
       this.displaypaiement = false;
     }
   }
-  open(modifivalue:detserviceClient,index:number) {
+  open(modifivalue:ServiceCostumer,index:number) {
     this.modifivalue=modifivalue;
     this.index=index;
     this.display = true;
   }
-  openInvoice(modifivalue:detserviceClient) {
+  openInvoice(modifivalue:ServiceCostumer) {
     console.log("valierere");
     this.modifivalue=modifivalue;
     this.displaypaiement = true;
@@ -106,7 +105,7 @@ export class HistoriqueComponent {
     }
     return "success";
   }
-  getColorInvoinceFunct(modifivalue:detserviceClient){
+  getColorInvoinceFunct(modifivalue:ServiceCostumer){
     this.openInvoice(modifivalue);
     // if(modifivalue.etats!=10){
        

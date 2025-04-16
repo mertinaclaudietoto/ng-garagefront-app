@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { detserviceClient } from './serviceview/serviceview.component';
+import { ServiceCostumer } from '../../shared/models/servicesclient';
 @Injectable({
   providedIn: 'root', 
 })
@@ -22,7 +22,7 @@ export class ServiceviewService {
   }
 
   // Méthode pour ajouter un élément au panier
-  addItemToPanier(item: detserviceClient) {
+  addItemToPanier(item: ServiceCostumer) {
     localStorage.setItem('panier',JSON.stringify(item) );
     localStorage.setItem('panierlist',JSON.stringify(item.serviceList) );
     this.updatePanierCount(); // Met à jour la longueur après l'ajout

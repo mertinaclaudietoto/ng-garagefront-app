@@ -42,31 +42,28 @@ export class ServicesClientService {
     getAvarageTime(): Observable<ApiResponse<avarageTimeEmp[]>> {
       return this.http.get<ApiResponse<avarageTimeEmp[]>>(`${this.apiUrl}servicecostumers/average-time`);
     }
-    getDetailleService(id:string): Observable<ApiResponse<ServiceCostumer>> {
+    getDetailleService(id:string|null): Observable<ApiResponse<ServiceCostumer>> {
       return this.http.get<ApiResponse<ServiceCostumer>>(`${this.apiUrl}servicecostumers/service-detaille/${id}`);
     }
 
 
-    getProgress():Observable<ServiceCostumer[]> {
-      return this.http.get<ServiceCostumer[]>(this.apiUrl+'services-client/service-in-progress');
-    }
-
+    
     getCar():Observable<ServiceCostumer[]> {
       return this.http.get<ServiceCostumer[]>(this.apiUrl+'services-client');
     }
-    modifOrAdd(value:ServiceCostumer) :Observable<ServiceCostumer>{
+    modifOrAdd(value:ServiceCostumer) : Observable<ApiResponse<ServiceCostumer>> {
       const token = localStorage.getItem('token'); 
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); 
-      
       if(value._id!=undefined){
-        return this.http.put<ServiceCostumer>(`${this.apiUrl}${'services-client'}/${encodeURIComponent(value._id)}`, value,{headers})
+        return this.http.put<ApiResponse<ServiceCostumer>>(this.apiUrl+'servicecostumers/'+value._id, value,{headers})
       }else{
-        return this.http.post<ServiceCostumer>(this.apiUrl+'services-client',value,{headers}) ;
+        return this.http.post<ApiResponse<ServiceCostumer>>(this.apiUrl+'servicecostumers',value,{headers}) ;
       }
+
     }
     delete(value:ServiceCostumer|undefined):Observable<void>{
       if(value!=undefined){
-        return this.http.delete<void>(this.apiUrl+"services-client/"+value._id) ;
+        return this.http.delete<void>(this.apiUrl+"servicecostumers/"+value._id) ;
       }
       return new Observable<void>;
     }

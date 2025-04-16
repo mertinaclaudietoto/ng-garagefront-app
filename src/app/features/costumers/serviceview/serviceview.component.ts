@@ -14,38 +14,26 @@ import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { serviceCar } from '../../manager/services-car/services/services-car.service';
 import { FormatnumberpipePipe } from '../../../shared/pipe/formatnumber/formatnumberpipe.pipe';
 import { ServiceviewService } from '../serviceview.service';
+import { ServiceCostumer } from '../../../shared/models/servicesclient';
+import { Emp } from '../../../shared/models/emp';
+import { IdName } from '../../../shared/models/car-type';
 
 export interface serviceList {
-  idmechanic: string,
-  service: serviceprice,
-  startdate: Date | string,
-  enddate: Date | string,
-  nbrstars: number
-  idcar: string | null,
+  idmechanic: Emp;
+  service:{
+    idservice:IdName,
+    price:number,
+    time:number,
+    commission:number,
+  }
+  startdate: Date|null,
+  enddate: Date|null,
+  nbrstars: number,
+  idcar: string|null,
   brandandmodel: string,
-  picture: string,
+  picture: string
 }
 
-export interface detserviceClient {
-  _id: string | null,
-  idcostumer: string | null,
-  etats: number | 0,
-  serviceList: Partial<{
-    idmechanic: {
-      _id: string | null,
-      name: string
-    },
-    service: serviceprice,
-    startdate: Date | string,
-    enddate: Date | string,
-    nbrstars: number
-    idcar: string | null,
-    brandandmodel: string,
-    picture: string,
-  }>[
-
-  ]
-}
 @Component({
   selector: 'app-serviceview',
   imports: [PaginatorModule, ToolbarModule, InputTextModule, SplitterModule, SelectModule, ButtonModule, FormsModule, RippleModule, FluidModule, CommonModule, ImageModule, FormatnumberpipePipe],
@@ -62,10 +50,11 @@ export class ServiceviewComponent {
   keysearch: { [key: string]: string } = {
     service: ""
   };
-  panier: detserviceClient = {
+  panier: ServiceCostumer = {
     _id: null,
-    idcostumer: localStorage.getItem('iduser'),
-    etats: 0,
+    idcostumer: new Emp(),
+    etats: 1,
+    dateappoitement:new Date(),
     serviceList: []
   };
   uniqueServices = new Set<string>();
@@ -96,11 +85,12 @@ export class ServiceviewComponent {
   }
 
   addcar(value: serviceprice, idcar: string | null, picture: string, brandandmodel: string) {
+    
     const setvalue = {
-      idmechanic: { _id: null, name: '' },
+      idmechanic:undefined,
       service: value,
-      startdate: '',
-      enddate: '',
+      startdate: null,
+      enddate: null,
       nbrstars: 0,
       idcar: idcar,
       brandandmodel: brandandmodel,
