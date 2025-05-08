@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
 import { FluidModule } from 'primeng/fluid';
 import { debounceTime, Subscription } from 'rxjs';
-import { LayoutService } from '../../../../../../../template/sakai-ng-master/src/app/layout/service/layout.service';
 import { avarageTimeEmp, ServicesClientService } from '../../../../shared/services/services-client.service';
 import { response } from 'express';
 import { TableModule } from 'primeng/table';
