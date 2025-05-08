@@ -1,58 +1,184 @@
-<div class="bg-surface-50 dark:bg-surface-950 flex items-center justify-center min-h-screen min-w-[100vw] overflow-hidden">
-    <div class="flex flex-col items-center justify-center">
-        <div style="border-radius: 56px; padding: 0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%)">
-            <div class="w-full bg-surface-0 dark:bg-surface-900 py-20 px-8 sm:px-20" style="border-radius: 53px">
-                <div class="text-center mb-8">
-                    <svg viewBox="0 0 54 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-8 w-16 shrink-0 mx-auto">
-                        <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M10 15L27 3L44 15V35H10V15ZM10 13L27 3L44 13V35H10V13Z"
-                            fill="#4CAF50"
-                        />
-                        <path
-                            d="M10 15L27 3L44 15V35H10V15Z"
-                            fill="none"
-                            stroke="#4CAF50"
-                            stroke-width="2"
-                        />
-                        <path
-                            d="M10 35H44V33H10V35Z"
-                            fill="#4CAF50"
-                        />
-                    </svg>
-                    <div class="text-surface-900 dark:text-surface-0 text-3xl font-medium mb-4">Welcome to G- Ntsika!</div>
-                    <span class="text-muted-color font-medium">Sign in to continue</span>
-                    <span *ngIf="message!==''" class="text-muted-color font-medium text-green-400">{{message}}</span>
-                </div>
-
-                <div>
-                    <label for="email1" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2">Name</label>
-                    <input pInputText id="email1" type="text" placeholder="name" class="w-full md:w-[30rem] mb-8" [(ngModel)]="emp.name" required />
-
-                    <label for="email1" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2">First Name</label>
-                    <input pInputText id="email1" type="text" placeholder="first name" class="w-full md:w-[30rem] mb-8" [(ngModel)]="emp.firstName" required />
-                    
-                    <label for="email2" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2">Sex</label>
-                    <p-select id="state" [(ngModel)]="emp.sex" [options]="dropdownItemsSex" optionLabel="name" [placeholder]="emp.sex.name" class="w-full md:w-[30rem] mb-8"></p-select>
-
-                    <label for="email1" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2">Date of birth</label>
-                    <input pInputText id="email1" type="date" placeholder="first name" class="w-full md:w-[30rem] mb-8" [(ngModel)]="emp.dateofbirth" required />
-
-                    <label for="email1" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2">Email</label>
-                    <input pInputText id="email1" type="email" placeholder="Email address" class="w-full md:w-[30rem] mb-8" [(ngModel)]="emp.login" />
-
-                    <label for="password1" class="block text-surface-900 dark:text-surface-0 font-medium text-xl mb-2">Password</label>
-                    <p-password id="password1"  placeholder="Password" [toggleMask]="true" styleClass="mb-4" [(ngModel)]="emp.password" [fluid]="true" [feedback]="false"></p-password>
-
-                    <label for="password1" class="block text-surface-900 dark:text-surface-0 font-medium text-xl mb-2">Confirme password</label>
-                    <p-password id="password1" [(ngModel)]="confirm" placeholder="Password" [toggleMask]="true" styleClass="mb-4" [fluid]="true" [feedback]="false"></p-password>
-                    <label *ngIf="column === 1" for="ji" class="block  font-medium mb-2 text-red-700 ">
-                        Not found email
-                    </label>
-                    <p-button label="Register" styleClass="w-full" (onClick)="registre()" ></p-button>
-                </div>
-            </div>
+<div
+  class="bg-surface-50 dark:bg-surface-950 flex items-center justify-center min-h-screen min-w-[100vw] overflow-hidden"
+>
+  <div class="flex flex-col items-center justify-center">
+    <div
+      style="
+        border-radius: 56px;
+        padding: 0.3rem;
+        background: linear-gradient(
+          180deg,
+          var(--primary-color) 10%,
+          rgba(33, 150, 243, 0) 30%
+        );
+      "
+    >
+      <div
+        class="w-full bg-surface-0 dark:bg-surface-900 py-20 px-8 sm:px-20"
+        style="border-radius: 53px"
+      >
+        <div class="text-center mb-8">
+          <svg
+            viewBox="0 0 54 40"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="mb-8 w-16 shrink-0 mx-auto"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M10 15L27 3L44 15V35H10V15ZM10 13L27 3L44 13V35H10V13Z"
+              fill="#4CAF50"
+            />
+            <path
+              d="M10 15L27 3L44 15V35H10V15Z"
+              fill="none"
+              stroke="#4CAF50"
+              stroke-width="2"
+            />
+            <path d="M10 35H44V33H10V35Z" fill="#4CAF50" />
+          </svg>
+          <div
+            class="text-surface-900 dark:text-surface-0 text-3xl font-medium mb-4"
+          >
+            Bienvenue sur G-Ntsika !
+          </div>
+          <span class="text-muted-color font-medium">Inscrivez-vous</span>
+          <span
+            *ngIf="message !== ''"
+            class="text-muted-color font-medium text-green-400"
+            >{{ message }}</span
+          >
         </div>
+
+        <div>
+          <label
+            for="email1"
+            class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2"
+            >Name</label
+          >
+          <input
+            pInputText
+            id="email1"
+            type="text"
+            placeholder="name"
+            class="w-full md:w-[30rem] mb-8"
+            [(ngModel)]="emp.name"
+            required
+          />
+
+          <label
+            for="email1"
+            class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2"
+            >First Name</label
+          >
+          <input
+            pInputText
+            id="email1"
+            type="text"
+            placeholder="first name"
+            class="w-full md:w-[30rem] mb-8"
+            [(ngModel)]="emp.firstName"
+            required
+          />
+
+          <label
+            for="email2"
+            class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2"
+            >Sex</label
+          >
+          <p-select
+            id="state"
+            [(ngModel)]="emp.sex"
+            [options]="dropdownItemsSex"
+            optionLabel="name"
+            [placeholder]="emp.sex.name"
+            class="w-full md:w-[30rem] mb-8"
+          ></p-select>
+
+          <label
+            for="email1"
+            class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2"
+            >Date of birth</label
+          >
+          <input
+            pInputText
+            id="email1"
+            type="date"
+            placeholder="first name"
+            class="w-full md:w-[30rem] mb-8"
+            [(ngModel)]="emp.dateofbirth"
+            required
+          />
+
+          <label
+            for="email1"
+            class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2"
+            >Email</label
+          >
+          <input
+            pInputText
+            id="email1"
+            type="email"
+            placeholder="Email address"
+            class="w-full md:w-[30rem] mb-8"
+            [(ngModel)]="emp.login"
+          />
+
+          <label
+            for="password1"
+            class="block text-surface-900 dark:text-surface-0 font-medium text-xl mb-2"
+            >Password</label
+          >
+          <p-password
+            id="password1"
+            placeholder="Password"
+            [toggleMask]="true"
+            styleClass="mb-4"
+            [(ngModel)]="emp.password"
+            [fluid]="true"
+            [feedback]="false"
+          ></p-password>
+
+          <label
+            for="password1"
+            class="block text-surface-900 dark:text-surface-0 font-medium text-xl mb-2"
+            >Confirme password</label
+          >
+          <p-password
+            id="password1"
+            [(ngModel)]="confirm"
+            placeholder="Password"
+            [toggleMask]="true"
+            styleClass="mb-4"
+            [fluid]="true"
+            [feedback]="false"
+          ></p-password>
+          <label
+            *ngIf="column === 1"
+            for="ji"
+            class="block font-medium mb-2 text-red-700"
+          >
+            Not found email
+          </label>
+          <div class="text-center mb-3">
+            <p-button
+              label="S'inscrire"
+              severity="info"
+              styleClass="w-full"
+              (onClick)="registre()"
+            ></p-button>
+          </div>
+          <div class="text-center">
+            <p-button
+              label="Retour"
+              styleClass="w-full"
+              severity="secondary"
+              (onClick)="toCancel()"
+            ></p-button>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
