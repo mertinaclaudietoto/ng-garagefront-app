@@ -1,4 +1,41 @@
-<a class="flex items-center w-[300px]" href="#">
+ <header id="navbar" class="bg-black fixed w-full top-0 left-0 z-50 ">
+      <nav class="container flex items-center justify-between h-16 sm:h-20">
+          <div class="font-Lobster sm:text-2xl ">GarageNtsika</div>
+          <div id="nav-menu" 
+              class="absolute top-0 left-[-100%] min-h-[80vh] w-full bg-green-950/80 backdrop-blur-sm flex items-center justify-center duration-300 overflow-hidden
+                    lg:static lg:min-h-fit lg:bg-transparent lg:w-auto">
+            <ul class="flex flex-col items-center  gap-8
+                        lg:flex-row ">
+              <li>
+                <a href="#home" class="nav-link active">Accueil</a>
+              </li>
+              <li>
+                <a href="#about" class="nav-link">Services</a>
+              </li>
+              <li>
+                <a href="#popular" class="nav-link">Apropos de nous</a>
+              </li>
+              <li>
+                <a href="#review" class="nav-link">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <!-- <div class="absolute bottom-0 -right-10 -opacity-90 
+            lg:hidden">
+            <img src="src/assets/img/leaf-1.png" class="w-32" alt="leaf_image">
+          </div> -->
+          <!-- <div class="absolute -top-5 -left-5 rotate-90 -opacity-90
+           lg:hidden">
+            <img src="src/assets/img/leaf-2.png" class="w-32" alt="leaf_image">
+          </div> -->
+          <div id="hamburger" class="text-xl sm:text-3xl cursor-pointer z-50
+          lg:hidden" >
+            <i class="ri-menu-4-line" id="hamburger"></i>
+          </div>
+      </nav>
+</header>
+
+<!-- <a class="flex items-center w-[300px]" href="#">
     <svg viewBox="0 0 54 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-14 mr-2">
         <path
             fill-rule="evenodd"
@@ -50,4 +87,4 @@
         <button pButton pRipple label="Login" routerLink="/auth/login" [rounded]="true" [text]="true"></button>
         <button pButton pRipple label="Register" routerLink="/auth/register" [rounded]="true"></button>
     </div>
-</div>
+</div> -->
