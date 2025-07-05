@@ -24,8 +24,8 @@ import { Car } from '../../../shared/models/car';
 // service component
 
 import { ServicePrice } from '../../../shared/models/servicePrice';
-import { ServicepriceService } from '../../costumers/services/serviceprice.service';
-import { CarService } from '../../costumers/services/car.service';
+import { ServicepriceService } from '../../../deletefile/services/serviceprice.service';
+import { CarService } from '../../../deletefile/services/car.service';
 import { IdName } from '../../../shared/models/car-type';
 import { FormatnumberpipePipe } from '../../../shared/pipe/formatnumber/formatnumberpipe.pipe';
 @Component({

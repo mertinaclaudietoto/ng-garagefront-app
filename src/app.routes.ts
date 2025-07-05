@@ -16,13 +16,20 @@ import {EmpComponent}  from './app/features/manager/emp/emp.component';
 import { authGuard } from './app/auth/guard/auth.guard';
 import { roleManagerGuard } from './app/auth/guard/role-manager.guard';
 import { ServicesCarComponent } from './app/features/manager/services-car/services-car.component';
-import { ServiceviewComponent } from './app/features/costumers/serviceview/serviceview.component';
+import { ServiceviewComponent } from './app/deletefile/serviceview/serviceview.component';
 import { roleCostumerGuard } from './app/auth/guard/role-costumer.guard';
-import { PanierviewComponent } from './app/features/costumers/panierview/panierview.component';
-import { HistoriqueComponent } from './app/features/costumers/historique/historique.component';
+import { PanierviewComponent } from './app/deletefile/panierview/panierview.component';
+import { HistoriqueComponent } from './app/deletefile/historique/historique.component';
 // import { EmployeeFormComponent } from './app/features/employee/employee-form/employee-form.component';
 import { TypeServiceComponent } from './app/features/manager/services-car/components/type-service/type-service.component';
 import { Statistique } from './app/features/manager/dashboard/statistique/chartdemo';
+import { LayoutComponent } from './app/features/costumers/layout/layout.component';
+import { DasbordComponent } from './app/features/costumers/dasbord/dasbord.component';
+import { ServicechoisComponent } from './app/features/costumers/servicechois/servicechois.component';
+import { ChatComponent } from './app/features/costumers/chat/chat.component';
+import { CompteComponent } from './app/features/costumers/compte/compte.component';
+import { PanierComponent } from './app/features/costumers/panier/panier.component';
+import { StoryComponent } from './app/features/costumers/story/story.component';
 export const appRoutes: Routes = [
     {
         path: '',
@@ -33,11 +40,16 @@ export const appRoutes: Routes = [
     },
     {
         path: 'client',
-        component: LayoutappComponent,
+        component: LayoutComponent,
         canActivate: [authGuard, roleCostumerGuard],
         children: [
             { path: '', component: LandingComponent },
-            { path: 'service-view', component: ServiceviewComponent },
+            { path: 'service-view', component: DasbordComponent },
+            { path: 'chat', component: ChatComponent },
+            { path: 'service', component: ServicechoisComponent },
+            { path: 'compte', component: CompteComponent },
+            { path: 'panier', component: PanierComponent },
+            { path: 'story', component: StoryComponent},
             { path: 'panier-view', component: PanierviewComponent },
             { path: 'historique-view', component: HistoriqueComponent },
         ]

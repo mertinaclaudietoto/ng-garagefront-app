@@ -8,8 +8,8 @@ import { PasswordModule } from 'primeng/password';
 import { RippleModule } from 'primeng/ripple';
 import { Emp } from '../../shared/models/emp';
 import { CommonModule } from '@angular/common';
-import { CostumersService } from '../../features/costumers/services/costumers.service';
-import { CarService } from '../../features/costumers/services/car.service';
+import { CostumersService } from '../../deletefile/services/costumers.service';
+import { CarService } from '../../deletefile/services/car.service';
 import { IdName } from '../../shared/models/car-type';
 import { SelectModule } from 'primeng/select';
 

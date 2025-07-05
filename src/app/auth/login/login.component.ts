@@ -32,6 +32,7 @@ export class LoginComponent {
     this.login.password='';
   }
   onlogin() {
+    console.log("validation")
     this.empService.login(this.login).subscribe(
       response => {
         this.snackBar.open(response.message, 'Fermer', {

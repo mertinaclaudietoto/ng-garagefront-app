@@ -18,7 +18,7 @@ import { DialogModule } from 'primeng/dialog';
 import { Emp } from '../../../shared/models/emp';
 import { EmpService } from './service/emp.service';
 import { IdName } from '../../../shared/models/car-type';
-import { CarService } from '../../costumers/services/car.service';
+import { CarService } from '../../../deletefile/services/car.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 // import { IMAGESDEFAULTS } from '../../expo/dataimage';
 @Component({

@@ -1,4 +1,4 @@
-<div class="bg-surface-50 dark:bg-surface-950 flex items-center justify-center min-h-screen min-w-[100vw] overflow-hidden">
+<!-- <div class="bg-surface-50 dark:bg-surface-950 flex items-center justify-center min-h-screen min-w-[100vw] overflow-hidden">
     <div class="flex flex-col items-center justify-center">
         <div style="border-radius: 56px; padding: 0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%)">
             <div class="w-full bg-surface-0 dark:bg-surface-900 py-20 px-8 sm:px-20" style="border-radius: 53px">
@@ -55,4 +55,74 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+<body>
+    <header id="navbar" class="bg-green-950 fixed w-full top-0 left-0 z-50 ">
+        <nav class="container flex items-center justify-between h-16 sm:h-20">
+            <div class="font-Lobster sm:text-2xl ">GarageNtsika</div>
+            <div id="nav-menu" 
+                class="absolute top-0 left-[-100%] min-h-[80vh] w-full bg-green-950/80 backdrop-blur-sm flex items-center justify-center duration-300 overflow-hidden
+                        lg:static lg:min-h-fit lg:bg-transparent lg:w-auto">
+                <ul class="flex flex-col items-center  gap-8
+                            lg:flex-row ">
+               
+                    <li>
+                        <a href="#review" routerLink="/auth/register" class="nav-link active">Inscription</a>
+                    </li>
+                    <li>
+                        <a href="#login" routerLink="/auth/login" class="nav-link">Connexion</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="hamburger" class="text-xl sm:text-3xl cursor-pointer z-50
+            lg:hidden" >
+                <i class="ri-menu-4-line" id="hamburger"></i>
+            </div>
+        </nav>
+    </header>
+    <section id="login" class="relative">
+            <div class="popular__top flex flex-col items-center gap-3 texte-center mb-40 ">
+              <h2 class="title">Inscription</h2>
+              <p class="max-w-2xl">inscrivez-vous c'est gratuit </p>
+            </div>
+            <div class="container">
+              <div class="flex flex-col items-center gap-5 lg:flex-row  ">
+                <!-- content -->
+                <div class="home__data w-full space-y-5" >
+                 
+                    <label for="email1" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2 text-white">Name</label>
+                    <input pInputText id="email1" type="text" placeholder="name" class="w-full md:w-[30rem] mb-8" [(ngModel)]="emp.name" required />
+
+                    <label for="email1" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2 text-white">First Name</label>
+                    <input pInputText id="email1" type="text" placeholder="first name" class="w-full md:w-[30rem] mb-8" [(ngModel)]="emp.firstName" required />
+                    
+                    <label for="email2" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2 text-white">Sex</label>
+                    <p-select id="state" [(ngModel)]="emp.sex" [options]="dropdownItemsSex" optionLabel="name" [placeholder]="emp.sex.name" class="w-full md:w-[30rem] mb-8"></p-select>
+                 
+                </div>
+                <div class="w-full relative lg:w-1/2">
+                    <label for="email1" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2 text-white">Date of birth</label>
+                    <input pInputText id="email1" type="date" placeholder="first name" class="w-full md:w-[30rem] mb-8" [(ngModel)]="emp.dateofbirth" required />
+
+                    <label for="email1" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2 text-white">Email</label>
+                    <input pInputText id="email1" type="email" placeholder="Email address" class="w-full md:w-[30rem] mb-8" [(ngModel)]="emp.login" />
+
+                    <label for="password1" class="block text-surface-900 dark:text-surface-0 font-medium text-xl mb-2 text-white">Password</label>
+                    <p-password id="password1"  placeholder="Password" [toggleMask]="true" styleClass="mb-4" [(ngModel)]="emp.password" [fluid]="true" [feedback]="false"></p-password>
+
+                    <label for="password1" class="block text-surface-900 dark:text-surface-0 font-medium text-xl mb-2 text-white">Confirme password</label>
+                    <p-password id="password1" [(ngModel)]="confirm" placeholder="Password" [toggleMask]="true" styleClass="mb-4" [fluid]="true" [feedback]="false"></p-password>
+                    <label *ngIf="column === 1" for="ji" class="block  font-medium mb-2 text-red-700 ">
+                        Not found email
+                    </label>
+                    <div class="flex flex-col justify-end gap-2 sm:flex-row md:gap-4 lg:pt-5 xl:pt-10 ">
+                          <button class="btn" (onClick)="registre()">
+                            <span>Inscription</span>
+                          </button>
+                    </div>
+                </div>
+              
+              </div>
+            </div>
+    </section>
+</body>

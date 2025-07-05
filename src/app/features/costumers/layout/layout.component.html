@@ -1,0 +1,86 @@
+<div class="flex w-full h-screen">
+    <!-- sidebar -->
+    <div  class="bg-green-950 w-64 p-6 text-white hidden lg:block">
+        <div class="mb-8">
+                <h1 class="font-Lobster sm:text-2xl">GarageNtsika</h1>
+        </div>
+        
+        <nav class="space-y-4">
+          <a *ngFor="let item of model"
+                href="#"
+                [routerLink]="item.routerLink"
+                class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white bg-opacity-10 backdrop-blur-sm">
+                
+                <div class="w-5 h-5">
+                    <i [ngClass]="item.icon"></i>
+                </div>
+
+                <span>{{ item.label }}</span>
+            </a>
+        </nav>
+        
+      
+    </div>
+    <button id="mobile-menu-btn" #mobileMenuBtn (click)="ouvrirMenu()" class="lg:hidden fixed top-4 left-4 z-50 bg-yellow-500 text-white p-2 rounded-lg" >
+        <i class="ri-menu-line"></i>
+    </button>
+     <!-- Main Content -->
+    <div class="flex-1 overflow-auto">
+         <header class="bg-green-950  backdrop-blur-sm p-4 lg:p-6">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-2xl font-bold text-white ml-12 lg:ml-0"></h2>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2">
+                            <button class="p-2 rounded-lg hover:bg-white hover:bg-opacity-50 transition-colors">
+                                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </button>
+                            <button class="p-2 rounded-lg hover:bg-white hover:bg-opacity-50 transition-colors">
+                                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center space-x-3">
+                            <div class="text-right hidden md:block">
+                                <p class="text_relief">Christine Eva</p>
+                            </div>
+                            <div class="w-10 h-10  bg-yellow-500  rounded-full flex items-center justify-center">
+                                <span class="text-white font-semibold">CE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="p-4 lg:p-6 bg-white">
+                    <router-outlet></router-outlet>
+            </div>
+    </div>
+</div>
+ <!-- Mobile Sidebar Overlay -->
+    <div id="mobile-overlay" #mobileOverlay (click)="fermerMenuParOverlay($event)" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden">
+        <div class="bg-yellow w-64 h-full p-6 text-white">
+            <div class="flex items-center justify-between mb-8">
+                <button id="close-mobile-menu" #closeMobileMenu (click)="fermerMenu()" class="text-white">
+                     <i class="ri-close-large-line"></i>
+                </button>
+            </div>
+            
+            <nav class="space-y-4">
+               <a *ngFor="let item of model"
+                href="#"
+                [routerLink]="item.routerLink"
+                class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white bg-opacity-10 backdrop-blur-sm">
+                
+                <div class="w-5 h-5">
+                    <i [ngClass]="item.icon"></i>
+                </div>
+
+                <span>{{ item.label }}</span>
+            </a>
+            </nav>
+        </div>
+    </div>

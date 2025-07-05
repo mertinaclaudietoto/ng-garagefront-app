@@ -1,8 +1,9 @@
-<div class="layout-topbar">
+<!-- <div class="layout-topbar">
     <div class="layout-topbar-logo-container">
         <button class="layout-menu-button layout-topbar-action" (click)="layoutService.onMenuToggle()">
             <i class="pi pi-bars"></i>
         </button>
+
         <a class="layout-topbar-logo" routerLink="/">
             <svg viewBox="0 0 54 40" fill="none" xmlns="http://www.w3.org/2000/svg" >
                 <path
@@ -64,4 +65,39 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+<header  class="bg-green-950 fixed   top-0 left-0 z-50 ">
+        <nav class="container flex items-center justify-between h-16 sm:h-20">
+            <div class="font-Lobster sm:text-2xl ">GarageNtsika</div>
+            <div id="nav-menu" 
+                class="absolute top-0 left-[-100%] min-h-[80vh] w-full bg-green-950/80 backdrop-blur-sm flex items-center justify-center duration-300 overflow-hidden
+                        lg:static lg:min-h-fit lg:bg-transparent lg:w-auto">
+                <ul class="flex flex-col items-center  gap-8
+                            lg:flex-row ">
+                <li>
+                    <a href="#home" class="nav-link active">Accueil</a>
+                </li>
+                <li>
+                    <a href="#about" class="nav-link">Services</a>
+                </li>
+                <li>
+                    <a href="#popular" class="nav-link">Apropos de nous</a>
+                </li>
+                <li>
+                    <a href="#review" class="nav-link">Contact</a>
+                </li>
+                <li>
+                    <a  routerLink="/auth/register" class="nav-link">Inscription</a>
+                </li>
+                <li>
+                    <a  routerLink="/auth/login" class="nav-link">Login</a>
+                </li>
+                </ul>
+            </div>
+            <div id="hamburger" class="text-xl sm:text-3xl cursor-pointer z-50
+            lg:hidden" >
+                <i class="ri-menu-4-line" id="hamburger"></i>
+            </div>
+        </nav>
+</header>

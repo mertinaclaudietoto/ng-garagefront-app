@@ -10,7 +10,6 @@
         <app-footerwidget></app-footerwidget>
     </div>
 </div> -->
-
 <body>
     <!-- Header -->
     <header id="navbar" class="bg-green-950 fixed w-full top-0 left-0 z-50 ">
@@ -32,6 +31,12 @@
                 </li>
                 <li>
                     <a href="#review" class="nav-link">Contact</a>
+                </li>
+                <li>
+                    <a  routerLink="/auth/register" class="nav-link">Inscription</a>
+                </li>
+                <li>
+                    <a  routerLink="/auth/login" class="nav-link">Login</a>
                 </li>
                 </ul>
             </div>
@@ -312,6 +317,7 @@
                </div>
             </div>
         </section>
+         <!-- login -->
         <!-- Review -->
          <section id="review" class="relative mb-20 md:mb-28 overflow-hidden">
            
@@ -381,80 +387,9 @@
                     </div>
             </div>
             
-            <!-- <div class="review__swiper container">
-              <div class="swiper py-12">
-                <ul class="swiper-wrapper">
-                  <li class="swiper-slide">
-                    <div class="flex flex-col gap-5 bg-green-900 rounded-md p-6">
-                      <p class="font-Lobster">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique culpa ut amet voluptas asperiores alias sed consequatur.
-                      </p>
-                      <div class="flex items-center">
-                        <img src="images/review-1.jpg" alt="review_image"
-                        class="w-12 h-12 rounded-full">
-                        <div class="ml-2">
-                          <p class="text-yellow-500 uppercase">John doe</p>
-                          <p>Designer</p>
-                        </div>
-                        <i class="ri-double-quotes-r text-4xl ml-auto"></i>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="swiper-slide">
-                    <div class="flex flex-col gap-5 bg-green-900 rounded-md p-6">
-                      <p class="font-Lobster">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique culpa ut amet voluptas asperiores alias sed consequatur.
-                      </p>
-                      <div class="flex items-center">
-                        <img src="images/review-2.jpg" alt="review_image"
-                        class="w-12 h-12 rounded-full">
-                        <div class="ml-2">
-                          <p class="text-yellow-500 uppercase">John doe</p>
-                          <p>Designer</p>
-                        </div>
-                        <i class="ri-double-quotes-r text-4xl ml-auto"></i>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="swiper-slide">
-                    <div class="flex flex-col gap-5 bg-green-900 rounded-md p-6">
-                      <p class="font-Lobster">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique culpa ut amet voluptas asperiores alias sed consequatur.
-                      </p>
-                      <div class="flex items-center">
-                        <img src="images/review-3.jpg" alt="review_image"
-                        class="w-12 h-12 rounded-full">
-                        <div class="ml-2">
-                          <p class="text-yellow-500 uppercase">John doe</p>
-                          <p>Designer</p>
-                        </div>
-                        <i class="ri-double-quotes-r text-4xl ml-auto"></i>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="swiper-slide">
-                    <div class="flex flex-col gap-5 bg-green-900 rounded-md p-6">
-                      <p class="font-Lobster">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique culpa ut amet voluptas asperiores alias sed consequatur.
-                      </p>
-                      <div class="flex items-center">
-                        <img src="images/review-4.jpg" alt="review_image"
-                        class="w-12 h-12 rounded-full">
-                        <div class="ml-2">
-                          <p class="text-yellow-500 uppercase">John doe</p>
-                          <p>Designer</p>
-                        </div>
-                        <i class="ri-double-quotes-r text-4xl ml-auto"></i>
-                      </div>
-                    </div>
-                  </li>
-                 
-                </ul>
-                <div class="swiper-pagination">
-                </div>
-              </div>
-            </div> -->
+          
         </section>
+       
     </main>
 <footer class="bg-yellow-100 text-green-950 pt-20 pb-10 md:pt-28 relative">
         <!-- newsletter -->
