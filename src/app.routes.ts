@@ -30,6 +30,10 @@ import { ChatComponent } from './app/features/costumers/chat/chat.component';
 import { CompteComponent } from './app/features/costumers/compte/compte.component';
 import { PanierComponent } from './app/features/costumers/panier/panier.component';
 import { StoryComponent } from './app/features/costumers/story/story.component';
+// import of manager page
+import { LayoutmaComponent } from './app/features/manager/layoutma/layoutma.component';
+// mechanic's page import
+import { LayoutmeComponent } from './app/features/mechanic/layoutme/layoutme.component';
 export const appRoutes: Routes = [
     {
         path: '',
@@ -56,7 +60,7 @@ export const appRoutes: Routes = [
     },
     {
         path: 'mechanic',
-        component: LayoutappComponent,
+        component: LayoutmeComponent,
         children: [
             { path: '', component: ListTaskComponent },
             { path: 'agenda-mechanic', component: AgendaComponent },
@@ -74,7 +78,7 @@ export const appRoutes: Routes = [
     },
     {
         path: 'manager',
-        component: LayoutappComponent,
+        component: LayoutmaComponent,
         canActivate: [authGuard, roleManagerGuard],
         children: [
             { path: 'dashboard', component: DashboardComponent },

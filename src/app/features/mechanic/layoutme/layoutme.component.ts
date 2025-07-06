@@ -1,20 +1,17 @@
 import { Component ,inject,AfterViewInit ,OnInit, HostListener, ElementRef, ViewChild} from '@angular/core';
-import { roles } from '../../../auth/guard/RULE';
 import { MenuItem } from 'primeng/api';
-import { ServiceviewService } from '../serviceview.service';
+import { ServiceviewService } from '../../costumers/serviceview.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-
 @Component({
-  selector: 'app-layout',
+  selector: 'app-layoutme',
   imports: [CommonModule,RouterModule],
-  templateUrl: './layout.component.html',
-  styleUrl: './layout.component.scss'
+  templateUrl: './layoutme.component.html',
+  styleUrl: './layoutme.component.scss'
 })
-export class LayoutComponent  implements OnInit{
+export class LayoutmeComponent {
     @ViewChild('mobileMenuBtn') mobileMenuBtnRef!: ElementRef;
     @ViewChild('mobileOverlay') mobileOverlayRef!: ElementRef;
-
     ouvrirMenu() {
       this.mobileOverlayRef.nativeElement.classList.remove('hidden');
       this.mobileMenuBtnRef.nativeElement.classList.add('hidden');
@@ -31,39 +28,30 @@ export class LayoutComponent  implements OnInit{
         this.fermerMenu();
       }
     }
-   model: MenuItem[] = [];
+  
+    model: MenuItem[] = [];
     readonly #paginationService = inject(ServiceviewService);
     getMenu(panier: number): MenuItem[] {
-        let panierclient = 'Panier ' + panier;
-        const menu= [
+       const menu = [
             {label: 'Tableau de bord',icon: 'ri-function-line', routerLink: ['/client/service-view']},
-            {label: 'Service',icon: 'ri-service-line', routerLink: ['/client/service']},
+            {label: 'mecanic',icon: 'ri-service-line', routerLink: ['/client/service']},
             {label: 'Panier',icon: 'ri-shopping-cart-line', routerLink: ['/client/panier']},
             {label: 'Historique',icon: 'ri-archive-line', routerLink: ['/client/story']},
             {label: 'Message',icon: 'ri-chat-1-line', routerLink: ['/client/chat']},
             {label: 'Compte',icon: 'ri-profile-line', routerLink: ['/client/compte']},
         ];
-        const menuMechanic = [ {
-            label: 'Mécanicien',
-                items: [
-                    { label: 'Tâches', icon: '', routerLink: ['/mechanic/'] },
-                    { label: 'Agenda', icon: '', routerLink: ['/mechanic/agenda-mechanic'] },
-                    { label: 'Statistique', icon: '', routerLink: ['/mechanic/satisfaction-customer-mechanic'] }
-                ]
-            }
-        ];
-      return menu;
-       
+        return menu;  
     }
-  ngOnInit() {
+    ngOnInit() {
       this.#paginationService.panierCount$.subscribe(count => {
+          // initialisation of menu data
           this.model = this.getMenu(count);
-      });
-  }
-  @HostListener('window:scroll', [])
-    onWindowScroll() {
-      this.setActiveLink();
-  }
+        });
+    }
+    @HostListener('window:scroll', [])
+      onWindowScroll() {
+        this.setActiveLink();
+    }
    setActiveLink(): void {
       const sections = document.querySelectorAll('section');
       const navLinks = document.querySelectorAll('.nav-link');
