@@ -35,12 +35,12 @@ export class LayoutmaComponent implements OnInit {
     readonly #paginationService = inject(ServiceviewService);
     getMenu(panier: number): MenuItem[] {
        const menu = [
-            {label: 'Tableau de bord',icon: 'ri-function-line', routerLink: ['/client/service-view']},
-            {label: 'manager',icon: 'ri-service-line', routerLink: ['/client/service']},
-            {label: 'Panier',icon: 'ri-shopping-cart-line', routerLink: ['/client/panier']},
-            {label: 'Historique',icon: 'ri-archive-line', routerLink: ['/client/story']},
-            {label: 'Message',icon: 'ri-chat-1-line', routerLink: ['/client/chat']},
-            {label: 'Compte',icon: 'ri-profile-line', routerLink: ['/client/compte']},
+            {label: 'Tableau de bord',icon: 'ri-function-line', routerLink: ['/manager/service-view']},
+            {label: 'manager',icon: 'ri-service-line', routerLink: ['/manager/service']},
+            {label: 'Panier',icon: 'ri-shopping-cart-line', routerLink: ['/manager/panier']},
+            {label: 'Historique',icon: 'ri-archive-line', routerLink: ['/manager/story']},
+            {label: 'Message',icon: 'ri-chat-1-line', routerLink: ['/manager/chat']},
+            {label: 'Compte',icon: 'ri-profile-line', routerLink: ['/manager/compte']},
         ];
         return menu;  
     }

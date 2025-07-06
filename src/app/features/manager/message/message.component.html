@@ -1,0 +1,160 @@
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+    <!-- section left -->
+    <div class="xl:col-span-2 space-y-6">
+        <!-- search bar -->
+        <header class="bg-white px-4 py-4 border-b border-gray-100">
+            <div class="relative">
+                <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+                <button (click)="isOpen = !isOpen" type="button"  class="w-full pl-10 pr-4 py-2 text-black bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    {{ selectedUser?.name || 'rechercher un utilisateur' }}
+                </button>
+            </div>
+        </header>
+        <div class="relative w-full max-w-md">
+            <label for="user-select" class="block text-sm font-medium text-gray-700 mb-1">Sélectionner un utilisateur</label>
+            <!-- Sélecteur -->
+            <div class="relative">
+                <!-- Liste déroulante -->
+                <ul *ngIf="isOpen"
+                    class="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-auto">
+                    <li *ngFor="let user of alluser"
+                        (click)="selectUser(user)"
+                        class="px-4 py-2 hover:bg-blue-100 cursor-pointer text-black flex items-center space-x-2">
+                        <!-- Mini image -->
+                        <img [src]="user.picture" alt="avatar" class="w-6 h-6 rounded-full object-cover" />
+                        <!-- Nom de l'utilisateur -->
+                        <span>{{ user.name }} {{ user.firstName }}</span>
+                    </li>
+                </ul>
+            </div>
+            </div>
+
+        <!-- filter persone -->
+        <div class="bg-white px-4 py-3 border-b border-gray-100">
+            <div class="flex gap-2">
+                <button class="px-4 py-2 bg-blue-500 text-white rounded-full text-sm font-medium">Touts</button>
+                <button class="px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm font-medium">Mecaniciens</button>
+                <button class="px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm font-medium">Clients</button>
+            </div>
+        </div>
+        <!-- list of conversation -->
+        <div class="bg-white flex-1 overflow-y-auto">
+            <div *ngFor="let items of listConv" class="contact-item flex items-center p-4 border-b border-gray-50"
+            >
+                <button  (click)="getConv(items._id)" class="border border-2 border-yellow-500 rounded-full mr-2">
+                    <img [src]="items.picture" class="w-12 h-12 rounded-full object-cover w-30 h-30 "/>
+                </button>
+                <div class="flex-1">
+                    <h3 class="font-semibold text-gray-900">{{ items.name }} {{ items.firstName }}</h3>
+                    <p class="text-sm text-gray-500">{{ items.content }}</p>
+                    <p class="text-sm text-gray-500">{{ getTimeAgo(items.timestamp) }}</p>
+                </div>
+
+                <div [ngClass]="items.isConnected ? 'w-2 h-2 bg-green-500 rounded-full' : 'w-2 h-2 bg-red-500 rounded-full'"></div>
+            </div>
+        </div>
+    </div>
+    <div class="space-y-6 mb-5">
+        <!-- Chat Header -->
+        <div *ngIf="conv">
+        <div class="bg-white px-4 py-4 border-b border-gray-100 flex items-center">
+            <div class="avatar small-avatar mr-3">
+            <img 
+                *ngIf="conv.sender"
+                [src]="conv.sender.picture"
+                class="w-12 h-12 rounded-full object-cover"
+            />
+            </div>
+            <div class="flex-1">
+            <h3 *ngIf="conv.sender" class="font-semibold text-gray-900">
+                {{ conv.sender?.name }} {{ conv.sender?.firstName }}
+            </h3>
+            <div class="flex items-center">
+                <div 
+                *ngIf="conv.sender"
+                [ngClass]="conv.sender.isConnected ? 'w-2 h-2 bg-green-500 rounded-full' : 'w-2 h-2 bg-red-500 rounded-full'">
+                </div>
+                <span *ngIf="conv.sender" class="text-sm text-green-600">
+                {{ getTimeAgo(conv.sender.lastConnection) }}
+                </span>
+            </div>
+            </div>
+        </div>
+        </div>
+
+
+        <!-- Chat Messages -->
+        <div class="flex-1 bg-gray-50 p-4 overflow-y-auto">
+            <div class="space-y-4">
+                
+                <!-- Message reçu -->
+                <ng-container  *ngIf="conv">
+                    <div *ngFor="let item of conv.message"
+                        [ngClass]="item.isLeft ? 'flex items-start mb-2' : 'flex justify-end mb-2'">
+
+                        <!-- Avatar (affiché uniquement si isLeft) -->
+                        <div *ngIf="item.isLeft" class="avatar small-avatar mr-3">
+                        <img
+                            [src]="conv.sender?.picture"
+                            alt="avatar"
+                            class="w-8 h-8 rounded-full object-cover"
+                        />
+                        </div>
+
+                        <!-- Message Bubble -->
+                        <div
+                        [ngClass]="item.isLeft
+                            ? 'message-bubble bg-white text-gray-800 p-3 rounded-lg shadow-sm max-w-xs'
+                            : 'message-bubble bg-blue-500 text-white p-3 rounded-lg shadow-sm max-w-xs'"
+                        >
+                        <div *ngIf="isImageUrl(item.content); else textContent">
+                        <img [src]="item.content" class="w-32 h-32 object-cover rounded-md" alt="image partagée">
+                        </div>
+
+                        <ng-template #textContent>
+                        <p class="text-sm">{{ item.content }}</p>
+                        </ng-template>
+
+                        </div>
+                    </div>
+                </ng-container>
+
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="bg-white p-4 border-t border-gray-100">
+            <div class="flex items-center space-x-3">
+               <label for="fileInput" class="cursor-pointer text-gray-400">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                </svg>
+                </label>
+                <input
+                id="fileInput"
+                type="file"
+                (change)="onFileSelected($event)"
+                class="hidden"
+                />
+               
+                
+               <input 
+                *ngIf="sendmessage.content" [(ngModel)]="sendmessage.content" 
+                name="content"
+                type="text" 
+                placeholder="Type a message..." 
+                class="flex-1 text-black bg-gray-50 border border-gray-200 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+                <button class="bg-blue-500 text-white w-10 h-10 rounded-full flex items-center justify-center"
+                (click)="sendMessage()">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -43,7 +43,6 @@ export class EmpComponent {
     constructor(private empService: EmpService,private carService:CarService,private snackBar: MatSnackBar) {
       this.addOrUpdateValue.picture='';
     }
-
     ngOnInit() {
         this.relaod();
         this.carService.getCarType("services").subscribe(table=>this.serviceList=table);

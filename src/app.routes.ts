@@ -32,6 +32,7 @@ import { PanierComponent } from './app/features/costumers/panier/panier.componen
 import { StoryComponent } from './app/features/costumers/story/story.component';
 // import of manager page
 import { LayoutmaComponent } from './app/features/manager/layoutma/layoutma.component';
+import { MessagemaComponent } from './app/features/manager/message/message.component';
 // mechanic's page import
 import { LayoutmeComponent } from './app/features/mechanic/layoutme/layoutme.component';
 export const appRoutes: Routes = [
@@ -82,6 +83,7 @@ export const appRoutes: Routes = [
         canActivate: [authGuard, roleManagerGuard],
         children: [
             { path: 'dashboard', component: DashboardComponent },
+            { path: 'chat', component: MessagemaComponent  },
             { path: 'service-garage', component: ServicesCarComponent },
             { path: 'type-service', component: TypeServiceComponent },
             { path: 'car-size', component: CarSizeComponent }, 
