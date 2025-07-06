@@ -38,6 +38,14 @@ export class EmpService {
     }
   }
 
+   modifCardInformation(value: Emp): Observable<ApiResponse<Emp>> {
+    if (value._id != undefined) {
+      return this.http.put<ApiResponse<Emp>>(`${this.apiUrl}${'emps'}/put-creditcard/${encodeURIComponent(value._id)}`, value)
+    } else {
+      return this.http.post<ApiResponse<Emp>>(this.apiUrl + 'emps', value);
+    }
+  }
+
   deleteCar(id: string|undefined): Observable<void> {
     return this.http.delete<void>(this.apiUrl + "emps/" + id);
   }
