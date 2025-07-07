@@ -16,6 +16,7 @@ export interface listuserconv {
   timestamp: Date|null,
   isRead: boolean,
   isGras: boolean,
+  idrule:string
 }
 
 export interface Userchat {
@@ -26,6 +27,14 @@ export interface Userchat {
   isConnected: boolean;
   lastConnection: string | null;
 }
+export interface FiltreButton {
+  index: string;
+  class: string;
+  name: string;
+  rule: string;
+
+}
+
 
 export interface MessageContent {
   content: string;
