@@ -50,7 +50,7 @@ export const appRoutes: Routes = [
         children: [
             { path: '', component: LandingComponent },
             { path: 'service-view', component: DasbordComponent },
-            { path: 'chat', component: ChatComponent },
+            { path: 'chat', component:  MessagemaComponent },
             { path: 'service', component: ServicechoisComponent },
             { path: 'compte', component: CompteComponent },
             { path: 'panier', component: PanierComponent },
@@ -83,7 +83,8 @@ export const appRoutes: Routes = [
         canActivate: [authGuard, roleManagerGuard],
         children: [
             { path: 'dashboard', component: DashboardComponent },
-            { path: 'chat', component: MessagemaComponent  },
+            { path: 'chat', component: MessagemaComponent },
+            { path: 'compte', component: CompteComponent },
             { path: 'service-garage', component: ServicesCarComponent },
             { path: 'type-service', component: TypeServiceComponent },
             { path: 'car-size', component: CarSizeComponent }, 

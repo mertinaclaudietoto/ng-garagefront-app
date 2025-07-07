@@ -40,66 +40,73 @@
                         <p-button label="Yes"severity="danger" (onClick)="close()" />
                     </ng-template>
                 </p-dialog>  
+
             </div>
            
            
         </div>
-        <div class="md:w-1/2">
-            <div class="card flex flex-col gap-4">
-                    <div class="flex flex-wrap gap-6">
-                        <div class="flex flex-col grow basis-0 gap-2">
-                            <p-image *ngIf="addOrUpdateValue.picture"  [src]="addOrUpdateValue.picture" alt="Image" width="250" />
-                        </div>
-                        <div class="flex flex-col grow basis-0 gap-2">
-                            <label for="email2">Image</label>
-                            <input pInputText id="email2" type="file" (change)="onFileSelected($event)"/>
-                            <label for="email2">Name</label>
-                            <input pInputText id="email2" type="text" [(ngModel)]="addOrUpdateValue.name"/>
-                            <label for="email2">First name</label>
-                            <input pInputText id="email2" type="text" [(ngModel)]="addOrUpdateValue.firstName"/>
-                        </div>
+        <div class="md:w-1/2 ">
+            <div class="flex flex-col gap-6 bg-green-950 p-6 rounded-xl shadow-lg text-white">
+                <div class="flex flex-wrap gap-6">
+                    
+                    <div class="flex flex-col grow basis-0 gap-2 items-center">
+                    <p-image *ngIf="addOrUpdateValue.picture" [src]="addOrUpdateValue.picture" alt="Image" width="250" class="rounded-lg border border-gray-200" />
                     </div>
-                        <div class="flex flex-col gap-4 mt-10">
-                            <div class="flex flex-wrap gap-6">
-                                <div class="flex flex-col grow basis-0 gap-2">
-                                    <label for="name2">date of birth</label>
-                                    <input pInputText id="date" type="date" [(ngModel)]="addOrUpdateValue.dateofbirth" />
-                                </div>
-                                <div class="flex flex-col grow basis-0 gap-2">
-                                    <label for="email2">employment start date</label>
-                                    <input pInputText id="email2" type="date" [(ngModel)]="addOrUpdateValue.dateofemp" />
-                                </div>
-                                <div class="flex flex-col grow basis-0 gap-2">
-                                    <label for="name2">rule</label>
-                                    <p-select id="state" [(ngModel)]="addOrUpdateValue.rule" [options]="dropdownItems" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
-                                   
-                                </div>
-                            </div>
+                    <!-- Form champs : Nom, Prénom, Image -->
+                    <div class="flex flex-col grow basis-0 gap-4">
+                        <div>
+                            <label class="text-sm font-medium text-gray-200">Image</label>
+                            <input pInputText type="file" (change)="onFileSelected($event)" class="bg-gray-100 text-black rounded px-3 py-2 w-full" />
                         </div>
-                        <div class="flex flex-col gap-4 mt-10">
-                            <div class="flex flex-wrap gap-6">
-                                <div    class="flex flex-col grow basis-0 gap-2">
-                                    <label for="name2">email</label>
-                                    <input pInputText id="date" type="text" [(ngModel)]="addOrUpdateValue.login" />
-                                </div>
-                                <div   class="flex flex-col grow basis-0 gap-2">
-                                    <label for="email2">passe word</label>
-                                    <input pInputText id="email2" type="text" [(ngModel)]="addOrUpdateValue.password" />
-                                </div>
-                                <div class="flex flex-col grow basis-0 gap-2">
-                                    <label for="name2">sex</label>
-                                    <p-select id="state" [(ngModel)]="addOrUpdateValue.sex" [options]="dropdownSexs" optionLabel="name" placeholder="Select One" class="w-full"></p-select>
-                                </div>
-                            </div>
-                        </div>
-
-                       
-                     
-                        <div class="flex flex-wrap items-start gap-6">
-                            <p-button class="mt-5" label="validate" [fluid]="false" (onClick)="modifOrAdd(addOrUpdateValue)"></p-button>
-                        </div>
-                  
+                    <div>
+                        <label class="text-sm font-medium text-gray-200">Nom</label>
+                        <input pInputText type="text" [(ngModel)]="addOrUpdateValue.name" class="bg-gray-100 text-black rounded px-3 py-2 w-full" />
+                    </div>
+                    <div>
+                        <label class="text-sm font-medium text-gray-200">Prénom</label>
+                        <input pInputText type="text" [(ngModel)]="addOrUpdateValue.firstName" class="bg-gray-100 text-black rounded px-3 py-2 w-full" />
+                    </div>
+                    </div>
                 </div>
+                <div class="flex flex-wrap gap-6">
+                    <div class="flex flex-col grow basis-0 gap-2">
+                    <label class="text-sm font-medium text-gray-200">Date de naissance</label>
+                    <input pInputText type="date" [(ngModel)]="addOrUpdateValue.dateofbirth" class="bg-gray-100 text-black rounded px-3 py-2 w-full" />
+                    </div>
+                    <div class="flex flex-col grow basis-0 gap-2">
+                    <label class="text-sm font-medium text-gray-200">Date d'embauche</label>
+                    <input pInputText type="date" [(ngModel)]="addOrUpdateValue.dateofemp" class="bg-gray-100 text-black rounded px-3 py-2 w-full" />
+                    </div>
+                    <div class="flex flex-col grow basis-0 gap-2">
+                    <label class="text-sm font-medium text-gray-200">Rôle</label>
+                    <p-select [(ngModel)]="addOrUpdateValue.rule" [options]="dropdownItems" optionLabel="name" placeholder="Sélectionner"
+                        class="w-full bg-gray-100 text-black rounded" appendTo="body"></p-select>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-6">
+                    <div class="flex flex-col grow basis-0 gap-2">
+                    <label class="text-sm font-medium text-gray-200">Email</label>
+                    <input pInputText type="email" [(ngModel)]="addOrUpdateValue.login" class="bg-gray-100 text-black rounded px-3 py-2 w-full" />
+                    </div>
+                    <div class="flex flex-col grow basis-0 gap-2">
+                    <label class="text-sm font-medium text-gray-200">Mot de passe</label>
+                    <input pInputText type="password" [(ngModel)]="addOrUpdateValue.password" class="bg-gray-100 text-black rounded px-3 py-2 w-full" />
+                    </div>
+                    <div class="flex flex-col grow basis-0 gap-2">
+                    <label class="text-sm font-medium text-gray-200">Sexe</label>
+                    <p-select [(ngModel)]="addOrUpdateValue.sex" [options]="dropdownSexs" optionLabel="name" placeholder="Sélectionner"
+                        class="w-full bg-gray-100 text-black rounded" appendTo="body"></p-select>
+                    </div>
+                </div>
+  <!-- Bouton -->
+                <div class="flex justify-end mt-6">
+                    <button
+                    class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-6 rounded-xl shadow-md transition transform hover:-translate-y-1"
+                    (click)="modifOrAdd(addOrUpdateValue)">
+                    Valider
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </p-fluid>

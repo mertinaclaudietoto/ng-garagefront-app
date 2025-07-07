@@ -36,9 +36,9 @@ export class LayoutmaComponent implements OnInit {
     getMenu(panier: number): MenuItem[] {
        const menu = [
             {label: 'Tableau de bord',icon: 'ri-function-line', routerLink: ['/manager/dashboard']},
-            {label: 'manager',icon: 'ri-service-line', routerLink: ['/manager/service']},
-            {label: 'Panier',icon: 'ri-shopping-cart-line', routerLink: ['/manager/panier']},
-            {label: 'Historique',icon: 'ri-archive-line', routerLink: ['/manager/story']},
+            {label: 'Emploies',icon: 'ri-service-line', routerLink: ['/manager/emp']},
+            {label: 'Service',icon: 'ri-shopping-cart-line', routerLink: ['/manager/service-garage']},
+            // {label: 'Historique',icon: 'ri-archive-line', routerLink: ['/manager/story']},
             {label: 'Message',icon: 'ri-chat-1-line', routerLink: ['/manager/chat']},
             {label: 'Compte',icon: 'ri-profile-line', routerLink: ['/manager/compte']},
         ];
