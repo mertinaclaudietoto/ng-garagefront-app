@@ -16,11 +16,14 @@ export class PanierviewService {
   constructor(private http: HttpClient) {}
 
   savePanier(value:ServiceCostumer|undefined):Observable<ApiResponse<ServiceCostumer> > {
-  //  console.log(value);
+    //  console.log(value);
+    const id = localStorage.getItem('iduser') ?? '';
+    const emp = new Emp();
+    emp._id = id;
    if(value!=undefined){
       value.etats=1;
       value.dateappoitement=new Date();
-      value.idcostumer=localStorage.getItem('iduser')?? new Emp();
+      value.idcostumer= emp;
     }
     const token = localStorage.getItem('token'); 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); 

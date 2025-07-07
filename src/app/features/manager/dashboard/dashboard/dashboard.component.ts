@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { StatswidgetComponent } from "../statswidget/statswidget.component";
 import { CommonModule } from '@angular/common';
 import { ServiceCostumer } from '../../../../shared/models/servicesclient';
 import { ServicesClientService } from '../../../../shared/services/services-client.service';
@@ -17,29 +16,32 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ServiceDetail } from '../../../../shared/models/det-serviceclient';
 import { RULE } from '../../../../shared/data/RULE';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CalendarComponent } from '../../../calendar/calendar.component';
+
+export interface staticWidget {
+  name: string,
+  value: number,
+  icone:string,
+}
 
 @Component({
   selector: 'app-dashboard',
-  imports: [TagModule,StatswidgetComponent,CommonModule,TableModule,DialogModule,ButtonModule,FormsModule,SelectModule,DropdownModule,CheckboxModule],
+  imports: [TagModule,CommonModule,TableModule,DialogModule,ButtonModule,FormsModule,SelectModule,DropdownModule,CheckboxModule,CalendarComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
 
-
-  nbrCostumer:number=0;
-  nbrMechanic:number=0;
-  nbrTacheencours:number=0;
-  nbrTacheenAttent:number=0;
-  nbrEmployeedispo:number=0;
-
-  display:boolean=false;
-  displayView:boolean=false;
-  checkboxValue:boolean=false;
- 
+  listevaluestat: staticWidget[] = [
+    {name:"Tache en attente",value:0,icone:'pi pi-spinner-dotted text-yellow-500 !text-xl'},
+    {name:"Tache en cours",value:0,icone:'pi pi-stopwatch text-yellow-500 !text-xl'},
+    {name:"Mecanicien",value:0,icone:'pi pi-users text-yellow-500 !text-xl'},
+    {name:"Clients ",value:0,icone:'pi pi-users text-yellow-500 !text-xl'},
+  ] 
   listClientEnAttent!:ServiceCostumer[];
   listClientProgress!:ServiceCostumer[];
-  listFreeMechanic!:Emp[];
+  listFreeMechanic!: Emp[];
+  checkboxValue:boolean=false;
   
   detServiceCostumer!:ServiceCostumer;
   avancementServiceCostumer!:ServiceCostumer;
@@ -50,34 +52,25 @@ export class DashboardComponent {
   constructor(private ServiceCostumerService :ServicesClientService,private empService:EmpService,private snackBar: MatSnackBar){}
   ngOnInit() {
     this.relaod();
-   
-    
-
     this.empService.getNombreCategorieUser(RULE.costumer).subscribe(response=>{
-      this.nbrCostumer=response.data??0;
+      this.listevaluestat[3].value=response.data??0;
     },error =>{console.log(error)})
 
     this.empService.getlistByRule(RULE.mechanic).subscribe(response=>{
-      this.nbrMechanic=response.data?.length??0;
+      this.listevaluestat[2].value=response.data?.length??0;
       this.listFreeMechanic=response.data??[];
     },error =>{console.log(error)})
   }
-  setUpdateValue(carType:ServiceCostumer){
-    this.ServiceCostumerService. getDetailleService(carType._id).subscribe(response=>{
-      console.log(response.data);
-      this.viewDetaille=response.data?? carType;
-      this.display=true;
-    })
-  }
+  
   relaod(){
     this.ServiceCostumerService.getEtatsService(1).subscribe(response=>{this.listClientEnAttent=response.data??[]
-      this.nbrTacheenAttent=response.data?.length??0 ;
+      this.listevaluestat[0].value=response.data?.length??0 ;
     },error =>{console.log(error)})
     this.ServiceCostumerService.getEtatsService(2).subscribe(
       response=>{
         if(response.status==='success'){
           this.listClientProgress=response.data??[]
-          this.nbrTacheencours=response.data?.length??0 ;
+          this.listevaluestat[1].value=response.data?.length??0 ;
         }
     })
   }
@@ -97,7 +90,6 @@ export class DashboardComponent {
           panelClass: ['snackbar-success'] 
         });
         this.relaod();
-        this.display=false;
       },
       error => {
         this.snackBar.open("Ereur 500", 'Fermer', {
@@ -113,10 +105,6 @@ export class DashboardComponent {
   // getAvancement(product: ServiceCostumer): number {
   //   return product?.detail ? product.detail.filter(value => value.datefin === null).length : 0;
   // }
-  setViewDetaille(carType:ServiceCostumer){
-    this.avancementServiceCostumer=carType;
-    this.displayView=true;
-  }
   trueFalse(product: ServiceDetail): boolean {
     return product.datefin==null ? false : true;
   }

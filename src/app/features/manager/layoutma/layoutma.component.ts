@@ -35,7 +35,7 @@ export class LayoutmaComponent implements OnInit {
     readonly #paginationService = inject(ServiceviewService);
     getMenu(panier: number): MenuItem[] {
        const menu = [
-            {label: 'Tableau de bord',icon: 'ri-function-line', routerLink: ['/manager/service-view']},
+            {label: 'Tableau de bord',icon: 'ri-function-line', routerLink: ['/manager/dashboard']},
             {label: 'manager',icon: 'ri-service-line', routerLink: ['/manager/service']},
             {label: 'Panier',icon: 'ri-shopping-cart-line', routerLink: ['/manager/panier']},
             {label: 'Historique',icon: 'ri-archive-line', routerLink: ['/manager/story']},
@@ -57,9 +57,7 @@ export class LayoutmaComponent implements OnInit {
    setActiveLink(): void {
       const sections = document.querySelectorAll('section');
       const navLinks = document.querySelectorAll('.nav-link');
-
       let current = 'home';
-
       sections.forEach((section: HTMLElement) => {
         const sectionTop = section.offsetTop;
 
@@ -68,7 +66,6 @@ export class LayoutmaComponent implements OnInit {
           if (id) current = id;
         }
       });
-
       navLinks.forEach((item) => {
         item.classList.remove('active');
 
