@@ -11,10 +11,12 @@ import { RouterModule } from '@angular/router';
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })
-export class LayoutComponent  implements OnInit{
+export class LayoutComponent implements OnInit{
+  
+
     @ViewChild('mobileMenuBtn') mobileMenuBtnRef!: ElementRef;
     @ViewChild('mobileOverlay') mobileOverlayRef!: ElementRef;
-
+    
     ouvrirMenu() {
       this.mobileOverlayRef.nativeElement.classList.remove('hidden');
       this.mobileMenuBtnRef.nativeElement.classList.add('hidden');

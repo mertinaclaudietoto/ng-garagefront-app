@@ -224,30 +224,33 @@
             <div class="container w-full grid grid-cols-1 gap-x-8 gap-y-36 
             md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               <!-- card 1 -->
-               <div class="popular_card bg-green-950 p-10 pt-24 rounded-md relative">
-                <img src="images/58d790a3872bc1bb8902bfac1e3b6e01-removebg-preview.png" alt="popular_image" 
-                class="w-56 absolute -top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2  duration-500">
+              <ng-container *ngFor="let value of listeservice">
+                  <div class="popular_card bg-green-950 p-10 pt-24 rounded-md relative">
+                    <img 
+                      [src]="value.picture" 
+                      alt="popular_image" 
+                      class="w-56 absolute -top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 duration-500"
+                    />
 
-                <p class="italic">Vidange, filtres, niveaux, contrôles préventifs </p>
-                <h3>Entretien</h3>
+                    <p class="italic">{{ value.description }}</p>
+                    <h3>{{ value.nameofcar }}</h3>
 
-                <div class="text-yellow-500 text-xs py-3" >
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-half-fill"></i>
-                  <i class="ri-star-line text-gray-400"></i>
-                  <i class="ri-star-line text-gray-400"></i>
-                </div>
-                <div class="flex items-center justify-between">
-                  <p class="text-xl">$5</p>
-                  <button class="bg-yellow-500 px-2 py-1 rounded-sm text-xl">
-                    <i class="ri-shopping-cart-fill"></i>
-                  </button>
-                </div>
+                    <div class="text-yellow-500 text-xs py-3">
+                      {{ value.time }} heure
+                    </div>
 
-               </div>
+                    <div class="flex items-center justify-between">
+                      <p class="text-xl">{{ value.price }} AR</p>
+                      <button class="bg-yellow-500 px-2 py-1 rounded-sm text-xl">
+                        <i class="ri-shopping-cart-fill"></i>
+                      </button>
+                    </div>
+                  </div>
+                </ng-container>
+
+               
               <!-- card 2 -->
-               <div class="popular_card bg-green-950 p-10 pt-24 rounded-md relative">
+               <!-- <div class="popular_card bg-green-950 p-10 pt-24 rounded-md relative">
                 <img src="images/6d5773b686ba528e2558b8af6299d559-removebg-preview.png" alt="popular_image" 
                 class="w-56 absolute -top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2  duration-500">
 
@@ -268,9 +271,9 @@
                   </button>
                 </div>
 
-               </div>
+               </div> -->
               <!-- card 3 -->
-               <div class="popular_card bg-green-950 p-10 pt-24 rounded-md relative">
+               <!-- <div class="popular_card bg-green-950 p-10 pt-24 rounded-md relative">
                 <img src="images/9ca007665a7640e012856309f7853ca3-removebg-preview.png" alt="popular_image" 
                 class="w-56 absolute -top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2  duration-500">
 
@@ -291,9 +294,9 @@
                   </button>
                 </div>
 
-               </div>
+               </div> -->
                <!-- card 4 -->
-               <div class="popular_card bg-green-950 p-10 pt-24 rounded-md relative">
+               <!-- <div class="popular_card bg-green-950 p-10 pt-24 rounded-md relative">
                 <img src="images/4922e519093c213625d0e9eac63dd11d-removebg-preview.png" alt="popular_image" 
                 class="w-56 absolute -top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2  duration-500">
 
@@ -314,7 +317,7 @@
                   </button>
                 </div>
 
-               </div>
+               </div> -->
             </div>
         </section>
          <!-- login -->

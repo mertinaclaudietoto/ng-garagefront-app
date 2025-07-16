@@ -11,6 +11,10 @@ import { PasswordModule } from 'primeng/password';
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+// import 
+import { CarService, ensembleServiceCar } from './service/car.service';
+
+
 
 @Component({
   selector: 'app-landing',
@@ -19,8 +23,13 @@ import { CommonModule } from '@angular/common';
   styleUrl: './landing.component.scss'
 })
 export class LandingComponent implements AfterViewInit{
-
-    constructor() {
+    listeservice!:ensembleServiceCar[]
+    constructor(private carService: CarService) {
+      
+    }
+    ngOnInit() {
+       this.carService.getList(0,4).subscribe(table=>
+            {this.listeservice=table.data??[]; })
     }
     ngAfterViewInit() {
         const navMenu = document.getElementById("nav-menu");

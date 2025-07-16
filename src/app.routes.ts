@@ -4,7 +4,7 @@ import { Notfound } from './app/features/notfound/notfound';
 import { CarSizeComponent } from './app/features/carSize/components/car-size/car-size.component';
 import { ListServiceComponent } from './app/features/services/components/list-service/list-service.component';
 import { FormServiceComponent } from './app/features/services/components/form-service/form-service.component';
-import { LandingComponent } from './app/features/costumers/landing/landing/landing.component';
+import { LandingComponent } from './app/features/costumers/landing/landing.component';
 import { RegisterComponent } from './app/auth/register/register.component';
 import { LoginComponent } from './app/auth/login/login.component';
 import { DashboardComponent } from './app/features/manager/dashboard/dashboard/dashboard.component';
