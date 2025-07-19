@@ -71,10 +71,10 @@
                      Entretien, réparation ou contrôle, prenez rendez-vous en ligne et reprenez la route en toute confiance.
                     </p>
                     <div class="flex flex-col gap-2 sm:flex-row md:gap-4 lg:pt-5 xl:pt-10 ">
-                      <button class="btn">
+                      <button  routerLink="/auth/register" class="btn">
                         <span>Inscription</span>
                              </button>
-                      <button class="btn btn_outline">
+                      <button routerLink="/auth/login" class="btn btn_outline">
                         <span> Connexion</span>
                             </button>
                     </div>
@@ -246,78 +246,7 @@
                       </button>
                     </div>
                   </div>
-                </ng-container>
-
-               
-              <!-- card 2 -->
-               <!-- <div class="popular_card bg-green-950 p-10 pt-24 rounded-md relative">
-                <img src="images/6d5773b686ba528e2558b8af6299d559-removebg-preview.png" alt="popular_image" 
-                class="w-56 absolute -top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2  duration-500">
-
-                <p class="italic">Freins, amortisseurs, moteur ou boîte de vitesses </p>
-                <h3>Réparation</h3>
-
-                <div class="text-yellow-500 text-xs py-3" >
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-half-fill"></i>
-                  <i class="ri-star-line text-gray-400"></i>
-                  <i class="ri-star-line text-gray-400"></i>
-                </div>
-                <div class="flex items-center justify-between">
-                  <p class="text-xl">$5</p>
-                  <button class="bg-yellow-500 px-2 py-1 rounded-sm text-xl">
-                    <i class="ri-shopping-cart-fill"></i>
-                  </button>
-                </div>
-
-               </div> -->
-              <!-- card 3 -->
-               <!-- <div class="popular_card bg-green-950 p-10 pt-24 rounded-md relative">
-                <img src="images/9ca007665a7640e012856309f7853ca3-removebg-preview.png" alt="popular_image" 
-                class="w-56 absolute -top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2  duration-500">
-
-                <p class="italic">Analyse complète des systèmes électroniques </p>
-                <h3>Diagnostic</h3>
-
-                <div class="text-yellow-500 text-xs py-3" >
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-half-fill"></i>
-                  <i class="ri-star-line text-gray-400"></i>
-                  <i class="ri-star-line text-gray-400"></i>
-                </div>
-                <div class="flex items-center justify-between">
-                  <p class="text-xl">$5</p>
-                  <button class="bg-yellow-500 px-2 py-1 rounded-sm text-xl">
-                    <i class="ri-shopping-cart-fill"></i>
-                  </button>
-                </div>
-
-               </div> -->
-               <!-- card 4 -->
-               <!-- <div class="popular_card bg-green-950 p-10 pt-24 rounded-md relative">
-                <img src="images/4922e519093c213625d0e9eac63dd11d-removebg-preview.png" alt="popular_image" 
-                class="w-56 absolute -top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2  duration-500">
-
-                <p class="italic">Vérification complète avant le passage au contrôle technique</p>
-                <h3>Préparation</h3>
-
-                <div class="text-yellow-500 text-xs py-3" >
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-half-fill"></i>
-                  <i class="ri-star-line text-gray-400"></i>
-                  <i class="ri-star-line text-gray-400"></i>
-                </div>
-                <div class="flex items-center justify-between">
-                  <p class="text-xl">$5</p>
-                  <button class="bg-yellow-500 px-2 py-1 rounded-sm text-xl">
-                    <i class="ri-shopping-cart-fill"></i>
-                  </button>
-                </div>
-
-               </div> -->
+              </ng-container>
             </div>
         </section>
          <!-- login -->
@@ -332,62 +261,22 @@
             <div class="container w-full grid grid-cols-1 gap-8 
                         md:grid-cols-2
                         lg:grid-cols-4 ">
-                    <div class="flex flex-col gap-5 bg-green-900 rounded-md p-6">
-                            <p class="font-Lobster">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique culpa ut amet voluptas asperiores alias sed consequatur.
-                            </p>
-                            <div class="flex items-center">
-                                <img src="images/review-1.jpg" alt="review_image"
-                                class="w-12 h-12 rounded-full">
-                                <div class="ml-2">
-                                <p class="text-yellow-500 uppercase">John doe</p>
-                                <p>Designer</p>
-                                </div>
-                                <i class="ri-double-quotes-r text-4xl ml-auto"></i>
-                            </div>
+                <ng-container *ngFor="let value of listecommentaire" >
+                  <div class="flex flex-col gap-5 bg-green-900 rounded-md p-6">
+                    <p class="font-Lobster">
+                        {{value.message}}
+                    </p>
+                    <div class="flex items-center">
+                        <img [src]="value.picture" alt="review_image"
+                              class="w-12 h-12 rounded-full">
+                        <div class="ml-2">
+                        <p class="text-yellow-500 uppercase">{{value.firstname}}</p>
+                        <p>{{value.name}}</p>
+                        </div>
+                        <i class="ri-double-quotes-r text-4xl ml-auto"></i>
                     </div>
-                    <div class="flex flex-col gap-5 bg-green-900 rounded-md p-6">
-                            <p class="font-Lobster">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique culpa ut amet voluptas asperiores alias sed consequatur.
-                            </p>
-                            <div class="flex items-center">
-                                <img src="images/review-1.jpg" alt="review_image"
-                                class="w-12 h-12 rounded-full">
-                                <div class="ml-2">
-                                <p class="text-yellow-500 uppercase">John doe</p>
-                                <p>Designer</p>
-                                </div>
-                                <i class="ri-double-quotes-r text-4xl ml-auto"></i>
-                            </div>
-                    </div>
-                    <div class="flex flex-col gap-5 bg-green-900 rounded-md p-6">
-                            <p class="font-Lobster">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique culpa ut amet voluptas asperiores alias sed consequatur.
-                            </p>
-                            <div class="flex items-center">
-                                <img src="images/review-1.jpg" alt="review_image"
-                                class="w-12 h-12 rounded-full">
-                                <div class="ml-2">
-                                <p class="text-yellow-500 uppercase">John doe</p>
-                                <p>Designer</p>
-                                </div>
-                                <i class="ri-double-quotes-r text-4xl ml-auto"></i>
-                            </div>
-                    </div>
-                    <div class="flex flex-col gap-5 bg-green-900 rounded-md p-6">
-                            <p class="font-Lobster">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique culpa ut amet voluptas asperiores alias sed consequatur.
-                            </p>
-                            <div class="flex items-center">
-                                <img src="images/review-1.jpg" alt="review_image"
-                                class="w-12 h-12 rounded-full">
-                                <div class="ml-2">
-                                <p class="text-yellow-500 uppercase">John doe</p>
-                                <p>Designer</p>
-                                </div>
-                                <i class="ri-double-quotes-r text-4xl ml-auto"></i>
-                            </div>
-                    </div>
+                  </div>
+                </ng-container>
             </div>
             
           

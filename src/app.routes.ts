@@ -26,7 +26,7 @@ import { Statistique } from './app/features/manager/dashboard/statistique/chartd
 import { LayoutComponent } from './app/features/costumers/layout/layout.component';
 import { DasbordComponent } from './app/features/costumers/dasbord/dasbord.component';
 import { ServicechoisComponent } from './app/features/costumers/servicechois/servicechois.component';
-import { ChatComponent } from './app/features/costumers/chat/chat.component';
+import { ChatComponent } from './app/deletefile/chat/chat.component';
 import { CompteComponent } from './app/features/costumers/compte/compte.component';
 import { PanierComponent } from './app/features/costumers/panier/panier.component';
 import { StoryComponent } from './app/features/costumers/story/story.component';
@@ -35,6 +35,7 @@ import { LayoutmaComponent } from './app/features/manager/layoutma/layoutma.comp
 import { MessagemaComponent } from './app/features/manager/message/message.component';
 // mechanic's page import
 import { LayoutmeComponent } from './app/features/mechanic/layoutme/layoutme.component';
+import { OpinionComponent } from './app/features/costumers/opinion/opinion.component';
 export const appRoutes: Routes = [
     {
         path: '',
@@ -57,6 +58,7 @@ export const appRoutes: Routes = [
             { path: 'story', component: StoryComponent},
             { path: 'panier-view', component: PanierviewComponent },
             { path: 'historique-view', component: HistoriqueComponent },
+            { path: 'opinion', component: OpinionComponent },
         ]
     },
     {

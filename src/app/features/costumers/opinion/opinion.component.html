@@ -1,0 +1,66 @@
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+    <!-- section left -->
+    <div class="xl:col-span-2 space-y-6">
+
+        <!-- filter persone -->
+        <div class="bg-white px-4 py-3 border-b border-gray-100">
+            <div class="flex gap-2">
+           <button 
+            *ngFor="let items of listefiltreButton" 
+            [class]="items.class" 
+            (click)="filtreUserByrule(items.index)">
+            {{ items.name }}
+            </button>
+            </div>
+        </div>
+        <!-- list of conversation -->
+        <div class="bg-white flex-1 overflow-y-auto">
+            <div *ngFor="let items of listecommentaire" class="contact-item flex items-center p-4 border-b border-gray-50">
+                <div   class="border border-2 border-yellow-500 rounded-full mr-2">
+                    <img [src]="items.picture" class="w-12 h-12 rounded-full object-cover w-30 h-30 "/>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-semibold text-gray-900">{{ items.name }} {{ items.firstname }}</h3>
+                    <p class="text-sm text-gray-500">{{ items.message }}</p>
+                    <p class="text-sm text-gray-500">{{ getTimeAgo(items.date) }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space-y-6 mb-5">
+        <!-- Input Area -->
+        <div class="bg-white p-4 border-t border-gray-100">
+            <div class="flex items-center space-x-3"> 
+                
+               <input 
+                *ngIf="usermessage.message" [(ngModel)]="usermessage.message" 
+                name="content"
+                type="text" 
+                placeholder="Type a message..." 
+                class="flex-1 text-black bg-gray-50 border border-gray-200 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+                <button class="bg-blue-500 text-white w-10 h-10 rounded-full flex items-center justify-center"
+                (click)="sendMessage()">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- opinions -->
+         <div *ngFor="let items of listecommentaireUsers" class="contact-item flex items-center p-4 border-b border-gray-50">
+                <div   class="border border-2 border-yellow-500 rounded-full mr-2">
+                    <img [src]="items.picture" class="w-12 h-12 rounded-full object-cover w-30 h-30 "/>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-semibold text-gray-900">{{ items.name }} {{ items.firstname }}</h3>
+                    <p class="text-sm text-gray-500">{{ items.message }}</p>
+                    <p class="text-sm text-gray-500">{{ getTimeAgo(items.date) }}</p>
+                </div>
+                <button class="bg-red-500 text-white w-10 h-10 rounded-full flex items-center justify-center"
+                    (click)="deleteCom(items._id)">
+                   <i class="ri-delete-bin-line"></i>
+                </button>
+        </div>
+    </div>
+</div>

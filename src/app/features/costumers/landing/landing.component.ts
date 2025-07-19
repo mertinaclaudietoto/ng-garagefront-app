@@ -12,7 +12,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 // import 
-import { CarService, ensembleServiceCar } from './service/car.service';
+import { CarService, ensembleServiceCar ,Commentaire} from './service/car.service';
 
 
 
@@ -24,12 +24,17 @@ import { CarService, ensembleServiceCar } from './service/car.service';
 })
 export class LandingComponent implements AfterViewInit{
     listeservice!:ensembleServiceCar[]
+    listecommentaire!:Commentaire[]
+
     constructor(private carService: CarService) {
       
     }
     ngOnInit() {
        this.carService.getList(0,4).subscribe(table=>
-            {this.listeservice=table.data??[]; })
+       { this.listeservice = table.data ?? []; }
+       )
+       this.carService.getCommentaire(0,4).subscribe(table=>
+            {this.listecommentaire=table.data??[]; })
     }
     ngAfterViewInit() {
         const navMenu = document.getElementById("nav-menu");

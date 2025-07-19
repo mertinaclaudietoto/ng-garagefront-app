@@ -44,6 +44,7 @@ export class LayoutComponent implements OnInit{
             {label: 'Historique',icon: 'ri-archive-line', routerLink: ['/client/story']},
             {label: 'Message',icon: 'ri-chat-1-line', routerLink: ['/client/chat']},
             {label: 'Compte',icon: 'ri-profile-line', routerLink: ['/client/compte']},
+            {label: 'Avis Client',icon: 'ri-profile-line', routerLink: ['/client/opinion']},
         ];
         const menuMechanic = [ {
             label: 'Mécanicien',

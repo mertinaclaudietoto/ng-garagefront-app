@@ -13,6 +13,14 @@ export interface ensembleServiceCar {
   time: bigint,
   price:bigint,
 }
+export interface Commentaire {
+  _id: string,
+  name: string,
+  firstname:string,
+  picture: string,
+  message: string,
+  date: string,
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -25,6 +33,10 @@ export class CarService {
     return this.http.get<ApiResponse<ensembleServiceCar[]>>(this.apiUrl + 'servicecars/ensemble-service-by-car?skip='+skip+'&limit='+limit);
   }
 
+  
+  getCommentaire(skip:number,limit:number): Observable<ApiResponse<Commentaire[]>> {
+    return this.http.get<ApiResponse<Commentaire[]>>(this.apiUrl + 'opinions?skip='+skip+'&limit='+limit);
+  }
   
 }
 
