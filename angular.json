@@ -31,10 +31,14 @@
               }
             ],
             "styles": [
+              "node_modules/swiper/swiper-bundle.min.css",
               "@angular/material/prebuilt-themes/azure-blue.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/remixicon/fonts/remixicon.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/scrollreveal.min.js"
+            ]
           },
           "configurations": {
             "production": {

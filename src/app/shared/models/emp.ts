@@ -1,4 +1,10 @@
 import { IdName } from "./car-type";
+interface credicard{
+    namecard: String|'',
+    cardnumber: string|'',
+    cvv: string |'',
+    expiration: string |'',
+}
 export class Emp{
     _id:string|undefined;
     picture:string;
@@ -11,7 +17,8 @@ export class Emp{
     rule:IdName;
     sex:IdName;
     skills:IdName[];
-    active:number;
+    active: number;
+    creditCard:credicard
 
     constructor(
         picture: string = "default.jpg",
@@ -25,7 +32,7 @@ export class Emp{
         password:string="",
         rule: IdName = { _id: 0, name: "Employee" } ,
         sex: IdName = { _id: 0, name: "Employee" },
-        active:number=0 ) {
+        active:number=0 ,creditCard:credicard ={ namecard:'',cardnumber:'',cvv:'',expiration:''}) {
         this._id = id;
         this.login=login;
         this.password=password;
@@ -37,7 +44,8 @@ export class Emp{
         this.skills = skills;
         this.rule = rule;
         this.sex = sex;
-        this.active=0;
+        this.active = 0;
+        this.creditCard = creditCard;
     }
 }
 

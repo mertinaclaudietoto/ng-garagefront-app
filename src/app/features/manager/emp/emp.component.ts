@@ -18,7 +18,7 @@ import { DialogModule } from 'primeng/dialog';
 import { Emp } from '../../../shared/models/emp';
 import { EmpService } from './service/emp.service';
 import { IdName } from '../../../shared/models/car-type';
-import { CarService } from '../../costumers/services/car.service';
+import { CarService } from '../../../deletefile/services/car.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 // import { IMAGESDEFAULTS } from '../../expo/dataimage';
 @Component({
@@ -43,7 +43,6 @@ export class EmpComponent {
     constructor(private empService: EmpService,private carService:CarService,private snackBar: MatSnackBar) {
       this.addOrUpdateValue.picture='';
     }
-
     ngOnInit() {
         this.relaod();
         this.carService.getCarType("services").subscribe(table=>this.serviceList=table);
@@ -146,6 +145,5 @@ export class EmpComponent {
         console.log(urlImage.url);
     }
     }
- 
 
 }

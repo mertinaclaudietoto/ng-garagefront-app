@@ -43,8 +43,6 @@ function getMenu(): MenuItem[] {
     });
 
     console.log((JSON.parse(localStorage.getItem('panierlist') || '[]') as any[]).length);
-
-
     const menuCustomer = [
         {
             label: 'Home',

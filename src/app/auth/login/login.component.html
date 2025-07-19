@@ -1,138 +1,72 @@
-<div
-  class="bg-surface-50 dark:bg-surface-950 flex items-center justify-center min-h-screen min-w-[100vw] overflow-hidden"
->
-  <div class="flex flex-col items-center justify-center">
-    <div
-      style="
-        border-radius: 56px;
-        padding: 0.3rem;
-        background: linear-gradient(
-          180deg,
-          var(--primary-color) 10%,
-          rgba(33, 150, 243, 0) 30%
-        );
-      "
-    >
-      <div
-        class="w-full bg-surface-0 dark:bg-surface-900 py-20 px-8 sm:px-20"
-        style="border-radius: 53px"
-      >
-        <div class="text-center mb-8">
-          <svg
-            viewBox="0 0 54 40"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            class="mb-8 w-16 shrink-0 mx-auto"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M10 15L27 3L44 15V35H10V15ZM10 13L27 3L44 13V35H10V13Z"
-              fill="#4CAF50"
-            />
-            <path
-              d="M10 15L27 3L44 15V35H10V15Z"
-              fill="none"
-              stroke="#4CAF50"
-              stroke-width="2"
-            />
-            <path d="M10 35H44V33H10V35Z" fill="#4CAF50" />
-          </svg>
-          <div
-            class="text-surface-900 dark:text-surface-0 text-3xl font-medium mb-4"
-          >
-            Bienvenue sur G-Ntsika !
-          </div>
-          <span class="text-muted-color font-medium"
-            >Connectez-vous pour continuer</span
-          >
-        </div>
-        <div>
-          <label
-            for="email1"
-            class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2"
-            >Email</label
-          >
-          <label
-            *ngIf="column === 0"
-            for="ji"
-            class="block font-medium mb-2 text-red-700"
-          >
-            Not found email
-          </label>
-          <input
-            pInputText
-            id="email1"
-            type="text"
-            class="w-full md:w-[30rem] mb-8"
-            placeholder="Email"
-            [(ngModel)]="login.login"
-          />
-          <label
-            for="password1"
-            class="block text-surface-900 dark:text-surface-0 font-medium text-xl mb-2"
-            >Mot de passe</label
-          >
-          <label
-            for="ji"
-            *ngIf="column === 1"
-            class="block font-medium mb-2 text-red-700"
-          >
-            Password not correcte
-          </label>
-          <p-password
-            id="password1"
-            [(ngModel)]="login.password"
-            placeholder="Mot de passe"
-            [toggleMask]="true"
-            styleClass="mb-4"
-            class="w-full md:w-[30rem] mb-8"
-            [fluid]="true"
-            [feedback]="false"
-          ></p-password>
-          <div class="flex flex-row-reverse flex-wrap mb-3">
-            <div class="flex align-items-center justify-content-center">
-              <p class="text-muted-color font-medium">
-                Vous n'avez pas de compte ?
-                <a
-                  [routerLink]="'/auth/register'"
-                  class="text-primary underline"
-                  >Inscrivez-vous ici</a
-                >
-              </p>
+<body>
+    <header id="navbar" class="bg-green-950 fixed w-full top-0 left-0 z-50 ">
+        <nav class="container flex items-center justify-between h-16 sm:h-20">
+            <div class="font-Lobster sm:text-2xl ">GarageNtsika</div>
+            <div id="nav-menu" 
+                class="absolute top-0 left-[-100%] min-h-[80vh] w-full bg-green-950/80 backdrop-blur-sm flex items-center justify-center duration-300 overflow-hidden
+                        lg:static lg:min-h-fit lg:bg-transparent lg:w-auto">
+                <ul class="flex flex-col items-center  gap-8
+                            lg:flex-row ">
+               
+               <li>
+                    <a href="#review" routerLink="/auth/register" class="nav-link active">Inscription</a>
+                </li>
+                <li>
+                    <a href="#login" routerLink="/auth/login" class="nav-link">Connexion</a>
+                </li>
+                </ul>
             </div>
-          </div>
-          <p-button
-            label="Se connecter"
-            styleClass="w-full"
-            severity="info"
-            (onClick)="onlogin()"
-          ></p-button>
-        </div>
-        <div class="mt-2">
-          <!-- Manager -->
-          <p>
-            <b>Compte Manager : </b>
-            mertinaclaudietoto&#64;gmail.com
-            <b>Mdp : </b>
-            123
-          </p>
-          <!-- Mechanic -->
-          <p>
-            <b>Compte Mécanicien :</b>
-            lemoinesophie&#64;gmail.com
-            <b>Mdp : </b>
-            123
-          </p>
-          <!-- Client -->
-          <p>
-            <b>Compte Client : </b>
-            leclercmaxime&#64;gmail.com
-            <b>Mdp : </b>
-            123
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+            <div id="hamburger" class="text-xl sm:text-3xl cursor-pointer z-50
+            lg:hidden" >
+                <i class="ri-menu-4-line" id="hamburger"></i>
+            </div>
+        </nav>
+    </header>
+    <section id="login" class="relative">
+            <div class="popular__top flex flex-col items-center gap-3 texte-center mb-40 ">
+              <h2 class="title">Login</h2>
+              <p class="max-w-2xl">Connectez-vous a votre compte</p>
+            </div>
+            <div class="container">
+              <div class="flex flex-col items-center gap-5 lg:flex-row  ">
+                <!-- content -->
+                <div class="home__data w-full space-y-5" >
+                  <div>
+                      <label for="email1" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2 text-white">Email</label>
+                      <label *ngIf="column === 0" for="ji" class="block  font-medium mb-2 text-red-700 ">
+                          Not found email
+                      </label>  
+                      <input pInputText id="email1" type="text" placeholder="Email address" class="w-full  mb-8" [(ngModel)]="login.login" />
+                      <label for="password1" class="block text-surface-900 dark:text-surface-0 font-medium text-xl mb-2 text-white">Password</label>
+                      <label for="ji"*ngIf="column === 1" class="block  font-medium mb-2 text-red-700 ">
+                          Password not correcte
+                      </label>  
+                      <p-password id="password1" [(ngModel)]="login.password" placeholder="Password" [toggleMask]="true" styleClass="mb-4" [fluid]="true" [feedback]="false"></p-password>
+                      <div class="flex items-center justify-between mt-2 mb-8 gap-8">
+                          <span class="font-medium no-underline ml-2 text-right cursor-pointer text-yellow-500">Forgot password?</span>
+                          <span 
+                              class="font-medium no-underline ml-2 text-right cursor-pointer text-yellow-500" 
+                              [routerLink]="'/auth/register'">
+                              Make an account ?
+                          </span>
+
+                      </div>
+                      <div class="flex flex-col gap-2 sm:flex-row md:gap-4 lg:pt-5 xl:pt-10 ">
+                          <button class="btn" (click)="onlogin()">
+                            <span> Connexion</span>
+                          </button>
+                      </div>
+                      
+                      
+                  </div>
+                  <div class="mt-2">
+                    <p><b class="text-yellow-500">Manager  </b>  <b>L:</b> mertinaclaudietoto&#64;gmail.com <b>PW:</b>  123</p>
+                    <p><b class="text-yellow-500" >Mechanic </b>  <b>L:</b> lemoinesophie&#64;gmail.com      <b>PW:</b>  123</p>
+                    <p><b class="text-yellow-500">Costumer </b>   <b>L:</b> leclercmaxime&#64;gmail.com      <b>PW:</b>  123</p>
+                  </div>
+                </div>
+              
+              </div>
+            </div>
+    </section>
+</body>

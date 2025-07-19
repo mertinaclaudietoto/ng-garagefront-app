@@ -71,7 +71,6 @@ export class MenuComponent implements OnInit {
         this.#paginationService.panierCount$.subscribe(count => {
             this.model = this.getMenu(count);
         });
-
     }
 
 }

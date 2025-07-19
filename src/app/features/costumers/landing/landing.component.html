@@ -1,0 +1,367 @@
+<!-- <div class="bg-surface-0 dark:bg-surface-900">
+    <div id="home" class="landing-wrapper overflow-hidden">
+        
+
+        <app-featureswidget></app-featureswidget>
+        <app-herowidget></app-herowidget>
+        
+        <app-highlightswidget></app-highlightswidget>
+       
+        <app-footerwidget></app-footerwidget>
+    </div>
+</div> -->
+<body>
+    <!-- Header -->
+    <header id="navbar" class="bg-green-950 fixed w-full top-0 left-0 z-50 ">
+        <nav class="container flex items-center justify-between h-16 sm:h-20">
+            <div class="font-Lobster sm:text-2xl ">GarageNtsika</div>
+            <div id="nav-menu" 
+                class="absolute top-0 left-[-100%] min-h-[80vh] w-full bg-green-950/80 backdrop-blur-sm flex items-center justify-center duration-300 overflow-hidden
+                        lg:static lg:min-h-fit lg:bg-transparent lg:w-auto">
+                <ul class="flex flex-col items-center  gap-8
+                            lg:flex-row ">
+                <li>
+                    <a href="#home" class="nav-link active">Accueil</a>
+                </li>
+                <li>
+                    <a href="#about" class="nav-link">Services</a>
+                </li>
+                <li>
+                    <a href="#popular" class="nav-link">Apropos de nous</a>
+                </li>
+                <li>
+                    <a href="#review" class="nav-link">Contact</a>
+                </li>
+                <li>
+                    <a  routerLink="/auth/register" class="nav-link">Inscription</a>
+                </li>
+                <li>
+                    <a  routerLink="/auth/login" class="nav-link">Login</a>
+                </li>
+                </ul>
+            </div>
+            <div id="hamburger" class="text-xl sm:text-3xl cursor-pointer z-50
+            lg:hidden" >
+                <i class="ri-menu-4-line" id="hamburger"></i>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <!-- home -->
+         <section id="home" class="relative">
+            <div class="container">
+              <!-- blob 1 -->
+               <div class="w-64 h-64 bg-green-700 rounded-full blur-3xl -z-10 opacity-400 absolute top-1/2 left-1/2
+               transform -translate-x-1/2 -translate-y-1/2">
+
+               </div>
+               <!-- blob 2 -->
+               <div class="w-64 h-64 bg-green-700 rounded-full blur-3xl -z-10 opacity-400 absolute right-0 bottom-0">
+
+               </div>
+              <div class="flex flex-col items-center gap-5 lg:flex-row  ">
+                <!-- content -->
+                <div class="home__data w-full space-y-5 lg:w-1/2" >
+                  <h1>
+                    <span class="text-yellow-500">Votre </span>
+                    véhicule,<br> <span class="text-yellow-500">notre</span> priorité – un service de garage fiable, rapide et à portée de clic.
+                    </h1>
+                    
+                    <p class="text-slate-300 font-Lobster">
+                     Entretien, réparation ou contrôle, prenez rendez-vous en ligne et reprenez la route en toute confiance.
+                    </p>
+                    <div class="flex flex-col gap-2 sm:flex-row md:gap-4 lg:pt-5 xl:pt-10 ">
+                      <button  routerLink="/auth/register" class="btn">
+                        <span>Inscription</span>
+                             </button>
+                      <button routerLink="/auth/login" class="btn btn_outline">
+                        <span> Connexion</span>
+                            </button>
+                    </div>
+                    <p class="text-xs font-Lobster text-slate-300">
+                     Votre premier service seras gratuit
+                    </p>
+                    <div class="flex items-center  gap-5  text-lg lg:pt-10">
+                      <i class="ri-facebook-fill text-salte-300 hover:text-yellow-500 duration-300 cursor-pointer "></i>
+                      <i class="ri-twitter-x-line text-salte-300 hover:text-yellow-500 duration-300 cursor-pointer text-base"></i>
+                      <i class="ri-instagram-line text-salte-300 hover:text-yellow-500 duration-300 cursor-pointer"></i>
+                      <i class="ri-linkedin-fill text-salte-300 hover:text-yellow-500 duration-300 cursor-pointer"></i>
+                    </div>
+                </div>
+                <!-- image -->
+                 <div class="w-full relative lg:w-1/2">
+                    <img src="images/zvmjtqynoxdv2noqtsss-removebg-preview.png" alt="Image du garage" />
+                  
+                   <div class="absolute -top-10 right-0 opacity-30 
+                   animate-movingY xl:top-5">
+                     <i class="ri-tools-line text-6xl text-yellow-500"></i>
+                   </div>
+                   
+                   <div class="absolute bottom-0 left-0 opacity-30 
+                   xl:bottom-12 animate-rotating">
+                      <i class="ri-toolbox-line text-6xl text-yellow-500"></i>
+                   </div>
+                  
+                   <div class="hidden absolute -top-8 left-5 opacity-30 lg:block animate-scalingUp">
+                      <i class="ri-car-line text-6xl text-yellow-500"></i>
+                   </div>
+                 </div>
+              </div>
+            </div>
+        </section>
+        <!-- services -->
+        <div class="bg-white text-green-900 py-20">
+            <div class="container w-full grid grid-cols-1 gap-8 
+              md:grid-cols-2
+              lg:grid-cols-4 ">
+              <!-- card 1 -->
+               <div class="service__card border border-green-900 p-5 cursor-pointer rounded-md hover:shadow-2xl hover:-translate-y-1 duration-300 space-y-5">
+                <div class="flex items-center gap-5">
+                  <i class="ri-service-line text-3xl md:text-4xl xl:text-5xl"></i>
+                  <p class="md:text-lg font-bold">
+                    Excellente <br>  relation client
+                  </p>
+                </div>
+                <p class="font-Lobster">
+                    Une équipe à l’écoute, disponible et réactive pour répondre à toutes vos questions.
+                </p>
+               </div>
+               <!-- card 2 -->
+               <div class="service__card border border-green-900 p-5 cursor-pointer rounded-md hover:shadow-2xl hover:-translate-y-1 duration-300 space-y-5">
+                <div class="flex items-center gap-5">
+                  <i class="ri-user-3-line text-3xl md:text-4xl xl:text-5xl"></i>
+                  <p class="md:text-lg font-bold">
+                    Mécaniciens  <br> certifiés
+                  </p>
+                </div>
+                <p class="font-Lobster">
+                     Nos techniciens sont qualifiés et formés pour garantir un travail fiable et sécurisé.
+                </p>
+               </div>
+               <!-- card 3 -->
+               <div class="service__card border border-green-900 p-5 cursor-pointer rounded-md hover:shadow-2xl hover:-translate-y-1 duration-300 space-y-5">
+                <div class="flex items-center gap-5">
+                  <i class="ri-settings-3-line text-3xl md:text-4xl xl:text-5xl"></i>
+                  <p class="md:text-lg font-bold">
+                    Pièces de qualité <br> uniquement
+                  </p>
+                </div>
+                <p class="font-Lobster">
+                    Nous utilisons exclusivement des pièces d’origine ou équivalentes certifiées.
+                </p>
+               </div>
+               <!-- card 4 -->
+               <div class="service__card border border-green-900 p-5 cursor-pointer rounded-md hover:shadow-2xl hover:-translate-y-1 duration-300 space-y-5">
+                <div class="flex items-center gap-5">
+                  <i class="ri-money-dollar-circle-line text-3xl md:text-4xl xl:text-5xl"></i>
+                  <p class="md:text-lg font-bold">
+                    Tarification <br> transparente
+                  </p>
+                </div>
+                <p class="font-Lobster">
+                  Des devis clairs et sans surprise pour que vous sachiez toujours ce que vous payez.
+                </p>
+               </div>
+            </div>
+        </div>
+        <!-- about -->
+        <section id="about" class="relative overflow-hidden">
+            <div class="about__leaf absolute -top-8 -right-12 opacity-50">
+            <img src="src/assets/img/leaf-3.png" alt="leaf-image" class="w-40 md:w-52 xl:w-64">
+            </div>
+            <div class="about__top flex flex-col items-center gap-3 texte-center mb-10 md:mb-20">
+            <h2 class="title">Apropos</h2>
+            <p class="max-w-2xl">Suivez les instructions pour en savoir plus</p>
+            </div>
+
+            <div class="container space-y-10 xl:space-y-0" >
+            <!-- items 1 -->
+            <div class="flex flex-col items-center 
+            lg:flex-row gap-5 ">
+                <!-- image -->
+                <div class="about__item__1-img w-full lg:w-1/2">
+                <img src="images/02aa89db5269da428be50f1a8ce87178-removebg-preview.png" alt="about_image" 
+                class="w-full sm:w-2/3 lg:w-full xl:w-2/3 mx-auto ">
+                </div>
+                <!-- content -->
+                <div class="about__item__1-content w-full lg:w-1/2">
+                    <div class="space-y-5">
+                    <h3>Tout pour  <span class="text-yellow-500">votre</span> <br> voiture   
+                    </h3>
+                    <p class="text-slate-300 font-Lobster">
+                       Chez nous, chaque détail compte. De la vidange à la réparation moteur, en passant par le contrôle technique, notre équipe de professionnels met tout en œuvre pour assurer la longévité et la performance de votre véhicule. Parce que votre sécurité est notre priorité.
+                    </p>
+                    </div>
+                </div>
+            </div>
+            <!-- items 2 -->
+            <div class="flex flex-col items-center lg:flex-row-reverse gap-5 ">
+                <!-- image -->
+                <div class="about__item__2-img w-full lg:w-1/2">
+                <img src="images/9f64fdbceda65cc82894e13cb6eb31e9-removebg-preview.png" alt="about_image" 
+                class="w-full sm:w-2/3 lg:w-full xl:w-2/3 mx-auto ">
+                </div>
+                <!-- content -->
+                <div class="about__item__2-content w-full lg:w-1/2">
+                    <div class="space-y-5">
+                    <h3>Votre garage,  <br>
+                        <span class="text-yellow-500">notre expertise</span> 
+                        your plant</h3>
+                        <p class="text-slate-300 font-Lobster">
+                        Depuis toujours, notre garage s’engage à offrir un service complet et fiable. Entretien, réparation, diagnostics… nous prenons soin de votre véhicule comme s’il était le nôtre. Faites confiance à notre savoir-faire pour une mobilité sûre et sereine.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <!-- Popular -->
+          <section id="popular" class="bg-green-900">
+            <div class="popular__top flex flex-col items-center gap-3 texte-center mb-40 ">
+              <h2 class="title">Your Choice Plant</h2>
+              <p class="max-w-2xl">Follow instruction for more</p>
+            </div>
+            <div class="container w-full grid grid-cols-1 gap-x-8 gap-y-36 
+            md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <!-- card 1 -->
+              <ng-container *ngFor="let value of listeservice">
+                  <div class="popular_card bg-green-950 p-10 pt-24 rounded-md relative">
+                    <img 
+                      [src]="value.picture" 
+                      alt="popular_image" 
+                      class="w-56 absolute -top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 duration-500"
+                    />
+
+                    <p class="italic">{{ value.description }}</p>
+                    <h3>{{ value.nameofcar }}</h3>
+
+                    <div class="text-yellow-500 text-xs py-3">
+                      {{ value.time }} heure
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                      <p class="text-xl">{{ value.price }} AR</p>
+                      <button class="bg-yellow-500 px-2 py-1 rounded-sm text-xl">
+                        <i class="ri-shopping-cart-fill"></i>
+                      </button>
+                    </div>
+                  </div>
+              </ng-container>
+            </div>
+        </section>
+         <!-- login -->
+        <!-- Review -->
+         <section id="review" class="relative mb-20 md:mb-28 overflow-hidden">
+           
+
+            <div class="review__top flex flex-col items-center gap-3 texte-center mb-10 md:mb-20">
+              <h2 class="title">Avis du client</h2>
+              <p class="max-w-2xl">Follow instruction for more</p>
+            </div>
+            <div class="container w-full grid grid-cols-1 gap-8 
+                        md:grid-cols-2
+                        lg:grid-cols-4 ">
+                <ng-container *ngFor="let value of listecommentaire" >
+                  <div class="flex flex-col gap-5 bg-green-900 rounded-md p-6">
+                    <p class="font-Lobster">
+                        {{value.message}}
+                    </p>
+                    <div class="flex items-center">
+                        <img [src]="value.picture" alt="review_image"
+                              class="w-12 h-12 rounded-full">
+                        <div class="ml-2">
+                        <p class="text-yellow-500 uppercase">{{value.firstname}}</p>
+                        <p>{{value.name}}</p>
+                        </div>
+                        <i class="ri-double-quotes-r text-4xl ml-auto"></i>
+                    </div>
+                  </div>
+                </ng-container>
+            </div>
+            
+          
+        </section>
+       
+    </main>
+<footer class="bg-yellow-100 text-green-950 pt-20 pb-10 md:pt-28 relative">
+        <!-- newsletter -->
+        <div class="container text-white absolute top-0 right-0 left-0 -translate-y-1/2">
+          <div class="bg-green-900 px-10 pt-5 pb-10 space-y-5 rounded-md">
+            <h3><span class="text-yellow-500">Subscribe</span> to our newsletter</h3>
+              <div class="flex flex-col md:flex-row gap-1"> 
+                <input type="email" placeholder="Your Email Address" class="w-full px-5 py-3 text-green-900 rounded-md outline-none">
+                <button class="flex items-center justify-center gap-1 bg-green-950 px-5 py-3 rounded-md hover:opacity-80 duration-300">
+                  <span>Subscribe</span>
+                  <i class="ri-send-plane-2-fill"></i>
+
+                </button>
+              </div>
+          </div>
+        </div>
+        <!-- social icon -->
+        <div class="footer__icon container mt-16 mb-10">
+          <div class="border-b border-green-500 relative">
+            <div class="absolute top-0 transform -translate-y-1/2 left-0 right-0 max-w-36 mx-auto">
+              <div class="bg-yellow-100 text-lg text-center space-x-2">
+                <i class="ri-facebook-fill hover:text-yellow-500 duration-300 cursor-pointer"></i>
+                <i class="ri-twitter-x-line hover:text-yellow-500 duration-300 cursor-pointer text-base"></i>
+                <i class="ri-instagram-line hover:text-yellow-500 duration-300 cursor-pointer"></i>
+                <i class="ri-linkedin-fill hover:text-yellow-500 duration-300 cursor-pointer"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content -->
+        <div class="footer__content container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 text-center md:text-start ">
+          <!-- item 1-->
+           <div>
+            <div class="text-7xl text-green-700 text-center inline-block">
+              <i class="ri-car-line"></i>
+              <p class="font-Lobster text-xl sm:text-2xl">GarageNtsika</p>
+            </div>
+           </div>
+           <!-- item 2 -->
+            <div>
+              <p class="mb-5 font-bold text-xl">Liste rapide</p>
+              <div class="flex flex-col gap-1">
+                <a href="#">Vidange</a>
+                <a href="#">filtres</a>
+                <a href="#">contrôles préventifs</a>
+                <a href="#">Réparation</a>
+                <a href="#">amortisseurs</a>
+
+              </div>
+            </div>
+             <!-- item 3 -->
+            <div>
+              <p class="mb-5 font-bold text-xl">Popular Services</p>
+              <div class="flex flex-col gap-1">
+                <a href="#">Tree Planting</a>
+                <a href="#">Grass Cutting</a>
+                <a href="#">Weeds Control</a>
+                <a href="#">Project</a>
+              </div>
+            </div>
+             <!-- item 4 -->
+            <div>
+              <p class="mb-5 font-bold text-xl">Contacter Nous</p>
+              <div class="flex flex-col gap-1">
+                <a href="tel:+8833378901">034 94 595 04</a>
+                <a href="mailto:mertinaclaudietoto@gmail.com">mertinaclaudietoto gmail.com</a>
+                <br>
+                <p>1234 Tailwind Ave, CSS City, Webland 56789, USA</p>
+                
+              </div>
+            </div>
+        </div>
+        <!-- copyright -->
+        <div class="copy__rigth container">
+          <p class="text-center mt-10 opacity-50"> Copyright &copy; 2024 LightCode. All rights reserved.</p>
+        </div>
+        <!-- floral image -->
+         <div class="footer_floral absolute bottom-0 left-0 opacity-20 pointer-events-none">
+          <img src="src/assets/img/floral-1.png" alt="floral_image" class="w-full lg:w-1/2">
+         </div>
+    </footer>
+
+</body>

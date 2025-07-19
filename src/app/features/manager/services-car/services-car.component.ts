@@ -1,4 +1,4 @@
-import { CarService } from './../../costumers/services/car.service';
+import { CarService } from '../../../deletefile/services/car.service';
 import { Component, OnInit } from '@angular/core';
 import { FluidModule } from 'primeng/fluid';
 import { InputTextModule } from 'primeng/inputtext';

@@ -12,7 +12,7 @@ import { ConfirmationService } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
 import { RippleModule } from 'primeng/ripple';
 import { ToolbarModule } from 'primeng/toolbar';
-import { CarService } from '../../../../costumers/services/car.service';
+import { CarService } from '../../../../../deletefile/services/car.service';
 import { TypeService } from '../../../../../shared/models/type-service.model';
 import { TypeServiceFormComponent } from '../type-service-form/type-service-form.component';
 

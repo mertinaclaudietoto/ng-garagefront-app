@@ -4,7 +4,7 @@ import { Emp } from "./emp";
 import { IdName } from "./car-type";
 export interface ServiceCostumer {
     _id: string|null;
-    idcostumer: Emp|string;
+    idcostumer: Emp|null;
     dateappoitement:Date;
     etats:number;
     serviceList:{

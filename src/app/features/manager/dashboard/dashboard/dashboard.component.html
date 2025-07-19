@@ -1,112 +1,158 @@
-<div class="grid grid-cols-12 gap-8">
-    <app-statswidget class="contents"
-    [nbrCostumer]="nbrCostumer"
-    [nbrTacheencours]="nbrTacheencours"
-    [nbrTacheenAttent]="nbrTacheenAttent"
-    [nbrEmployeedispo]="nbrEmployeedispo"
-    [nbrMechanic]="nbrMechanic"></app-statswidget>
-    <div class="col-span-12 xl:col-span-6  ">
-        <div  class="card !mb-8">
-            <div class="font-semibold text-xl mb-4">Service client en attente</div>
-            <p-table [value]="listClientEnAttent"  responsiveLayout="scroll">
-                <ng-template #header>
-                    <tr>
-                        <th>Image</th>
-                        <th>Nom</th>
-                        <th pSortableColumn="price">Prenom</th>
-                        <th>Date rendez-vous</th>
-                        <th pSortableColumn="price">View</th>
-                    </tr>
-                </ng-template>
-                <ng-template #body let-product>
-                    <tr>
-                        <td>
-                            <img [src]="product.idcostumer.picture " class="shadow-lg" alt="{{ product.name }}" width="50" />
-                        </td>
-                        <td>{{ product.idcostumer.name }}</td>
-                        <td>{{ product.idcostumer.firstName }}</td>
-                        <td>{{ product.dateappoitement | date:'dd/MM/yyyy à HH:mm' }}</td>
-                        <td>
-                            <p-button (onClick)="setUpdateValue(product)" icon="pi pi-eye" severity="secondary" rounded />
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
-            <p-dialog header="Detail Service " [(visible)]="display" [breakpoints]="{ '960px': '75vw' }"  [style]="{ width: '80vw',height:'80vh' }" [modal]="true">
-                <h4 *ngIf="viewDetaille && isEmp(viewDetaille.idcostumer)">
-                    {{ viewDetaille.idcostumer.name }}
-                  </h4>
-                  
-                
-                <p-table *ngIf="viewDetaille"  [value]="viewDetaille.serviceList"  responsiveLayout="scroll" >
-                    <ng-template #header>
-                        <tr>
-                            <th>voiture</th>
-                            <th>Service</th>
-                            <th >Prix du service</th>
-                            <th>Mechanicien</th>
-                            <th >Debut</th>
-                            <th >Fin</th>
+<!-- new dasboard -->
+ <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+    <div class="xl:col-span-2 space-y-6">
+        <!-- tache en attente -->
+        <div *ngFor="let value of listClientEnAttent"
+             class="bg-green-950  rounded-lg shadow-md p-4 mb-6 flex flex-col space-x-4">
+                <!-- Avatar et info client -->
+                 
+                <div class="flex flex-col items-end m-2  w-full">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center overflow-hidden shadow-lg">
+                        <img 
+                            [src]="value.idcostumer?.picture" 
+                            [alt]="value.idcostumer?.name" 
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+                    <p class="mt-2 text-center text-sm font-medium italic text-white">
+                        {{ value.idcostumer?.name }} {{ value.idcostumer?.firstName }}
+                        {{ value.dateappoitement | date:'dd/MM/yyyy à HH:mm' }}
+                    </p>
+                </div>
+                <!-- Détails des services -->
+                <div class="flex-1 min-w-0">
+                    <h3 class="text-lg font-semibold text-white mb-2">Liste des travaux en attente</h3>
+                    <table *ngIf="value.serviceList" class="w-full text-sm text-left text-white bg-green-950 rounded-lg overflow-hidden shadow-lg">
+                        <thead class="bg-green-900 text-white uppercase">
+                            <tr>
+                            <th class="px-4 py-3">Service</th>
+                            <th class="px-4 py-3">Prix</th>
+                            <th class="px-4 py-3">Mécanicien</th>
+                            <th class="px-4 py-3">Début</th>
+                            <th class="px-4 py-3">Fin</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let product of value.serviceList" class="border-b border-green-800 hover:bg-green-900 transition duration-150">
+                            <td class="px-4 py-2">{{ product.service.idservice.name }}</td>
+                            <td class="px-4 py-2">{{ product.service.price | currency: 'AR' }}</td>
                             
-                        </tr>
-                    </ng-template>
-                    <ng-template #body let-product class="h-full">
-                        <tr class="w-full transition-all duration-300 ease-in-out">
-                            <td>
-                                <img [src]="product.picture " class="shadow-lg" alt="{{ product.name }}" width="50" />
+                            <td class="px-4 py-2">
+                                <ng-container *ngIf="product.idmechanic; else selectMechanic">
+                                {{ product.idmechanic.name }}
+                                </ng-container>
+                                <ng-template #selectMechanic>
+                                <p-select 
+                                    [(ngModel)]="product.idmechanic" 
+                                    [options]="listFreeMechanic" 
+                                    optionLabel="name" 
+                                    placeholder="Sélectionner"
+                                    class="w-full" 
+                                    appendTo="body">
+                                </p-select>
+                                </ng-template>
                             </td>
-                            <td>{{ product.service.idservice.name}}</td>
-                            <td>{{ product.service.price  }}</td>
-                            <td *ngIf="product.idmechanic" >{{ product.idmechanic.name}}</td>
-                            <td *ngIf="!product.idmechanic" >
-                                <p-select id="state" [(ngModel)]="product.idmechanic" [options]="listFreeMechanic" optionLabel="name" placeholder="Select One"
-                                class="w-full"  appendTo="body"></p-select>
+                            
+                            <td class="px-4 py-2">{{ product.startdate | date:'dd/MM/yyyy à HH:mm' }}</td>
+                            <td class="px-4 py-2">{{ product.enddate | date:'dd/MM/yyyy à HH:mm' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="flex justify-end items-end w-full">
+                        <button class="w-32 m-2  bg-yellow-500 text-white font-medium py-3 px-6 rounded-xl shadow-lg transition-all duration-200 hover:shadow-xl transform hover:-translate-y-1"
+                        (onClick)="modifOrAdd(value)" >
+                                        Modifier
+                        </button>
+                    </div>
+                </div>
+                
+        </div>
+        <!-- tache en cours -->
+        <div *ngFor="let value of listClientProgress"
+             class="bg-green-950  rounded-lg shadow-md p-4 mb-6 flex flex-col space-x-4">
+                <!-- Avatar et info client -->
+                <div class="flex flex-col items-end m-2  w-full">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center overflow-hidden shadow-lg">
+                        <img 
+                            [src]="value.idcostumer?.picture" 
+                            [alt]="value.idcostumer?.name" 
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+                    <p class="mt-2 text-center text-sm font-medium italic text-white">
+                        {{ value.idcostumer?.name }} {{ value.idcostumer?.firstName }}
+                        {{ value.dateappoitement | date:'dd/MM/yyyy à HH:mm' }}
+                    </p>
+                </div>
+                <!-- Détails des services -->
+                <div class="flex-1 min-w-0">
+                    <h3 class="text-lg font-semibold text-white mb-2">Liste des travaux en cours</h3>
+                    <table *ngIf="value.serviceList" class="w-full text-sm text-left text-white bg-green-950 rounded-lg overflow-hidden shadow-lg">
+                        <thead class="bg-green-900 text-white uppercase">
+                            <tr>
+                            <th class="px-4 py-3">Service</th>
+                            <th class="px-4 py-3">Prix</th>
+                            <th class="px-4 py-3">Mécanicien</th>
+                            <th class="px-4 py-3">Début</th>
+                            <th class="px-4 py-3">Fin</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let product of value.serviceList" class="border-b border-green-800 hover:bg-green-900 transition duration-150">
+                            <td class="px-4 py-2">{{ product.service.idservice.name }}</td>
+                            <td class="px-4 py-2">{{ product.service.price | currency: 'AR' }}</td>
+                            
+                            <td class="px-4 py-2">
+                                <ng-container *ngIf="product.idmechanic; else selectMechanic">
+                                {{ product.idmechanic.name }}
+                                </ng-container>
+                                <ng-template #selectMechanic>
+                                <p-select 
+                                    [(ngModel)]="product.idmechanic" 
+                                    [options]="listFreeMechanic" 
+                                    optionLabel="name" 
+                                    placeholder="Sélectionner"
+                                    class="w-full" 
+                                    appendTo="body">
+                                </p-select>
+                                </ng-template>
                             </td>
-                            <td>{{ product.startdate | date:'dd/MM/yyyy à HH:mm'}}</td>
-                            <td>{{ product.enddate | date:'dd/MM/yyyy à HH:mm'}}</td>
-                        </tr>
-                        <tr></tr>
-                        <tr></tr>
-
-                    </ng-template>
-                </p-table>
-                <p class="text-red-500 ml-2">{{this.errorMessage}}</p>
-                <ng-template #footer>
-                    <p-button label="modifier" severity="info"  (onClick)="modifOrAdd(viewDetaille)" />
-                </ng-template>
-            </p-dialog>
-
-        
+                            
+                            <td class="px-4 py-2">{{ product.startdate | date:'dd/MM/yyyy à HH:mm' }}</td>
+                            <td class="px-4 py-2">{{ product.enddate | date:'dd/MM/yyyy à HH:mm' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                   
+                </div>
+                
         </div>
     </div>
-    <div class="col-span-12 xl:col-span-6  ">
-        <div  class="card !mb-8">
-            <div class="font-semibold text-xl mb-4">Service en  cours</div>
-            <p-table [value]="listClientProgress"  responsiveLayout="scroll">
-                <ng-template #header>
-                    <tr>
-                        <th>Date de prise en main</th>
-                        <th>Image</th>
-                        <th>Nom</th>
-                        <th pSortableColumn="price">Prenom</th>
-                        <th pSortableColumn="price">View</th>
-                    </tr>
-                </ng-template>
-                <ng-template #body let-product>
 
-                    <tr>
-                        <td>{{ product.dateappoitement | date:'dd/MM/yyyy à HH:mm' }}</td>
-                        <td>
-                            <img [src]="product.idcostumer.picture " class="shadow-lg" alt="{{ product.name }}" width="50" />
-                        </td>
-                        <td>{{ product.idcostumer.name }}</td>
-                        <td>{{ product.idcostumer.firstName }}</td>
-                        <td>
-                            <p-button (onClick)="setUpdateValue(product)" icon="pi pi-eye" severity="secondary" rounded />
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
+     <div class="space-y-6 mb-5 ">
+        <app-calendar [year]="2025" [month]="7" moi="juillet" [highlightedDays]="[5, 12, 20, 28]"></app-calendar>
+        <div class="  grid  grid-cols-1 lg:grid-cols-2 gap-4 ">
+           
+            <div *ngFor="let value of listevaluestat" 
+                    class="bg-green-950 border border-white/30 shadow-lg rounded-xl p-4 mb-4">
+                
+                <div class="flex justify-between items-center">
+                    <div>
+                        <span class="block text-whte-500 text-xl text-relief font-medium mb-2">
+                            {{ value.name }}
+                        </span>
+                        <div class="text-white font-semibold text-xl">
+                            {{ value.value }}
+                        </div>
+                    </div>
+
+                    <div class="w-10 h-10 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-xl 
+                                flex items-center justify-center border-2 border-orange-200">
+                        <i class="{{ value.icone }}"></i>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
+     </div>
 </div>
